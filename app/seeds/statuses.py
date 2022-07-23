@@ -2,12 +2,12 @@ from app.models import db, Status
 
 # add the default statuses
 def seed_statuses():
-    unset = Status(status="unset")
+    default = Status(status="default")
     busy = Status(status="busy")
     idle = Status(status="idle")
     offline = Status(status="offline")
 
-    db.session.add_all([unset, busy, idle, offline])
+    db.session.add_all([default, busy, idle, offline])
     db.session.commit()
 
 
