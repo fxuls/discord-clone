@@ -11,7 +11,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     bio = db.Column(db.String(320))
     banner_color = db.Column(db.String(10))
-    status_id = db.Column(db.Integer, db.ForeignKey("statuses.id"))
+    status_id = db.Column(db.Integer, db.ForeignKey("statuses.id"), default=1)
     profile_image_id = db.Column(db.Integer, db.ForeignKey("images.id"))
 
 
