@@ -4,7 +4,7 @@ from flask_login import UserMixin
 
 
 class User(db.Model, UserMixin):
-    __tablename__ = 'users'
+    __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
@@ -12,10 +12,23 @@ class User(db.Model, UserMixin):
     bio = db.Column(db.String(320))
     banner_color = db.Column(db.String(10))
     status_id = db.Column(db.Integer, db.ForeignKey("statuses.id"), default=1)
-    profile_image_id = db.Column(db.Integer, db.ForeignKey("images.id", ondelete="SET NULL"), nullable=True)
+    profile_image_id = db.Column(
+        db.Integer, db.ForeignKey("images.id", ondelete="SET NULL"), nullable=True
+    )
 
     status = db.relationship("Status", lazy="joined")
     profile_image = db.relationship("Image", lazy="joined")
+
+    sent_friend_requests = db.relationship(
+        "FriendRequest",
+        foreign_keys="FriendRequest.sending_user_id",
+        cascade="all, delete-orphan",
+    )
+    incoming_friend_requests = db.relationship(
+        "FriendRequest",
+        foreign_keys="FriendRequest.receiving_user_id",
+        cascade="all, delete-orphan",
+    )
 
     @property
     def password(self):
@@ -30,13 +43,39 @@ class User(db.Model, UserMixin):
 
     def to_dict(self):
         user_dict = {
-            'id': self.id,
-            'username': self.username,
-            'bio': self.bio,
-            'banner_color': self.banner_color,
+            "id": self.id,
+            "username": self.username,
+            "bio": self.bio,
+            "banner_color": self.banner_color,
         }
 
-        if self.status is not None: user_dict['status'] = self.status.status
-        if self.profile_image is not None: user_dict['profile_image_url'] = self.profile_image.url
+        if self.status is not None:
+            user_dict["status"] = self.status.status
+        if self.profile_image is not None:
+            user_dict["profile_image_url"] = self.profile_image.url
 
         return user_dict
+
+    def get_friend_requests(self):
+        friend_requests = {
+            "sent": [],
+            "incoming": [],
+        }
+
+        for i in range(0, len(self.sent_friend_requests)):
+            friend_requests["sent"].append(
+                {
+                    "id": self.sent_friend_requests[i].id,
+                    "user_id": self.sent_friend_requests[i].receiving_user_id,
+                }
+            )
+
+        for i in range(0, len(self.incoming_friend_requests)):
+            friend_requests["incoming"].append(
+                {
+                    "id": self.incoming_friend_requests[i].id,
+                    "user_id": self.incoming_friend_requests[i].sending_user_id,
+                }
+            )
+
+        return friend_requests
