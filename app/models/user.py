@@ -17,7 +17,6 @@ class User(db.Model, UserMixin):
     status = db.relationship("Status", lazy="joined")
     profile_image = db.relationship("Image", lazy="joined")
 
-
     @property
     def password(self):
         return self.hashed_password
