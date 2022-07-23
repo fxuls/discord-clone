@@ -81,7 +81,8 @@ class User(db.Model, UserMixin):
 
         return user_dict
 
-    def get_friend_requests(self):
+    @property
+    def friend_requests(self):
         friend_requests = {
             "sent": [],
             "incoming": [],
