@@ -31,7 +31,7 @@ def seed_users():
         password="password",
     )
 
-    db.session.add_all(demo, super, bobbie, lazy)
+    db.session.add_all([demo, super, bobbie, lazy])
     db.session.commit()
 
 
