@@ -2,6 +2,7 @@ from flask.cli import AppGroup
 from .statuses import seed_statuses, undo_statuses
 from .images import seed_images, undo_images
 from .users import seed_users, undo_users
+from .friend_requests import seed_friend_requests, undo_friend_requests
 
 # creates a seed group to hold our commands
 # so we can type `flask seed --help`
@@ -14,11 +15,13 @@ def seed():
     seed_statuses()
     seed_images()
     seed_users()
+    seed_friend_requests()
 
 
 # create the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
+    undo_friend_requests()
     undo_users()
     undo_images()
     undo_statuses()
