@@ -32,6 +32,12 @@ def seed_users():
         password="password",
     )
 
+    tony = User(
+        username="TonyDino#2102",
+        password="password",
+        bio="Hey guys!",
+    )
+
     db.session.add_all([demo, super, bobbie, lazy])
     db.session.commit()
 
