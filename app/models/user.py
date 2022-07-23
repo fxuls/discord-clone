@@ -12,7 +12,7 @@ class User(db.Model, UserMixin):
     bio = db.Column(db.String(320))
     banner_color = db.Column(db.String(10))
     status_id = db.Column(db.Integer, db.ForeignKey("statuses.id"), default=1)
-    profile_image_id = db.Column(db.Integer, db.ForeignKey("images.id"))
+    profile_image_id = db.Column(db.Integer, db.ForeignKey("images.id", ondelete="SET NULL"), nullable=True)
 
     status = db.relationship("Status", lazy="joined")
     profile_image = db.relationship("Image", lazy="joined")
