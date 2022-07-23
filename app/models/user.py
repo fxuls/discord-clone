@@ -1,3 +1,4 @@
+from sqlalchemy import ForeignKey
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -29,6 +30,28 @@ class User(db.Model, UserMixin):
         foreign_keys="FriendRequest.receiving_user_id",
         cascade="all, delete-orphan",
     )
+
+    # I can't figure out how to make this be populated by entries where
+    # id matches either Friend.user_one_id or Friend.user_two_id so
+    # just going to get them seperately and join them in a property
+    friends_left = db.relationship(
+        "Friend",
+        foreign_keys="Friend.user_one_id",
+        cascade="all, delete-orphan",
+    )
+    friends_right = db.relationship(
+        "Friend",
+        foreign_keys="Friend.user_two_id",
+        cascade="all, delete-orphan",
+    )
+
+    @property
+    def friends(self):
+        friends = []
+        friends += [friend.user_two.to_dict() for friend in self.friends_left]
+        friends += [friend.user_one.to_dict() for friend in self.friends_right]
+
+        return friends
 
     @property
     def password(self):
