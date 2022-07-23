@@ -24,6 +24,7 @@ def seed_users():
         password="password",
         banner_color="#de667a",
         profile_image_id=3,
+        status_id=4,
     )
 
     lazy = User(
