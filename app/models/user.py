@@ -14,6 +14,9 @@ class User(db.Model, UserMixin):
     status_id = db.Column(db.Integer, db.ForeignKey("statuses.id"), default=1)
     profile_image_id = db.Column(db.Integer, db.ForeignKey("images.id"))
 
+    status = db.relationship("Status", lazy="joined")
+    profile_image = db.relationship("Image", lazy="joined")
+
 
     @property
     def password(self):
@@ -27,7 +30,14 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict(self):
-        return {
+        user_dict = {
             'id': self.id,
             'username': self.username,
+            'bio': self.bio,
+            'banner_color': self.banner_color,
         }
+
+        if self.status is not None: user_dict['status'] = self.status.status
+        if self.profile_image is not None: user_dict['profile_image_url'] = self.profile_image.url
+
+        return user_dict
