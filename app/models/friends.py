@@ -8,8 +8,8 @@ class Friend(db.Model):
     user_one_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     user_two_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
 
-    user_one = db.relationship("User", foreign_keys=[user_one_id], back_populates="friends")
-    user_two = db.relationship("User", foreign_keys=[user_two_id], back_populates="friends")
+    user_one = db.relationship("User", foreign_keys=[user_one_id], back_populates="friends_left")
+    user_two = db.relationship("User", foreign_keys=[user_two_id], back_populates="friends_right")
 
     def to_dict(self):
         friend_dict = {
