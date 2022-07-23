@@ -1,27 +1,42 @@
 from app.models import db, User
 
 
-# Adds a demo user, you can add other users here if you want
+# add users seed
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password')
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
+        username="demo#1234",
+        password="password",
+        bio="I love this website! Feel free to message me :)",
+        banner_color="#6f27b8",
+        profile_image_id=1,
+    )
+
+    super = User(
+        username="SuperUser#1112",
+        password="password",
+        bio="I enjoy playing games! I mostly will be playing games if I'm online",
+        banner_color="#2eb827",
+        profile_image_id=2,
+    )
+
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+        username="Bobbie#9291",
+        password="password",
+        banner_color="#de667a",
+        profile_image_id=3,
+    )
 
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+    lazy = User(
+        username="LazyUser#0000",
+        password="password",
+    )
 
+    db.session.add_all(demo, super, bobbie, lazy)
     db.session.commit()
 
 
-# Uses a raw SQL query to TRUNCATE the users table.
-# SQLAlchemy doesn't have a built in function to do this
-# TRUNCATE Removes all the data from the table, and RESET IDENTITY
-# resets the auto incrementing primary key, CASCADE deletes any
-# dependent entities
+# truncate statuses table
+# remove data, reset primary key, cascade delete dependent entries
 def undo_users():
-    db.session.execute('TRUNCATE users RESTART IDENTITY CASCADE;')
+    db.session.execute("TRUNCATE users RESTART IDENTITY CASCADE;")
     db.session.commit()
