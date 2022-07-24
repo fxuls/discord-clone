@@ -5,3 +5,4 @@ from .images import Image
 from .friend_requests import FriendRequest
 from .friends import Friend
 from .servers import Server
+from .server_permissions import ServerPermission
