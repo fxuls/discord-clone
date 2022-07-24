@@ -27,6 +27,9 @@ def seed_servers():
         ),
     ]
 
+    db.session.add_all(servers)
+    db.session.commit()
+
 
 # truncate servers table
 # remove data, reset primary key, cascade delete dependent entries
