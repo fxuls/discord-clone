@@ -21,6 +21,7 @@ class User(db.Model, UserMixin):
 
     status = db.relationship("Status", lazy="joined")
     profile_image = db.relationship("Image", lazy="joined")
+    owned_servers = db.relationship("Server", cascade="all, delete-orphan")
 
     sent_friend_requests = db.relationship(
         "FriendRequest",
