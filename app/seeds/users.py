@@ -40,7 +40,7 @@ def seed_users():
     db.session.commit()
 
 
-# truncate statuses table
+# truncate users table
 # remove data, reset primary key, cascade delete dependent entries
 def undo_users():
     db.session.execute("TRUNCATE users RESTART IDENTITY CASCADE;")
