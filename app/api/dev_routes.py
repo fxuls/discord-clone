@@ -57,3 +57,9 @@ def get_server_owner():
 def user_servers():
     user = User.query.get(1)
     return jsonify(user.joined_servers), 200
+
+
+@dev_routes.route("/server-channels")
+def server_channels():
+    server = Server.query.get(3)
+    return jsonify([channel.to_dict() for channel in server.channels]), 200
