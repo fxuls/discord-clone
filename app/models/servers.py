@@ -25,6 +25,8 @@ class Server(db.Model):
     owner = db.relationship("User", back_populates="owned_servers")
     server_image = db.relationship("Image", lazy="joined")
 
+    members = db.relationship("ServerMember", cascade="all, delete-orphan")
+
     def to_dict(self):
         server_dict = {
             "id": self.id,
