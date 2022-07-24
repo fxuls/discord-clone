@@ -7,3 +7,4 @@ from .friends import Friend
 from .servers import Server
 from .server_permissions import ServerPermission
 from .server_members import ServerMember
+from .channels import Channel
