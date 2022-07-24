@@ -6,6 +6,7 @@ from .friend_requests import seed_friend_requests, undo_friend_requests
 from .friends import seed_friends, undo_friends
 from .servers import seed_servers, undo_servers
 from .server_permissions import seed_server_permissions, undo_server_permissions
+from .server_members import seed_server_members, undo_server_members
 
 # creates a seed group to hold our commands
 # so we can type `flask seed --help`
@@ -22,11 +23,13 @@ def seed():
     seed_friends()
     seed_servers()
     seed_server_permissions()
+    seed_server_members()
 
 
 # create the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
+    undo_server_members()
     undo_server_permissions()
     undo_servers()
     undo_friends()
