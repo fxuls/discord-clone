@@ -26,6 +26,7 @@ class Server(db.Model):
     server_image = db.relationship("Image", lazy="joined")
 
     members = db.relationship("ServerMember", cascade="all, delete-orphan")
+    channels = db.relationship("Channel", cascade="all, delete-orphan")
 
     def to_dict(self):
         server_dict = {
