@@ -16,3 +16,5 @@ class Channel(db.Model):
             "server_id": self.server_id,
             "name": self.name,
         }
+
+        return channel_dict
