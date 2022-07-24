@@ -1,5 +1,6 @@
 from app.models import db, Friend
 
+
 # add friends seeds
 def seed_friends():
     friends = [
@@ -10,6 +11,7 @@ def seed_friends():
 
     db.session.add_all(friends)
     db.session.commit()
+
 
 # truncate friends table
 # remove data, reset primary key, cascade delete dependent
