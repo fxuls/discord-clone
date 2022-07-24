@@ -7,6 +7,10 @@ def seed_images():
         Image(url="/assets/awjdadn.png"),
         Image(url="/assets/adw7a2ad.png"),
         Image(url="/assets/bnkze2dl.png"),
+        Image(url="/assets/awjdnawjd.png"),
+        Image(url="/assets/2jkanj8.png"),
+        Image(url="/assets/najnd221.png"),
+        Image(url="/assets/jnakwdn2.png"),
     ]
 
     db.session.add_all(images)
