@@ -1,4 +1,3 @@
-from sqlalchemy import ForeignKey
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -48,6 +47,17 @@ class User(db.Model, UserMixin):
         foreign_keys="Friend.user_two_id",
         cascade="all, delete-orphan",
     )
+
+    @property
+    def joined_servers(self):
+        joined_servers = []
+        for i in range(len(self.server_memberships)):
+            membership = self.server_memberships[i].to_dict()
+            joined_servers.append({
+                "server_id": membership["server_id"],
+                "permission": membership["permission"],
+            })
+        return joined_servers
 
     @property
     def friends(self):
