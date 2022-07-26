@@ -38,7 +38,7 @@ def delete_image():
 @dev_routes.route("/friends")
 def get_friends():
     user = User.query.get(1)
-    return jsonify(user.friends), 200
+    return jsonify([friend.to_dict() for friend in user.friends]), 200
 
 
 @dev_routes.route("/servers")
