@@ -68,3 +68,9 @@ def server_channels():
 def channel_messages():
     channel = Channel.query.get(1)
     return jsonify([msg.to_dict() for msg in channel.messages]), 200
+
+
+@dev_routes.route("/user-dms")
+def user_dms():
+    user = User.query.get(1)
+    return jsonify(user.direct_message_chats), 200
