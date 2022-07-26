@@ -1,6 +1,5 @@
 from flask import Blueprint, jsonify
-from app.models import db, User, FriendRequest, Image
-from app.models.servers import Server
+from app.models import db, User, FriendRequest, Image, Server, Channel
 
 dev_routes = Blueprint("dev", __name__)
 
@@ -63,3 +62,9 @@ def user_servers():
 def server_channels():
     server = Server.query.get(3)
     return jsonify([channel.to_dict() for channel in server.channels]), 200
+
+
+@dev_routes.route("/channel-messages")
+def channel_messages():
+    channel = Channel.query.get(1)
+    return jsonify([msg.to_dict() for msg in channel.messages]), 200
