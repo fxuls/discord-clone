@@ -52,11 +52,7 @@ class User(db.Model, UserMixin):
     @property
     def direct_message_chats(self):
         chats = []
-        # for chat in self.direct_chats_left:
-        #     chats.append({
-        #         "id": chat.id,
-        #         "partner_id": chat.user_two_id,
-        #     })
+
         chats += [{
             "id": chat.id,
             "partner_id": chat.user_two_id,
