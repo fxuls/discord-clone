@@ -46,6 +46,27 @@ class User(db.Model, UserMixin):
         cascade="all, delete-orphan",
     )
 
+    direct_chats_left = db.relationship("DirectMessageChat", foreign_keys="DirectMessageChat.user_one_id", cascade="all, delete-orphan")
+    direct_chats_right = db.relationship("DirectMessageChat", foreign_keys="DirectMessageChat.user_two_id", cascade="all, delete-orphan")
+
+    @property
+    def direct_message_chats(self):
+        chats = []
+        # for chat in self.direct_chats_left:
+        #     chats.append({
+        #         "id": chat.id,
+        #         "partner_id": chat.user_two_id,
+        #     })
+        chats += [{
+            "id": chat.id,
+            "partner_id": chat.user_two_id,
+        } for chat in self.direct_chats_left]
+        chats += [{
+            "id": chat.id,
+            "partner_id": chat.user_one_id,
+        } for chat in self.direct_chats_right]
+
+        return chats
 
     @property
     def joined_servers(self):
