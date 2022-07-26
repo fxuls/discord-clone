@@ -22,6 +22,7 @@ class User(db.Model, UserMixin):
     profile_image = db.relationship("Image", lazy="joined")
     owned_servers = db.relationship("Server", cascade="all, delete-orphan")
     server_memberships = db.relationship("ServerMember", cascade="all, delete-orphan")
+    sent_server_messages = db.relationship("ServerMessage", cascade="all, delete-orphan")
 
     sent_friend_requests = db.relationship(
         "FriendRequest",
@@ -34,9 +35,6 @@ class User(db.Model, UserMixin):
         cascade="all, delete-orphan",
     )
 
-    # I can't figure out how to make this be populated by entries where
-    # id matches either Friend.user_one_id or Friend.user_two_id so
-    # just going to get them seperately and join them in a property
     friends_left = db.relationship(
         "Friend",
         foreign_keys="Friend.user_one_id",
@@ -47,6 +45,7 @@ class User(db.Model, UserMixin):
         foreign_keys="Friend.user_two_id",
         cascade="all, delete-orphan",
     )
+
 
     @property
     def joined_servers(self):
