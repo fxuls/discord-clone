@@ -9,3 +9,4 @@ from .server_permissions import ServerPermission
 from .server_members import ServerMember
 from .channels import Channel
 from .server_messages import ServerMessage
+from .direct_message_chats import DirectMessageChat
