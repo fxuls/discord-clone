@@ -11,6 +11,12 @@ def seed_images():
         Image(url="/assets/2jkanj8.png"),
         Image(url="/assets/najnd221.png"),
         Image(url="/assets/jnakwdn2.png"),
+        Image(url="/assets/study-guide-1.png"),
+        Image(url="/assets/study-guide-2.png"),
+        Image(url="/assets/ex-machina.png"),
+        Image(url="/assets/dog-picture1.png"),
+        Image(url="/assets/dog-picture2.png"),
+        Image(url="/assets/cat-picture1.png"),
     ]
 
     db.session.add_all(images)
