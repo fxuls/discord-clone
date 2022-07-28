@@ -20,6 +20,7 @@ class ServerMessage(db.Model):
     server = db.relationship("Server", back_populates="messages")
     channel = db.relationship("Channel", back_populates="messages")
     sender = db.relationship("User", back_populates="sent_server_messages")
+    image = db.relationship("Image")
 
     def to_dict(self):
         server_message_dict = {
