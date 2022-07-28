@@ -1,3 +1,5 @@
+import re
+
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -8,6 +10,7 @@ class User(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
+    email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     bio = db.Column(db.String(320))
     banner_color = db.Column(db.String(10))
@@ -84,6 +87,31 @@ class User(db.Model, UserMixin):
         return friends
 
     @property
+    def friend_requests(self):
+        friend_requests = {
+            "sent": [],
+            "incoming": [],
+        }
+
+        for i in range(0, len(self.sent_friend_requests)):
+            friend_requests["sent"].append(
+                {
+                    "id": self.sent_friend_requests[i].id,
+                    "user_id": self.sent_friend_requests[i].receiving_user_id,
+                }
+            )
+
+        for i in range(0, len(self.incoming_friend_requests)):
+            friend_requests["incoming"].append(
+                {
+                    "id": self.incoming_friend_requests[i].id,
+                    "user_id": self.incoming_friend_requests[i].sending_user_id,
+                }
+            )
+
+        return friend_requests
+
+    @property
     def password(self):
         return self.hashed_password
 
@@ -109,27 +137,6 @@ class User(db.Model, UserMixin):
 
         return user_dict
 
-    @property
-    def friend_requests(self):
-        friend_requests = {
-            "sent": [],
-            "incoming": [],
-        }
 
-        for i in range(0, len(self.sent_friend_requests)):
-            friend_requests["sent"].append(
-                {
-                    "id": self.sent_friend_requests[i].id,
-                    "user_id": self.sent_friend_requests[i].receiving_user_id,
-                }
-            )
-
-        for i in range(0, len(self.incoming_friend_requests)):
-            friend_requests["incoming"].append(
-                {
-                    "id": self.incoming_friend_requests[i].id,
-                    "user_id": self.incoming_friend_requests[i].sending_user_id,
-                }
-            )
-
-        return friend_requests
+def username_is_valid(username):
+    return re.match('^.{3,40}#[0-9]{4}$', username)
