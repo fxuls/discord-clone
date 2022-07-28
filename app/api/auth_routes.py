@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, session, request
 from app.models import User, db
-from app.forms import LoginForm
+from app.forms import SignInForm
 from app.forms import SignUpForm
-from flask_login import current_user, login_user, logout_user, login_required
+from flask_login import current_user, login_user, logout_user
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -28,12 +28,12 @@ def authenticate():
     return {'errors': ['Unauthorized']}
 
 
-@auth_routes.route('/login', methods=['POST'])
-def login():
+@auth_routes.route('/signin', methods=['POST'])
+def sign_in():
     """
-    Logs a user in
+    Signs a user in
     """
-    form = LoginForm()
+    form = SignInForm()
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -45,26 +45,25 @@ def login():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@auth_routes.route('/logout')
-def logout():
+@auth_routes.route('/signout')
+def sign_out():
     """
-    Logs a user out
+    Signs a user out
     """
     logout_user()
-    return {'message': 'User logged out'}
+    return {'message': 'User signed out'}
 
 
 @auth_routes.route('/signup', methods=['POST'])
 def sign_up():
     """
-    Creates a new user and logs them in
+    Creates a new user and signs them in
     """
     form = SignUpForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         user = User(
             username=form.data['username'],
-            email=form.data['email'],
             password=form.data['password']
         )
         db.session.add(user)
