@@ -87,6 +87,31 @@ class User(db.Model, UserMixin):
         return friends
 
     @property
+    def friend_requests(self):
+        friend_requests = {
+            "sent": [],
+            "incoming": [],
+        }
+
+        for i in range(0, len(self.sent_friend_requests)):
+            friend_requests["sent"].append(
+                {
+                    "id": self.sent_friend_requests[i].id,
+                    "user_id": self.sent_friend_requests[i].receiving_user_id,
+                }
+            )
+
+        for i in range(0, len(self.incoming_friend_requests)):
+            friend_requests["incoming"].append(
+                {
+                    "id": self.incoming_friend_requests[i].id,
+                    "user_id": self.incoming_friend_requests[i].sending_user_id,
+                }
+            )
+
+        return friend_requests
+
+    @property
     def password(self):
         return self.hashed_password
 
@@ -111,31 +136,6 @@ class User(db.Model, UserMixin):
             user_dict["profile_image_url"] = self.profile_image.url
 
         return user_dict
-
-    @property
-    def friend_requests(self):
-        friend_requests = {
-            "sent": [],
-            "incoming": [],
-        }
-
-        for i in range(0, len(self.sent_friend_requests)):
-            friend_requests["sent"].append(
-                {
-                    "id": self.sent_friend_requests[i].id,
-                    "user_id": self.sent_friend_requests[i].receiving_user_id,
-                }
-            )
-
-        for i in range(0, len(self.incoming_friend_requests)):
-            friend_requests["incoming"].append(
-                {
-                    "id": self.incoming_friend_requests[i].id,
-                    "user_id": self.incoming_friend_requests[i].sending_user_id,
-                }
-            )
-
-        return friend_requests
 
 
 def username_is_valid(username):
