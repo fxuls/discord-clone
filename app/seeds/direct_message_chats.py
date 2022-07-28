@@ -19,5 +19,5 @@ def seed_direct_message_chats():
 # truncate direct_message_chats table
 # remove data, reset primary key, cascade delete dependent
 def undo_direct_message_chats():
-    db.session.execute("TRUNCATE channels RESTART IDENTITY CASCADE;")
+    db.session.execute("TRUNCATE direct_message_chats RESTART IDENTITY CASCADE;")
     db.session.commit()
