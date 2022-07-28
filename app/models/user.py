@@ -1,3 +1,5 @@
+import re
+
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -134,3 +136,7 @@ class User(db.Model, UserMixin):
             )
 
         return friend_requests
+
+
+def username_is_valid(username):
+    return re.match('^.{3,40}#[0-9]{4}$', username)
