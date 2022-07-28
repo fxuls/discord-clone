@@ -12,7 +12,7 @@ class DirectMessage(db.Model):
     image_id = db.Column(db.Integer, db.ForeignKey("images.id"))
     sent_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
-    sender = db.relationship("User", back_populates="sent_direct_messages")
+    sender = db.relationship("User")
     direct_message_chat = db.relationship("DirectMessageChat", back_populates="messages")
     image = db.relationship("Image")
 
