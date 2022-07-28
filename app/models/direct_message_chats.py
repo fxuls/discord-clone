@@ -10,6 +10,7 @@ class DirectMessageChat(db.Model):
 
     user_one = db.relationship("User", foreign_keys=[user_one_id], back_populates="direct_chats_left")
     user_two = db.relationship("User", foreign_keys=[user_two_id], back_populates="direct_chats_right")
+    messages = db.relationship("DirectMessage", cascade="all, delete-orphan")
 
     def to_dict(self):
         direct_chat_dict = {
