@@ -32,4 +32,6 @@ class ServerMessage(db.Model):
             "sender": self.sender.to_dict() if self.sender else None,
         }
 
+        if self.image is not None: server_message_dict["image_url"] = self.image.url
+
         return server_message_dict
