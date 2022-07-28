@@ -25,4 +25,6 @@ class DirectMessage(db.Model):
             "sent_at": self.sent_at,
         }
 
+        if self.image is not None: direct_message_dict["image_url"] = self.image.url
+
         return direct_message_dict
