@@ -6,7 +6,7 @@ import AuthenticatedApp from "./components/AuthentciatedApp";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UnauthenticatedApp from "./components/UnauthenticatedApp";
 
-function App() {
+const App = () => {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
