@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { signIn } from "../../store/session";
 
 const SignInForm = () => {
@@ -9,12 +9,14 @@ const SignInForm = () => {
   const [password, setPassword] = useState("");
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const onSignIn = async (e) => {
     e.preventDefault();
 
     const data = await dispatch(signIn(email, password));
     if (data) setErrors(data);
+    else history.push("/");
   };
 
   const updateEmail = (e) => {
