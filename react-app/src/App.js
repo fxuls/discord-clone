@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authenticate, userSelector } from "./store/session";
 import HomePage from "./components/HomePage";
 import AuthenticatedApp from "./components/AuthentciatedApp";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -28,7 +29,13 @@ function App() {
   return (
     <BrowserRouter>
       <Switch>
-        {sessionUser ? <AuthenticatedApp /> : <HomePage />}
+        <Route path="/" exact={true}>
+          <HomePage />
+        </Route>
+
+        <ProtectedRoute path="/app">
+          <AuthenticatedApp />
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );
