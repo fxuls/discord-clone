@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { BrowserRouter, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authenticate } from "./store/session";
-import AuthenticatedApp from "./components/AuthentciatedApp";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import App from "./components/app/App";
 import UnauthenticatedApp from "./components/UnauthenticatedApp";
 
-const App = () => {
+const Root = () => {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
@@ -28,7 +28,7 @@ const App = () => {
     <BrowserRouter>
       <Switch>
         <ProtectedRoute path="/app">
-          <AuthenticatedApp />
+          <App />
         </ProtectedRoute>
 
         <UnauthenticatedApp />
@@ -37,4 +37,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default Root;
