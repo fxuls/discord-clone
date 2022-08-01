@@ -16,7 +16,7 @@ const SignInForm = () => {
 
     const data = await dispatch(signIn(email, password));
     if (data) setErrors(data);
-    else history.push("/");
+    else history.push("/app");
   };
 
   const updateEmail = (e) => {
@@ -27,9 +27,7 @@ const SignInForm = () => {
     setPassword(e.target.value);
   };
 
-  if (user) {
-    return <Redirect to="/" />;
-  }
+  if (user) return <Redirect to="/app" />;
 
   return (
     <form onSubmit={onSignIn}>
