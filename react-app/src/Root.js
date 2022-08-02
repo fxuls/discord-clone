@@ -5,6 +5,7 @@ import { authenticate } from "./store/session";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import App from "./components/app/App";
 import UnauthenticatedApp from "./components/UnauthenticatedApp";
+import ThemeProvider from "./components/ThemeProvider";
 
 const Root = () => {
   const [loaded, setLoaded] = useState(false);
@@ -25,16 +26,18 @@ const Root = () => {
   if (!loaded) return null;
 
   return (
-    <BrowserRouter>
-      <Switch>
-        <ProtectedRoute path="/app">
-          <App />
-        </ProtectedRoute>
+    <ThemeProvider>
+      <BrowserRouter>
+        <Switch>
+          <ProtectedRoute path="/app">
+            <App />
+          </ProtectedRoute>
 
-        <UnauthenticatedApp />
-      </Switch>
-    </BrowserRouter>
+          <UnauthenticatedApp />
+        </Switch>
+      </BrowserRouter>
+    </ThemeProvider>
   );
-}
+};
 
 export default Root;
