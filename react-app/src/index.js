@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import Root from "./Root";
 import configureStore from "./store";
 import "./styles/reset.css";
+import "./styles/themes.css";
 import "./styles/index.css";
 import "./styles/navigation.css";
 
