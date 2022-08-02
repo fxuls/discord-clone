@@ -4,9 +4,31 @@ nav {
     align-items: center;
     height: 4rem;
     padding: 0 3rem;
-    color: var(--main-color);
+    color: var(--text-color);
+    background-color: var(--sub-alt-color);
+    margin-bottom: 1rem;
 }
 
 .masthead {
     cursor: pointer;
+    height: 42.5px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links > button, .nav-links > a {
+    padding: 0.8rem;
+    border-radius: 15px;
+    background-color: var(--sub-color);
+}
+
+.nav-links > button {
+    border: none;
+}
+
+.nav-links button:hover {
+    background-color: var(--main-color);
 }
