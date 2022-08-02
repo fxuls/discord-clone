@@ -21,7 +21,7 @@ nav {
 
 .nav-links > button, .nav-links > a {
     padding: 0.8rem;
-    border-radius: 15px;
+    border-radius: var(--button-roundness);
     background-color: var(--sub-color);
 }
 
