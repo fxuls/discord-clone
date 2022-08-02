@@ -1,17 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap');
-
-:root {
-  --bg-color: #6c687f;
-  --main-color: #fff;
-  --caret-color: #585568;
-  --sub-color: #9994b8;
-  --sub-alt-color: #77738c;
-  --text-color: #fff;
-  --error-color: #e32b2b;
-  --error-extra-color: #a62626;
-  --colorful-error-color: #e32b2b;
-  --colorful-error-extra-color: #a62626;
-}
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 html,
 body {
@@ -19,5 +6,10 @@ body {
   height: 100%;
   background-color: var(--bg-color);
   color: var(--text-color);
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+
+body * {
+    transition: color .2s ease;
+    transition: background-color .2s ease;
 }
