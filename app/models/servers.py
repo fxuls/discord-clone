@@ -33,7 +33,7 @@ class Server(db.Model):
         server_dict = {
             "id": self.id,
             "name": self.name,
-            "owner": self.owner.to_dict(),
+            "owner_id": self.owner_id,
             "public": self.public,
         }
 
