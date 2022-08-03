@@ -23,4 +23,7 @@ def get_server_by_id(id):
     Get a server's details by its id
     """
     server = Server.query.get(id)
-    return server.to_dict()
+
+    if server:
+        return server.to_dict()
+    return jsonify(None)
