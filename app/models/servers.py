@@ -35,6 +35,7 @@ class Server(db.Model):
             "name": self.name,
             "owner_id": self.owner_id,
             "public": self.public,
+            "member_count": len(self.members),
         }
 
         if self.invite_url is not None:
