@@ -15,6 +15,7 @@ const removeUser = () => ({
   type: REMOVE_USER,
 });
 
+// thunks
 export const authenticate = () => async (dispatch) => {
   const response = await fetch("/api/auth/", {
     headers: {
