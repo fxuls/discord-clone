@@ -2,7 +2,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 4rem;
+    height: 4.7rem;
     padding: 0 2.6rem;
     color: var(--text-color);
     background-color: var(--sub-alt-color);
@@ -23,6 +23,7 @@ nav {
     padding: 0.8rem;
     border-radius: var(--button-roundness);
     background-color: var(--sub-color);
+    font-weight: 600;
 }
 
 .nav-links > button {
@@ -31,4 +32,5 @@ nav {
 
 .nav-links button:hover {
     background-color: var(--main-color);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;;
 }
