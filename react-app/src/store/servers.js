@@ -52,11 +52,14 @@ export const fetchAllServers = () => async (dispatch) => {
 // fetch server by id thunk
 export const fetchServer = (serverId) => async (dispatch) => {
   const response = await fetch(`/api/servers/${serverId}`);
+
   if (response.ok) {
     const data = await response.json();
     dispatch(setServer(data));
     return true;
-  } else return false;
+  }
+  
+  return false;
 };
 
 export const fetchJoinedServers = () => async (dispatch) => {
