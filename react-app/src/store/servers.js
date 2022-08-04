@@ -61,7 +61,6 @@ export const fetchServer = (serverId) => async (dispatch) => {
 
 export const fetchJoinedServers = () => async (dispatch) => {
   const response = await fetch("/api/servers/joined", {});
-  console.log(response);
 
   if (response.ok) {
     const data = await response.json();
