@@ -58,7 +58,7 @@ export const fetchServer = (serverId) => async (dispatch) => {
     dispatch(setServer(data));
     return true;
   }
-  
+
   return false;
 };
 
@@ -109,7 +109,9 @@ export default function reducer(state = initialState, action) {
       break;
 
     case REMOVE_JOINED_SERVER:
-      newState = newState.joined.filter((server) => server); // TODO)
+      newState.joined.keys().forEach((serverId) => {
+        if (serverId == payload) delete newState.joined[serverId];
+      });
       break;
 
     default:
