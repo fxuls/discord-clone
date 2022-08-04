@@ -26,4 +26,4 @@ def get_server_by_id(id):
 
     if server:
         return jsonify(server.to_dict())
-    return jsonify(None)
+    return jsonify(None), 404
