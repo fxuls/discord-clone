@@ -65,6 +65,13 @@ def join_server_by_id(id):
             "status_code": 400,
         }), 400
 
+    # check if server is public
+    if not server.public:
+        return jsonify({
+            "message": "Server is private",
+            "status_code": 401,
+        }), 401
+
     # create user membership
     new_membership = ServerMember(server_id=id, user_id=current_user.id)
 
@@ -72,3 +79,11 @@ def join_server_by_id(id):
     db.session.commit()
 
     return new_membership.to_dict(), 201
+
+
+@server_routes.route("/join/<path:invite_url", method=["GET"])
+def join_server_by_url(invite_url):
+    """
+    Attempt to join a server from its invite url
+
+    """
