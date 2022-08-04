@@ -29,6 +29,19 @@ class Server(db.Model):
     channels = db.relationship("Channel", cascade="all, delete-orphan")
     messages = db.relationship("ServerMessage", cascade="all, delete-orphan")
 
+    def get_member_permission(self, user_id):
+        for member in self.members:
+            values = member.to_dict()
+            if (values["user_id"] == user_id):
+                return {
+                    "user_id": values["user_id"],
+                    "permission": {
+                        "name": values["permission"]["name"],
+                        "permission": values["permission"]["permission"],
+                    },
+                }
+        return None
+
     def to_dict(self):
         server_dict = {
             "id": self.id,
