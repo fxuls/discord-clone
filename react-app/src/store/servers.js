@@ -61,17 +61,28 @@ export const fetchServer = (serverId) => async (dispatch) => {
 
 export const fetchJoinedServers = () => async (dispatch) => {
   const response = await fetch("/api/servers/joined", {});
+  console.log(response);
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(setJoinedServers(data));
+
+    const joinedServers = {};
+    data.forEach((server) => {
+      const permission = {
+        permission: server.permission.permission,
+        name: server.permission.name,
+      };
+      joinedServers[server.server_id] = { permission };
+    });
+
+    dispatch(setJoinedServers(joinedServers));
   }
 };
 
-const initialState = {};
+const initialState = { joined: {} };
 
 export default function reducer(state = initialState, action) {
-  const newState = { ...state };
+  let newState = { ...state };
   const payload = action.payload;
 
   switch (action.type) {
@@ -85,6 +96,18 @@ export default function reducer(state = initialState, action) {
 
     case REMOVE_SERVER:
       delete newState[payload];
+      break;
+
+    case SET_JOINED_SERVERS:
+      newState.joined = payload;
+      break;
+
+    case ADD_JOINED_SERVER:
+      newState.joined.push(payload);
+      break;
+
+    case REMOVE_JOINED_SERVER:
+      newState = newState.joined.filter((server) => server); // TODO)
       break;
 
     default:
