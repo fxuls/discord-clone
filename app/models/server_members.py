@@ -22,7 +22,7 @@ class ServerMember(db.Model):
             "id": self.id,
             "user_id": self.user_id,
             "server_id": self.server_id,
-            "permission": self.permission.to_dict()
+            "permission": self.permission.to_dict(),
         }
 
         return server_member_dict
