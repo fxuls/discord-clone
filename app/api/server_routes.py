@@ -30,17 +30,13 @@ USER_NOT_MEMBER = {
 }
 
 
-@server_routes.route("/joined", methods=["GET"])
-@login_required
-def get_joined_servers():
+@server_routes.route("/", methods=["GET"])
+def get_servers():
     """
-    Get a list of all the server memberships the current user
-    belongs to
-
-    Each result includes the server_id and the permission_id of
-    the users permission in the server.
+    Get a list of all of all servers
     """
-    return jsonify(current_user.joined_servers), 200
+    servers = [server.to_dict() for server in Server.query.all()]
+    return jsonify(servers), 200
 
 
 @server_routes.route("/<int:id>", methods=["GET"])
@@ -53,6 +49,19 @@ def get_server_by_id(id):
     if server:
         return jsonify(server.to_dict())
     return jsonify(SERVER_NOT_FOUND), 404
+
+
+@server_routes.route("/joined", methods=["GET"])
+@login_required
+def get_joined_servers():
+    """
+    Get a list of all the server memberships the current user
+    belongs to
+
+    Each result includes the server_id and the permission_id of
+    the users permission in the server.
+    """
+    return jsonify(current_user.joined_servers), 200
 
 
 @server_routes.route("/<int:id>/memberships", methods=["POST"])
