@@ -24,14 +24,14 @@ export const removeServer = (serverId) => ({
   payload: serverId,
 });
 
-export const setJoinedServers = (servers) => ({
+export const setJoinedServers = (serverMemberships) => ({
   type: SET_JOINED_SERVERS,
-  payload: servers,
+  payload: serverMemberships,
 });
 
-export const addJoinedServer = (serverId) => ({
+export const addJoinedServer = (serverMembership) => ({
   type: ADD_JOINED_SERVER,
-  payload: serverId,
+  payload: serverMembership,
 });
 
 export const removeJoinedServer = (serverId) => ({
@@ -51,7 +51,7 @@ export const fetchAllServers = () => async (dispatch) => {
 
 // fetch server by id thunk
 export const fetchServer = (serverId) => async (dispatch) => {
-  const response = await fetch(`/api/servers/${serverId}`);
+  const response = await fetch(`/api/servers/${serverId}`, {});
 
   if (response.ok) {
     const data = await response.json();
@@ -81,6 +81,49 @@ export const fetchJoinedServers = () => async (dispatch) => {
   }
 };
 
+export const joinServerById = (serverId) => async (dispatch) => {
+  const response = await fetch(`/api/servers/${serverId}/memberships`, {
+    method: "POST",
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(addJoinedServer(data));
+    return data;
+  }
+
+  return null;
+};
+
+export const joinServerByUrl = (serverUrl) => async (dispatch) => {
+  // extract last path of url
+  const path = serverUrl.split("/").pop();
+
+  const response = await fetch(`/api/servers/join/${path}`);
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(addJoinedServer(data));
+    return data;
+  }
+
+  return null;
+};
+
+export const leaveServer = (serverId) => async (dispatch) => {
+  const response = await fetch(`/api/servers/${serverId}/memberships`, {
+    method: "DELETE",
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(removeJoinedServer(serverId));
+    return data;
+  }
+
+  return null;
+};
+
 const initialState = { joined: {} };
 
 export default function reducer(state = initialState, action) {
@@ -105,12 +148,17 @@ export default function reducer(state = initialState, action) {
       break;
 
     case ADD_JOINED_SERVER:
-      newState.joined.push(payload);
+      newState.joined[payload.server_id] = {
+        permission: {
+          name: payload.permission.name,
+          permission: payload.permission.permission,
+        },
+      };
       break;
 
     case REMOVE_JOINED_SERVER:
       newState.joined.keys().forEach((serverId) => {
-        if (serverId == payload) delete newState.joined[serverId];
+        if (serverId === payload) delete newState.joined[serverId];
       });
       break;
 
