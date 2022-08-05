@@ -101,7 +101,7 @@ def join_server_by_url(invite_url):
     """
     Attempt to join a server from its invite url
     """
-    server = Server.query.filter(Server.invite_url == invite_url)
+    server = Server.query.filter(Server.invite_url == invite_url).first()
 
     # if server does not exist
     if server is None:
