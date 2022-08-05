@@ -46,7 +46,10 @@ export const fetchAllServers = () => async (dispatch) => {
   if (response.ok) {
     const data = await response.json();
     dispatch(setServers(data));
+    return true;
   }
+
+  return null;
 };
 
 // fetch server by id thunk
@@ -62,6 +65,7 @@ export const fetchServer = (serverId) => async (dispatch) => {
   return false;
 };
 
+// fetch joined servers thunk
 export const fetchJoinedServers = () => async (dispatch) => {
   const response = await fetch("/api/servers/joined", {});
 
@@ -81,6 +85,7 @@ export const fetchJoinedServers = () => async (dispatch) => {
   }
 };
 
+// join server by id thunk
 export const joinServerById = (serverId) => async (dispatch) => {
   const response = await fetch(`/api/servers/${serverId}/memberships`, {
     method: "POST",
@@ -95,6 +100,7 @@ export const joinServerById = (serverId) => async (dispatch) => {
   return null;
 };
 
+// join server by url thunk
 export const joinServerByUrl = (serverUrl) => async (dispatch) => {
   // extract last path of url
   const path = serverUrl.split("/").pop();
@@ -110,6 +116,7 @@ export const joinServerByUrl = (serverUrl) => async (dispatch) => {
   return null;
 };
 
+// leave server thunk
 export const leaveServer = (serverId) => async (dispatch) => {
   const response = await fetch(`/api/servers/${serverId}/memberships`, {
     method: "DELETE",
@@ -132,7 +139,7 @@ export default function reducer(state = initialState, action) {
 
   switch (action.type) {
     case SET_SERVERS:
-      for (const server in payload) newState[server.id] = server;
+      payload.forEach(server => newState[server.id] = server);
       break;
 
     case SET_SERVER:
