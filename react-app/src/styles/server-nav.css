@@ -1,0 +1,4 @@
+.server-list {
+    background-color: var(--alt-bg-color);
+    grid-area: servers;
+}
