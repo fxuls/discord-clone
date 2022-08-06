@@ -1,13 +1,13 @@
 import { useSelector } from "react-redux";
-import { joinedServersSelector, serverSelector } from "../../../store/servers";
-import ServerIcon from "./ServerIcon";
+import { joinedServersSelector } from "../../../store/servers";
+import ServerCard from "./ServerCard";
 
 const ServerList = () => {
   const joinedServers = useSelector(joinedServersSelector);
 
   return (
     <div className="server-list">
-      {joinedServers.map((server) => <ServerIcon key={server.id} server={server} />)}
+      {joinedServers.map((server) => <ServerCard key={server.id} server={server} />)}
     </div>
   );
 };
