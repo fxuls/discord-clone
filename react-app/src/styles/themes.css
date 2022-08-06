@@ -1,5 +1,15 @@
-/* defualt theme 8008 */
 :root {
+  --bg-color: #2C2F33;
+  --alt-bg-color: #23272A;
+  --main-color: #404EED;
+  --sub-color: #5865F2;
+  --caret-color: #99AAB5;
+  --text-color: #FFFFFF;
+  --alt-text-color: #F6F6F6;
+}
+
+/* 8008 */
+[data-theme="8008"] {
   --bg-color: #333a45;
   --main-color: #f44c7f;
   --caret-color: #f44c7f;
