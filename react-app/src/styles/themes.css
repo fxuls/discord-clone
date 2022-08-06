@@ -1,11 +1,31 @@
 :root {
-  --bg-color: #2C2F33;
-  --alt-bg-color: #23272A;
-  --main-color: #404EED;
-  --sub-color: #5865F2;
-  --caret-color: #99AAB5;
-  --text-color: #FFFFFF;
-  --alt-text-color: #F6F6F6;
+  /* bg-color #2C2F33 */
+  --bg-color-values: 44, 47, 51;
+  --bg-color: rgb(var(--bg-color-values));
+
+  /* alt-bg-color #23272A */
+  --alt-bg-color-values: 35, 39, 42;
+  --alt-bg-color: rgb(var(--alt-bg-color-values));
+
+  /* main-color #404EED */
+  --main-color-values: 64, 78, 237;
+  --main-color: rgb(var(--main-color-values));
+
+  /* sub-color #5865F2 */
+  --sub-color-values: 88, 101, 242;
+  --sub-color: rgb(var(--sub-color-values));
+
+  /* caret-color #99AAB5 */
+  --caret-color-values: 153, 170, 181;
+  --caret-color: rgb(var(--caret-color-values));
+
+  /* text-color #FFFFFF */
+  --text-color-values: 255, 255, 255;
+  --text-color: rgb(var(--text-color-values));
+
+  /* alt-text-color #F6F6F6 */
+  --alt-text-color-values: 246, 246, 246;
+  --alt-text-color: rgb(var(--alt-text-color-values));
 }
 
 /* 8008 */
