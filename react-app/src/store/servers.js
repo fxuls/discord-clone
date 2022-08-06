@@ -5,7 +5,10 @@ const SET_JOINED_SERVERS = "servers/SET_JOINED_SERVERS";
 
 // selectors
 export const serverSelector = (serverId) => (state) => state.servers[serverId];
-export const joinedServersSelector = () => (state) => Object.keys(state.servers.joined);
+export const joinedServersIdsSelector = (state) =>
+  Object.keys(state.servers.joined);
+export const joinedServersSelector = (state) =>
+  Object.keys(state.servers.joined).map((id) => state.servers[id]);
 
 // action creators
 export const setServers = (servers) => ({
@@ -56,10 +59,9 @@ export const fetchServer = (serverId) => async (dispatch) => {
 
 // fetch servers by array of ids
 export const fetchServers = (serverIds) => async (dispatch) => {
-  serverIds.forEach((id) => {
-    dispatch(fetchServer(id));
-  });
-}
+  for (let i = 0; i < serverIds.length; i++)
+    await dispatch(fetchServer(serverIds[i]));
+};
 
 // fetch joined servers thunk
 export const fetchJoinedServers = () => async (dispatch) => {
