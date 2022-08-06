@@ -22,8 +22,7 @@ const App = () => {
   return (
     <div className="app">
         <ServerList />
-      <SignOutButton />
-      You are signed in
+        <SignOutButton />
     </div>
   );
 };
