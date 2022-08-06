@@ -1,10 +1,10 @@
 .app {
     display: grid;
-    grid-template-columns: 4.4rem 13rem 1fr;
+    grid-template-columns: 4.9rem 13rem 1fr;
     grid-template-rows: 3rem 1fr;
     grid-template-areas:
-        "servers nav head"
-        "servers nav rest";
+        "servers navbar head"
+        "servers navbar messages";
     min-height: 100%;
     min-width: 100%;
 }
