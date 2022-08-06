@@ -6,7 +6,7 @@ import HomePage from "./HomePage";
 
 const UnauthenticatedApp = () => {
   return (
-    <>
+    <div className="unauth-app">
       <NavBar />
 
       <Route path="/" exact={true}>
@@ -20,7 +20,7 @@ const UnauthenticatedApp = () => {
       <Route path="/sign-up" exact={true}>
         <SignUpForm />
       </Route>
-    </>
+    </div>
   );
 };
 
