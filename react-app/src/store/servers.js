@@ -54,6 +54,13 @@ export const fetchServer = (serverId) => async (dispatch) => {
   return false;
 };
 
+// fetch servers by array of ids
+export const fetchServers = (serverIds) => async (dispatch) => {
+  serverIds.forEach((id) => {
+    dispatch(fetchServer(id));
+  });
+}
+
 // fetch joined servers thunk
 export const fetchJoinedServers = () => async (dispatch) => {
   const response = await fetch("/api/servers/joined", {});
@@ -70,7 +77,8 @@ export const fetchJoinedServers = () => async (dispatch) => {
       joinedServers[server.server_id] = { permission };
     });
 
-    dispatch(setJoinedServers(joinedServers));
+    await dispatch(setJoinedServers(joinedServers));
+    await dispatch(fetchServers(Object.keys(joinedServers)));
   }
 };
 
@@ -121,9 +129,9 @@ export const leaveServer = (serverId) => async (dispatch) => {
 };
 
 // create server thunk
-export const createServer = (server) => async (dispatch) => {
-  
-}
+// export const createServer = (server) => async (dispatch) => {
+
+// }
 
 const initialState = { joined: {} };
 
