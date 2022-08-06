@@ -5,6 +5,7 @@ const SET_JOINED_SERVERS = "servers/SET_JOINED_SERVERS";
 
 // selectors
 export const serverSelector = (serverId) => (state) => state.servers[serverId];
+export const joinedServersSelector = () => (state) => Object.keys(state.servers.joined);
 
 // action creators
 export const setServers = (servers) => ({
@@ -118,6 +119,11 @@ export const leaveServer = (serverId) => async (dispatch) => {
 
   return null;
 };
+
+// create server thunk
+export const createServer = (server) => async (dispatch) => {
+  
+}
 
 const initialState = { joined: {} };
 
