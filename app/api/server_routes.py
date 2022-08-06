@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
-from app.models import db, User, Server, ServerMember
+from app.models import db, Server, ServerMember, Channel, ServerPermission
+from app.forms.server_form import ServerForm
 
 server_routes = Blueprint("servers", __name__)
 
@@ -164,3 +165,35 @@ def leave_server(id):
         "message": "Successfully left server",
         "status_code": 200,
     }), 200
+
+
+# TODO fix
+# @server_routes.route("/", methods=["POST"])
+# @login_required
+# def create_server():
+#     """
+#     Create a new server
+#     """
+#     form = ServerForm()
+#     if form.validate_on_submit():
+#         # create server
+#         server = Server(
+#             owner_id = current_user.id,
+#             name = form.data["name"],
+#             public = form.data["name"],
+#         )
+
+#         # create a default general channel
+#         channel = Channel(server_id=server.id, name="general")
+
+#         # create membership in channel for owner as admin
+#         # permission_id = ServerPermission.query.filter(ServerPermission.name == "admin").one().id
+#         # membership = ServerMember(user_id=current_user.id, server_id=server.id, permission_id=permission_id)
+
+#         db.session.add_all([server, channel, membership])
+#         db.session.commit()
+
+#         return "Created", 201
+#         return jsonify(server.to_dict()), 201
+#     return "Bad", 200
+#     # return jsonify(form.errors), 200
