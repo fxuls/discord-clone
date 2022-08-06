@@ -3,9 +3,9 @@
     grid-area: servers;
     display: flex;
     flex-direction: column;
-    gap: 9px;
+    gap: 9.8px;
     align-items: center;
-    padding: 0.4rem 0;
+    padding: 1rem 0;
     overflow-y: auto;
 }
 
@@ -51,7 +51,7 @@
 }
 
 .list-seperator {
-    width: 60%;
-    border-bottom: 1px solid rgba(var(--caret-color-values), 0.6);
+    width: 40%;
+    border-bottom: 1.4px solid rgba(var(--caret-color-values), 0.35);
     clear: both;
 }
