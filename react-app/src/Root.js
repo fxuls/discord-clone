@@ -5,11 +5,13 @@ import { authenticate } from "./store/session";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import App from "./components/app/App";
 import UnauthenticatedApp from "./components/UnauthenticatedApp";
-import ThemeProvider from "./components/ThemeProvider";
 
 const Root = () => {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+
+  // set theme
+  document.body.setAttribute("data-theme", "default");
 
   // use effect for intial load
   useEffect(() => {
@@ -26,7 +28,6 @@ const Root = () => {
   if (!loaded) return null;
 
   return (
-    <ThemeProvider>
       <BrowserRouter>
         <Switch>
           <ProtectedRoute path="/app">
@@ -36,7 +37,6 @@ const Root = () => {
           <UnauthenticatedApp />
         </Switch>
       </BrowserRouter>
-    </ThemeProvider>
   );
 };
 
