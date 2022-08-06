@@ -1,6 +1,9 @@
 export const SET_SERVER = "ui/SHOW_SERVER";
 export const CLEAR_SERVER = "ui/CLEAR_SERVER";
 
+// selectors
+export const uiServerIdSelector = (state) => state.ui.serverId;
+
 // SET_SERVER action creator
 export const setServer = (serverId) => ({
     type: SET_SERVER,
