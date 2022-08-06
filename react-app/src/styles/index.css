@@ -19,6 +19,10 @@ body * {
     transition: background-color .2s ease;
 }
 
+#root {
+  height: 100%;
+}
+
 button {
     padding: 0.4rem;
     background-color: var(--sub-color);
