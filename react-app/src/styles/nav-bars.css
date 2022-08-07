@@ -1,0 +1,25 @@
+.nav-bar {
+    grid-area: navbar;
+    display: flex;
+    flex-direction: column;
+    padding: 0.8rem;
+    gap: 1rem;
+}
+
+.nav-bar h1 {
+    font-size: 105%;
+}
+
+.nav-bar .icon {
+    margin-right: 0.6rem;
+}
+
+.nav-bar h2 {
+    text-transform: uppercase;
+    color: var(--caret-color);
+    font-size: 80%;
+}
+
+.nav-bar h2:hover {
+    color: var(--text-color);
+}
