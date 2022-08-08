@@ -11,18 +11,20 @@
     transition: none;
     border-radius: 4px;
     display: flex;
+    color: var(--caret-color);
 }
 
 .nav-bar .nav-item:hover {
+    cursor: pointer;
+}
+
+.nav-item:hover, .nav-bar .nav-item[active="true"] {
+    color: var(--alt-text-color);
     background-color: var(--third-bg-color);
 }
 
-.nav-bar .nav-item[active="true"]
-
 .nav-bar .nav-item h1 {
-    font-weight: 800;
-    font-size: 2000%;
-    color: var(--caret-color);
+    font-size: 100%;
 }
 
 .nav-bar .icon {
@@ -37,4 +39,8 @@
 
 .nav-bar h2:hover {
     color: var(--alt-text-color);
+}
+
+#friends-button {
+    margin-bottom: 1rem;
 }
