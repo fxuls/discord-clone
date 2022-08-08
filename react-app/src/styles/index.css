@@ -29,3 +29,10 @@ button {
     background-color: var(--sub-color);
     border-radius: var(--button-roundness);
 }
+
+.unselectable {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
