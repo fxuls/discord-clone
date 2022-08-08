@@ -5,8 +5,8 @@ import { uiServerIdSelector } from "../../store/ui";
 
 import SignOutButton from "../auth/SignOutButton";
 import ServerList from "./serversList/ServerList";
-import ServerNavBar from "./navBars/ServerNavBar";
-import HomeNavBar from "./navBars/HomeNavBar";
+import Home from "./home/Home";
+import Server from "./server/Server";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -27,7 +27,8 @@ const App = () => {
     <div className="app">
       <ServerList />
 
-      {uiServerId ? <ServerNavBar serverId={uiServerId} /> : <HomeNavBar />}
+      {uiServerId ? <Server /> : <Home />}
+
       <SignOutButton />
 
       <div style={{backgroundColor: "var(--third-bg-color)", gridArea: "messages"}} />
