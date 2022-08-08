@@ -3,8 +3,8 @@ import { faUsers } from "@fortawesome/free-solid-svg-icons";
 
 const HomeNavBar = () => {
     return <div className="nav-bar">
-        <h1><FontAwesomeIcon className="icon" icon={faUsers} />Friends</h1>
-        <h2>Direct messages</h2>
+        <div className="nav-item" id="friends-button"><FontAwesomeIcon className="icon" icon={faUsers} /><h1>Friends</h1></div>
+        <h2 className="unselectable">Direct messages</h2>
     </div>
 }
 
