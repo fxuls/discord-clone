@@ -59,7 +59,7 @@
 .server-info-modal {
   position: absolute;
   left: 82px;
-  font-size: 85%;
+  font-size: 90%;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -77,5 +77,6 @@
 .server-info-modal .server-info {
   padding: 0.8rem;
   background-color: var(--alt-bg-color);
-  border-radius: var(--button-roundness);
+  border-radius: var(--modal-roundness);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
