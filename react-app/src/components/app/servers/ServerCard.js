@@ -13,6 +13,12 @@ const ServerCard = ({ server }) => {
         className="server-icon"
         src={server.server_image_url}
       />
+      <div className="server-info-modal">
+        <div className="left-arrow"></div>
+        <div className="server-info">
+          {server.name}
+        </div>
+      </div>
     </div>
   );
 };
