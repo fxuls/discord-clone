@@ -4,6 +4,11 @@ from app.models import User
 
 user_routes = Blueprint('users', __name__)
 
+USER_NOT_FOUND = {
+    "message": "Server not found",
+    "status_code": 404,
+}
+
 
 @user_routes.route('/')
 @login_required
@@ -16,4 +21,7 @@ def users():
 @login_required
 def user(id):
     user = User.query.get(id)
-    return user.to_dict()
+
+    if user:
+        return user.to_dict()
+    return jsonify(USER_NOT_FOUND), 404
