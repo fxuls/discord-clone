@@ -30,6 +30,10 @@ button {
     border-radius: var(--button-roundness);
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 .unselectable {
   -webkit-user-select: none;
   -moz-user-select: none;
