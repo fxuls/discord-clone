@@ -1,6 +1,7 @@
 export const SET_USERS = "users/SET_USERS";
 export const SET_USER = "users/SET_USER";
 export const REMOVE_USER = "users/REMOVE_USER";
+export const SET_FRIENDS = "users/SET_FRIENDS";
 
 // selector
 
@@ -22,6 +23,12 @@ export const removeUser = (userId) => ({
     payload: userId,
 });
 
+// SET_FRIENDS action creator
+export const setFriends = (friendIds) => ({
+    type: SET_FRIENDS,
+    payload: friendIds,
+});
+
 // fetch user by id thunk
 export const fetchUser = (userId) => async (dispatch) => {
     const response = await fetch(`/api/users/${userId}`, {});
@@ -35,6 +42,28 @@ export const fetchUser = (userId) => async (dispatch) => {
     return false;
 }
 
+// fetch users by ids thunk
+export const fetchUsers = (userIds) => async (dispatch) => {
+    for (let i = 0; i < userIds; i++)
+        await dispatch(fetchUser(userIds[i]));
+}
+
+// fetch friends thunk
+export const fetchFriends = () => async (dispatch) => {
+    const response = await fetch("/api/users/friends");
+
+    if (response.ok) {
+        const friends = await response.json();
+        const friendIds = friends.map(friend => friend.id);
+
+        dispatch(setUsers(friends));
+        dispatch(setFriends(friendIds));
+        return true;
+    }
+
+    return false;
+}
+
 const initialState = { friends: null };
 
 export default function usersReducer(state = initialState, action) {
@@ -42,6 +71,10 @@ export default function usersReducer(state = initialState, action) {
     const payload = action.payload;
 
     switch (action.type) {
+        case SET_USERS:
+            payload.forEach((user) => (newState[user.id] = user));
+            break;
+
         case SET_USER:
             newState[payload.id] = payload;
             break;
@@ -49,6 +82,9 @@ export default function usersReducer(state = initialState, action) {
         case REMOVE_USER:
             delete newState[payload];
             break;
+
+        case SET_FRIENDS:
+            newState.friends = payload;
 
         default:
             break;
