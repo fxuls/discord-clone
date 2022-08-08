@@ -4,7 +4,7 @@ import { fetchJoinedServers } from "../../store/servers";
 import { uiServerIdSelector } from "../../store/ui";
 
 import SignOutButton from "../auth/SignOutButton";
-import ServerList from "./servers/ServerList";
+import ServerList from "./serversList/ServerList";
 import ServerNavBar from "./navBars/ServerNavBar";
 import HomeNavBar from "./navBars/HomeNavBar";
 
