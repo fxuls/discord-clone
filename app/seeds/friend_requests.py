@@ -6,7 +6,6 @@ def seed_friend_requests():
         FriendRequest(sending_user_id=1, receiving_user_id=5),
         FriendRequest(sending_user_id=2, receiving_user_id=3),
         FriendRequest(sending_user_id=3, receiving_user_id=1),
-        FriendRequest(sending_user_id=2, receiving_user_id=1),
     ]
 
     db.session.add_all(friend_requests)
