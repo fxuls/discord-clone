@@ -33,6 +33,7 @@
 
 .friend-card {
     padding: 1rem;
+    display: flex;
 }
 
 .friend-card:hover {
@@ -50,4 +51,23 @@
 .default-image-container {
     background-color: red;
     border-radius: 50px;
+}
+
+.friend-card .info {
+    margin-left: 1rem;
+}
+
+.friend-card .info .name {
+    font-size: 1.14rem;
+    margin-right: 0.25rem;
+}
+
+.friend-card .info .numbers {
+    visibility: hidden;
+    color: var(--caret-color);
+    font-size: 90%;
+}
+
+.friend-card:hover .info .numbers {
+    visibility: visible;
 }
