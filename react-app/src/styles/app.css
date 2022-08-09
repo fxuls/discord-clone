@@ -32,9 +32,20 @@
 }
 
 .left-inset-shadow {
-    box-shadow: 5px 0 5px -5px rgba(0, 0, 0, 0.70) inset;
+    box-shadow: 5px 0 5px -5px rgba(0, 0, 0, 0.7) inset;
 }
 
 .header-box-shadow {
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 6px 2px 0px, rgba(60, 64, 67, 0.15) 0px 6px 3px 1px;
+    box-shadow: 0 5px 4px -5px rgba(0, 0, 0, 0.7) inset;
+}
+
+.sub-header-text {
+    text-transform: uppercase;
+    color: var(--caret-color);
+    font-size: 80%;
+    padding-left: 0.6rem;
+}
+
+.sub-header-text:hover {
+    color: var(--alt-text-color);
 }
