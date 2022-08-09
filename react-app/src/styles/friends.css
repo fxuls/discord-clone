@@ -43,8 +43,8 @@
 }
 
 .friend-icon {
-    height: 3.4rem;
-    width: 3.4rem;
+    height: 3rem;
+    width: 3rem;
     object-fit: cover;
     border-radius: 50px;
 }
@@ -71,4 +71,29 @@
 
 .friend-card:hover .info .numbers {
     visibility: visible;
+}
+
+.friend-card .buttons {
+    margin-left: auto;
+    display: flex;
+    gap: 0.5rem;
+}
+
+.friend-card .buttons button {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(var(--alt-bg-color-values), 0.4);
+}
+
+.friend-card .buttons .icon {
+    height: 50%;
+    width: 50%;
+}
+
+.friend-card .buttons button:hover {
+    background-color: var(--alt-bg-color);
 }
