@@ -135,6 +135,8 @@ export default function usersReducer(state = initialState, action) {
       break;
 
     case SET_USER:
+      // give user a random color
+      payload.color = getRandomColor();
       newState[payload.id] = payload;
       break;
 
