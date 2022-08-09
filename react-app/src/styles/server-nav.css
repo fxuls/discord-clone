@@ -1,6 +1,10 @@
-.server-list {
-  background-color: var(--alt-bg-color);
+.server-list-container {
+  margin: 0;
   grid-area: servers;
+  background-color: var(--alt-bg-color);
+}
+
+.server-list {
   display: flex;
   flex-direction: column;
   gap: 9.8px;
