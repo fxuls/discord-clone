@@ -21,7 +21,7 @@
 
 .nav-item:hover, .nav-bar .nav-item[active="true"] {
     color: var(--alt-text-color);
-    background-color: var(--third-bg-color);
+    backdrop-filter: brightness(140%);
 }
 
 .nav-bar .nav-item h1 {
