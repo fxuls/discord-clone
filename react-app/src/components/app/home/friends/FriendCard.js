@@ -1,12 +1,13 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMessage, faUserXmark } from "@fortawesome/free-solid-svg-icons";
 
-import { unfriendUser } from "../../../../store/users";
+import { unfriendUser, userSelector } from "../../../../store/users";
 import { setDirectMessageId } from "../../../../store/ui";
 
-const FriendCard = ({ user }) => {
+const FriendCard = ({ userId }) => {
   const dispatch = useDispatch();
+  const user = useSelector(userSelector(userId));
   const username = user.username.split("#");
 
   const onRemoveFriend = () => dispatch(unfriendUser(user.id));
