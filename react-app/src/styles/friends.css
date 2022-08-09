@@ -46,7 +46,9 @@
 }
 
 .default-image-container {
-    background-color: red;
+    height: 3rem;
+    width: 3rem;
+    background-color: var(--main-color);
     border-radius: 50px;
 }
 
