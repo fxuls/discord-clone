@@ -1,10 +1,5 @@
 .app {
     display: grid;
-    /* grid-template-columns: 4.9rem 13rem 1fr;
-    grid-template-rows: 3rem 1fr;
-    grid-template-areas:
-        "servers navbar head"
-        "servers navbar main"; */
     grid-template-columns: 4.9rem 1fr;
     grid-template-rows: 1fr;
     grid-template-areas:
