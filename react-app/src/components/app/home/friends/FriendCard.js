@@ -1,8 +1,14 @@
+import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMessage, faUserXmark } from "@fortawesome/free-solid-svg-icons";
 
+import { unfriendUser } from "../../../../store/users";
+
 const FriendCard = ({ user }) => {
+  const dispatch = useDispatch();
   const username = user.username.split("#");
+
+  const onRemoveFriend = () => dispatch(unfriendUser(user.id));
 
   return (
     <div className="friend-card">
@@ -25,8 +31,12 @@ const FriendCard = ({ user }) => {
       </div>
 
       <div className="buttons">
-        <button><FontAwesomeIcon className="icon" icon={faMessage} /></button>
-        <button><FontAwesomeIcon className="icon" icon={faUserXmark} /></button>
+        <button>
+          <FontAwesomeIcon className="icon" icon={faMessage} />
+        </button>
+        <button onClick={onRemoveFriend}>
+          <FontAwesomeIcon className="icon" icon={faUserXmark} />
+        </button>
       </div>
     </div>
   );
