@@ -16,13 +16,13 @@ const FriendHeader = () => {
 
   return (
     <div className="friends-header">
-      <h1>
+      <h1 className="unselectable">
         <FontAwesomeIcon icon={faUsers} className="icon" />
         <span>Friends</span>
       </h1>
 
       <button
-        className="text-button"
+        className="text-button unselectable"
         active={(currentTab === FRIENDS_TAB_ALL) + ""}
         onClick={() => dispatch(setFriendsTab(FRIENDS_TAB_ALL))}
       >
@@ -30,7 +30,7 @@ const FriendHeader = () => {
       </button>
 
       <button
-        className="text-button"
+        className="text-button unselectable"
         active={(currentTab === FRIENDS_TAB_PENDING) + ""}
         onClick={() => dispatch(setFriendsTab(FRIENDS_TAB_PENDING))}
       >
