@@ -9,7 +9,7 @@ const FriendsList = ({ friends }) => {
         {friends.map((user) => (
           <li key={user.id}>
             <div className="list-seperator" />
-            <FriendCard user={user} />
+            <FriendCard userId={user.id} />
           </li>
         ))}
       </ul>
