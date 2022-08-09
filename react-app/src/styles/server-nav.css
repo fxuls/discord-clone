@@ -54,7 +54,7 @@
   justify-content: center;
 }
 
-.list-seperator {
+.server-list .list-seperator {
   width: 40%;
   border-bottom: 1.4px solid rgba(var(--caret-color-values), 0.35);
   clear: both;
