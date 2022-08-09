@@ -3,12 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMessage, faUserXmark } from "@fortawesome/free-solid-svg-icons";
 
 import { unfriendUser } from "../../../../store/users";
+import { setDirectMessageId } from "../../../../store/ui";
 
 const FriendCard = ({ user }) => {
   const dispatch = useDispatch();
   const username = user.username.split("#");
 
   const onRemoveFriend = () => dispatch(unfriendUser(user.id));
+  const onOpenMessages = () => dispatch(setDirectMessageId(user.id));
 
   return (
     <div className="friend-card">
@@ -31,7 +33,7 @@ const FriendCard = ({ user }) => {
       </div>
 
       <div className="buttons">
-        <button>
+        <button onClick={onOpenMessages}>
           <FontAwesomeIcon className="icon" icon={faMessage} />
         </button>
         <button onClick={onRemoveFriend}>
