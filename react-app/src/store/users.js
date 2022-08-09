@@ -1,3 +1,5 @@
+import { getRandomColor } from "../styles";
+
 export const SET_USERS = "users/SET_USERS";
 export const SET_USER = "users/SET_USER";
 export const REMOVE_USER = "users/REMOVE_USER";
@@ -38,8 +40,8 @@ export const fetchUser = (userId) => async (dispatch) => {
   const response = await fetch(`/api/users/${userId}`, {});
 
   if (response.ok) {
-    const data = await response.json();
-    dispatch(setUser(data));
+    const user = await response.json();
+    dispatch(setUser(user));
     return true;
   }
 
