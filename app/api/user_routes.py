@@ -59,3 +59,12 @@ def remove_friend(id):
         "message": "Successfully unfriended user",
         "status": 200,
     }), 200
+
+
+@user_routes.route("/friends/requests")
+@login_required
+def get_friend_requests():
+    """
+    Get a list of users incoming and outgoing friend requests
+    """
+    return jsonify(current_user.friend_requests), 200
