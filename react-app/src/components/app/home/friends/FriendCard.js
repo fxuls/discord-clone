@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMessage, faUserXmark } from "@fortawesome/free-solid-svg-icons";
+
 const FriendCard = ({ user }) => {
   const username = user.username.split("#");
 
@@ -19,6 +22,11 @@ const FriendCard = ({ user }) => {
       <div className="info">
         <span className="name">{username[0]}</span>
         <span className="numbers">{"#" + username[1]}</span>
+      </div>
+
+      <div className="buttons">
+        <button><FontAwesomeIcon className="icon" icon={faMessage} /></button>
+        <button><FontAwesomeIcon className="icon" icon={faUserXmark} /></button>
       </div>
     </div>
   );
