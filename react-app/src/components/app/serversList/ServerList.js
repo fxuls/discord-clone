@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { joinedServersSelector } from "../../../store/servers";
-import { clearServer, CLEAR_SERVER } from "../../../store/ui";
+import { clearServer } from "../../../store/ui";
 import ServerCard from "./ServerCard";
 
 const ServerList = () => {
