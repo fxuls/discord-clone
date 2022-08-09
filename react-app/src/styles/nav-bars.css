@@ -32,17 +32,6 @@
     margin-right: 0.6rem;
 }
 
-.nav-bar h2 {
-    text-transform: uppercase;
-    color: var(--caret-color);
-    font-size: 80%;
-    padding-left: 0.6rem;
-}
-
-.nav-bar h2:hover {
-    color: var(--alt-text-color);
-}
-
 #friends-button {
     margin-bottom: 0.5rem;
 }
