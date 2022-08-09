@@ -69,6 +69,20 @@ export const fetchFriends = () => async (dispatch) => {
   return false;
 };
 
+// unfriendUser thunk
+export const unfriendUser = (userId) => async (dispatch) => {
+  const response = await fetch(`/api/users/friends/${userId}`, {
+    method: "DELETE",
+  });
+
+  if (response.ok) {
+    dispatch(fetchFriends());
+    return true;
+  }
+
+  return false;
+}
+
 const initialState = { friends: null };
 
 export default function usersReducer(state = initialState, action) {
