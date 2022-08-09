@@ -77,7 +77,11 @@ export default function usersReducer(state = initialState, action) {
 
   switch (action.type) {
     case SET_USERS:
-      payload.forEach((user) => (newState[user.id] = user));
+      payload.forEach((user) => {
+        // give user a random color
+        user.color = getRandomColor();
+        newState[user.id] = user;
+      });
       break;
 
     case SET_USER:
