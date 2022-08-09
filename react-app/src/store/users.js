@@ -7,7 +7,7 @@ export const SET_FRIENDS = "users/SET_FRIENDS";
 export const userSelector = (userId) => (state) => state.users[userId];
 export const friendsIdsSelector = (state) => state.users.friends;
 export const friendsSelector = (state) =>
-  state.users.friends.map((friendId) => state.users[friendId]);
+  state.users.friends?.map((friendId) => state.users[friendId]);
 
 // SET_USERS action creator
 export const setUsers = (users) => ({
