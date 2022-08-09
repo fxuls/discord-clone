@@ -1,17 +1,60 @@
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMessage, faUserXmark } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMessage,
+  faUserXmark,
+  faXmark,
+  faCheck,
+} from "@fortawesome/free-solid-svg-icons";
 
 import { unfriendUser, userSelector } from "../../../../store/users";
 import { setDirectMessageId } from "../../../../store/ui";
 
-const FriendCard = ({ userId }) => {
+const FriendCard = ({ userId, type }) => {
   const dispatch = useDispatch();
   const user = useSelector(userSelector(userId));
   const username = user.username.split("#");
 
   const onRemoveFriend = () => dispatch(unfriendUser(user.id));
   const onOpenMessages = () => dispatch(setDirectMessageId(user.id));
+
+  let buttons;
+  switch (type) {
+    case "incoming":
+      buttons = (
+        <div className="buttons">
+          <button>
+            <FontAwesomeIcon className="icon" icon={faCheck} />
+          </button>
+          <button>
+            <FontAwesomeIcon className="icon" icon={faXmark} />
+          </button>
+        </div>
+      );
+      break;
+
+    case "sent":
+      buttons = (
+        <div className="buttons">
+          <button>
+            <FontAwesomeIcon className="icon" icon={faXmark} />
+          </button>
+        </div>
+      );
+      break;
+
+    default:
+      buttons = (
+        <div className="buttons">
+          <button onClick={onOpenMessages}>
+            <FontAwesomeIcon className="icon" icon={faMessage} />
+          </button>
+          <button onClick={onRemoveFriend}>
+            <FontAwesomeIcon className="icon" icon={faUserXmark} />
+          </button>
+        </div>
+      );
+  }
 
   return (
     <div className="friend-card">
@@ -33,14 +76,7 @@ const FriendCard = ({ userId }) => {
         <span className="numbers">{"#" + username[1]}</span>
       </div>
 
-      <div className="buttons">
-        <button onClick={onOpenMessages}>
-          <FontAwesomeIcon className="icon" icon={faMessage} />
-        </button>
-        <button onClick={onRemoveFriend}>
-          <FontAwesomeIcon className="icon" icon={faUserXmark} />
-        </button>
-      </div>
+      {buttons}
     </div>
   );
 };
