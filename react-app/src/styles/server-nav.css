@@ -67,6 +67,7 @@
   font-weight: 600;
   align-items: center;
   display: none;
+  z-index: 1;
 }
 
 .left-arrow {
