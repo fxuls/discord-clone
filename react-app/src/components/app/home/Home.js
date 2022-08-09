@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchFriends } from "../../../store/users";
+import { fetchFriends, fetchFriendRequests } from "../../../store/users";
 import { uiDirectMessageIdSelector } from "../../../store/ui";
 import HomeNavBar from "./HomeNavBar";
 import Friends from "./friends/Friends";
@@ -15,6 +15,7 @@ const Home = () => {
     if (!loaded)
       (async () => {
         await dispatch(fetchFriends());
+        await dispatch(fetchFriendRequests());
         setLoaded(true);
       })();
   }, [dispatch, loaded]);
