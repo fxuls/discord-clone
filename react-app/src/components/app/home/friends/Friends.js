@@ -1,28 +1,36 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { friendsSelector } from "../../../../store/users";
+import {
+  friendsSelector,
+  friendRequestsSelector,
+} from "../../../../store/users";
+import {
+  uiFriendsTabSelector,
+  FRIENDS_TAB_ALL,
+} from "../../../../store/ui";
 
 import FriendHeader from "./FriendHeader";
-import FriendCard from "./FriendCard";
+import FriendsList from "./FriendsList";
+import PendingFriendsList from "./PendingFriendsList";
 
 const Friends = ({ loaded }) => {
   const friends = useSelector(friendsSelector);
+  const friendRequests = useSelector(friendRequestsSelector);
+  const tab = useSelector(uiFriendsTabSelector);
 
-  // reload on friends change
-  useEffect(() => {}, [friends]);
+  // reload on state change
+  useEffect(() => {}, [friends, friendRequests, tab]);
 
   if (!loaded) return null;
 
   return (
     <div className="friends-container main left-inset-shadow">
       <FriendHeader />
-      <div className="friends header-box-shadow">
-      <h1 className="sub-header-text">{`Friends — ${friends.length}`}</h1>
-
-        <ul className="friends-list">
-          {friends.map((user) => <li key={user.id}><div className="list-seperator" /><FriendCard user={user} /></li>)}
-        </ul>
-      </div>
+        {tab === FRIENDS_TAB_ALL ? (
+          <FriendsList friends={friends} />
+        ) : (
+          <PendingFriendsList friendRequests={friendRequests} />
+        )}
     </div>
   );
 };
