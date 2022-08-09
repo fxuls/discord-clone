@@ -29,8 +29,6 @@ const App = () => {
 
       {uiServerId ? <Server /> : <Home />}
 
-      <SignOutButton />
-
       <div style={{backgroundColor: "var(--third-bg-color)", gridArea: "messages"}} />
     </div>
   );
