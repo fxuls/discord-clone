@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { friendsSelector } from "../../../../store/users";
 
@@ -6,6 +7,9 @@ import FriendCard from "./FriendCard";
 
 const Friends = ({ loaded }) => {
   const friends = useSelector(friendsSelector);
+
+  // reload on friends change
+  useEffect(() => {}, [friends]);
 
   if (!loaded) return null;
 
