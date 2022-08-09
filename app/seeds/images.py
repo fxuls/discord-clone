@@ -3,9 +3,9 @@ from app.models import db, Image
 # add images seeds
 def seed_images():
     images = [
-        Image(url="/assets/absjcjwd.png"),
-        Image(url="/assets/awjdadn.png"),
-        Image(url="/assets/adw7a2ad.png"),
+        Image(url="/assets/zerotwo.jpeg"),
+        Image(url="/assets/masterchief.png"),
+        Image(url="/assets/cat.jpeg"),
         Image(url="/assets/bnkze2dl.png"),
         Image(url="/assets/the-board-game-group.jpeg"),
         Image(url="/assets/science.jpeg"),
