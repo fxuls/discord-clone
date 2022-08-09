@@ -17,8 +17,9 @@
     grid-area: main;
     display: grid;
     grid-template-columns: 13rem 1fr;
-    grid-template-rows: 1fr;
+    grid-template-rows: 3rem 1fr;
     grid-template-areas:
+        "navbar header"
         "navbar main";
     min-height: 100%;
     min-width: 100%;
