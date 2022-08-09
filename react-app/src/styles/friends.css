@@ -39,6 +39,7 @@
 .friend-card:hover {
     backdrop-filter: brightness(140%);
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .friend-icon {
