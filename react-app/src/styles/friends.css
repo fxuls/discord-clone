@@ -1,3 +1,41 @@
+.friends-container {
+    display: grid;
+    grid-template-rows: 3.23rem 1fr;
+    grid-template-areas:
+        "header"
+        "friends";
+}
+
 .friends-header {
-    grid-area: head;
+    grid-area: header;
+    box-sizing: border-box;
+    padding: 0.4rem;
+    display: flex;
+}
+
+.friends {
+    grid-area: friends;
+    padding: 2rem 2.4rem;
+}
+
+.friends-list {
+    margin-top: 1.3rem;
+    height: calc(100vh - 9.8rem);
+    overflow: scroll;
+}
+
+
+.friends-list .list-seperator {
+    width: 95%;
+    border-bottom: 1px solid rgba(var(--alt-text-color-values), 0.15);
+    margin: 0 auto;
+}
+
+.friend-card {
+    padding: 1.4rem;
+}
+
+.friend-card:hover {
+    backdrop-filter: brightness(140%);
+    border-radius: 10px;
 }
