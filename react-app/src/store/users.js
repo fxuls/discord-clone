@@ -4,12 +4,14 @@ export const SET_USERS = "users/SET_USERS";
 export const SET_USER = "users/SET_USER";
 export const REMOVE_USER = "users/REMOVE_USER";
 export const SET_FRIENDS = "users/SET_FRIENDS";
+export const SET_FRIEND_REQUESTS = "users/SET_FRIEND_REQUESTS";
 
 // selector
 export const userSelector = (userId) => (state) => state.users[userId];
 export const friendsIdsSelector = (state) => state.users.friends;
 export const friendsSelector = (state) =>
   state.users.friends?.map((friendId) => state.users[friendId]);
+export const friendRequestsSelector = (state) => state.users.friendRequests;
 
 // SET_USERS action creator
 export const setUsers = (users) => ({
@@ -33,6 +35,12 @@ export const removeUser = (userId) => ({
 export const setFriends = (friendIds) => ({
   type: SET_FRIENDS,
   payload: friendIds,
+});
+
+// SET_FRIEND_REQUESTS action creator
+export const setFriendRequests = (friendRequests) => ({
+  type: SET_FRIEND_REQUESTS,
+  payload: friendRequests,
 });
 
 // fetch user by id thunk
@@ -81,9 +89,37 @@ export const unfriendUser = (userId) => async (dispatch) => {
   }
 
   return false;
-}
+};
 
-const initialState = { friends: null };
+// fetch friend requests thunk
+export const fetchFriendRequests = () => async (dispatch) => {
+  const response = await fetch("/api/users/friends/requests");
+
+  if (response.ok) {
+    const friendRequests = await response.json();
+
+    // map to just userIds and fetch each user
+    friendRequests.incoming = friendRequests.incoming.map(({ user_id }) => {
+      dispatch(fetchUser(user_id));
+      return user_id;
+    });
+
+    friendRequests.sent = friendRequests.sent.map(({ user_id }) => {
+      dispatch(fetchUser(user_id));
+      return user_id;
+    });
+
+    dispatch(setFriendRequests(friendRequests));
+    return true;
+  }
+
+  return false;
+};
+
+const initialState = {
+  friends: null,
+  friendRequests: { incoming: [], send: [] },
+};
 
 export default function usersReducer(state = initialState, action) {
   const newState = { ...state };
@@ -108,6 +144,11 @@ export default function usersReducer(state = initialState, action) {
 
     case SET_FRIENDS:
       newState.friends = payload;
+      break;
+
+    case SET_FRIEND_REQUESTS:
+      newState.friendRequests = payload;
+      break;
 
     default:
       break;
