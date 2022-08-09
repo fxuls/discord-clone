@@ -32,10 +32,22 @@
 }
 
 .friend-card {
-    padding: 1.4rem;
+    padding: 1rem;
 }
 
 .friend-card:hover {
     backdrop-filter: brightness(140%);
     border-radius: 10px;
+}
+
+.friend-icon {
+    height: 3.4rem;
+    width: 3.4rem;
+    object-fit: cover;
+    border-radius: 50px;
+}
+
+.default-image-container {
+    background-color: red;
+    border-radius: 50px;
 }
