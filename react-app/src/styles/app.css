@@ -4,7 +4,19 @@
     grid-template-rows: 3rem 1fr;
     grid-template-areas:
         "servers navbar head"
-        "servers navbar messages";
+        "servers navbar main";
     min-height: 100%;
     min-width: 100%;
+}
+
+.area-head {
+    grid-area: head;
+}
+
+.area-main {
+    grid-area: main;
+}
+
+.box-shadow-right {
+    box-shadow:  5px 0 5px -5px rgba(0,0,0,0.7);
 }
