@@ -17,6 +17,9 @@
     overflow: scroll;
 }
 
+.friends-list.incoming {
+    margin-bottom: 2rem;
+}
 
 .friends-list .list-seperator {
     width: 95%;
