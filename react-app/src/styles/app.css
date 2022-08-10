@@ -57,3 +57,7 @@
 .shadow-container {
     width: 100%;
 }
+
+.transparent-caret-color {
+    color: rgba(var(--caret-color-values), 0.5);
+}
