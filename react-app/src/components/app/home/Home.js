@@ -5,13 +5,13 @@ import { uiDirectMessageIdSelector } from "../../../store/ui";
 import { fetchDirectMessages } from "../../../store/directMessages";
 import HomeNavBar from "./HomeNavBar";
 import Friends from "./friends/Friends";
-import DirectMessages from "./directMessages/DirectMessages";
+import DirectMessages from "./messages/DirectMessages";
 
 const Home = () => {
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
 
-  const currentDirectMessageId = useSelector(uiDirectMessageIdSelector);
+  const uiDirectMessageId = useSelector(uiDirectMessageIdSelector);
 
   useEffect(() => {
     if (!loaded)
@@ -25,9 +25,9 @@ const Home = () => {
 
   return (
     <div className="home content">
-      <HomeNavBar currentDirectMessageId={currentDirectMessageId} loaded={loaded}/>
+      <HomeNavBar loaded={loaded}/>
 
-      {currentDirectMessageId ? (
+      {uiDirectMessageId ? (
         <DirectMessages loaded={loaded} />
       ) : (
         <Friends loaded={loaded} />
