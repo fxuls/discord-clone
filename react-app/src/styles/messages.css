@@ -11,6 +11,10 @@
     grid-area: header;
 }
 
+.direct-messages {
+    padding-right: 0.95rem;
+}
+
 .chat-box {
     grid-area: chatbox;
 }
@@ -39,18 +43,31 @@
     backdrop-filter: brightness(90%);
 }
 
-.message-icon {
+.message-icon-container {
     grid-area: icon;
+    border-radius: 50px;
+    height: 3rem;
+    width: 3rem;
+    margin: 0 1rem;
+}
+.message-icon {
+    box-sizing: border-box;
     height: 3rem;
     width: 3rem;
     border-radius: 50px;
-    margin: 0 1rem;
 }
 
 .message-card h1 {
     grid-area: name;
+    margin-bottom: 0.4rem;
+    font-size: 1.08rem;
 }
 
-.message-card .content {
+.message-card .message-content {
     grid-area: content;
+    color: var(--caret-color);
+}
+
+.message-card p {
+    width: 100%;
 }
