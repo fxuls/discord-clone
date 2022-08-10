@@ -31,9 +31,9 @@
 .message-card {
     display: grid;
     grid-template-areas:
-        "icon name"
-        "icon content";
-    grid-template-columns: min-content 1fr;
+        "icon name options"
+        "icon content options";
+    grid-template-columns: min-content 1fr min-content;
     grid-template-rows: min-content min-content;
     padding: 0.5rem 0;
     transition: none;
@@ -70,4 +70,25 @@
 
 .message-card p {
     width: 100%;
+}
+
+.message-options {
+    grid-area: options;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 0.8rem;
+}
+
+.message-option-icon {
+    visibility: hidden;
+    height: 1.2rem;
+}
+
+.message-card:hover .message-option-icon {
+    visibility: visible;
+}
+
+.message-option-icon:hover {
+    color: var(--alt-text-color);
 }
