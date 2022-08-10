@@ -17,11 +17,13 @@ const HomeNavBar = ({ currentDirectMessageId, loaded }) => {
   const uiDirectMessageId = useSelector(uiDirectMessageIdSelector);
 
   // rerender on change in directMessageChatIds or uiDirectMessageId
-  useEffect(() => {}, [directMessageChatIds, uiDirectMessageId]);
+  useEffect(() => {}, [directMessageChatIds, uiDirectMessageId, loaded]);
 
   const onOpenFriends = () => {
-    if (uiDirectMessageId) dispatch(setFriendsTab(FRIENDS_TAB_ALL));
-    dispatch(setDirectMessageId(null));
+    if (uiDirectMessageId) {
+      dispatch(setFriendsTab(FRIENDS_TAB_ALL));
+      dispatch(setDirectMessageId(null));
+    }
   };
 
   if (!loaded) return null;
