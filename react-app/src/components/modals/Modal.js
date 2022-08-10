@@ -1,18 +1,25 @@
+import { useDispatch } from "react-redux";
+import { hideModal } from "../../store/ui";
 import ImageModal, { IMAGE_MODAL } from "./ImageModal";
 
 const Modal = ({ modal }) => {
+    const dispatch = useDispatch();
+
+    const closeModal = () => dispatch(hideModal());
+    const stopPropagation = (e) => e.stopPropagation();
+
     let modalComponent;
     switch (modal.type) {
         case IMAGE_MODAL:
-            modalComponent = <ImageModal modal={modal}/>
+            modalComponent = <ImageModal modal={modal} closeModal={closeModal} stopPropagation={stopPropagation}/>
             break;
 
         default:
-            console.log("modal not found");
+            closeModal();
             return null;
     }
 
-    return <div className="modal-overlay">
+    return <div className="modal-overlay" onMouseDown={closeModal}>
         {modalComponent}
     </div>;
 }
