@@ -16,7 +16,7 @@ const FriendHeader = () => {
   const currentTab = useSelector(uiFriendsTabSelector);
 
   return (
-    <div className="friends-header">
+    <div className="header">
       <h1 className="unselectable">
         <FontAwesomeIcon icon={faUsers} className="icon" />
         <span>Friends</span>
