@@ -27,7 +27,7 @@ const FriendCard = ({ userId, type }) => {
           <button onClick={onAcceptRequest}>
             <FontAwesomeIcon className="icon" icon={faCheck} />
           </button>
-          <button>
+          <button onClick={onRemoveFriend}>
             <FontAwesomeIcon className="icon" icon={faXmark} />
           </button>
         </div>
@@ -37,7 +37,7 @@ const FriendCard = ({ userId, type }) => {
     case "sent":
       buttons = (
         <div className="buttons">
-          <button>
+          <button onClick={onRemoveFriend}>
             <FontAwesomeIcon className="icon" icon={faXmark} />
           </button>
         </div>
