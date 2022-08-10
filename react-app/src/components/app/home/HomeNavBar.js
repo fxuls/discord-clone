@@ -2,16 +2,17 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
-import { setDirectMessageId } from "../../../store/ui";
+import { setDirectMessageId, uiDirectMessageIdSelector} from "../../../store/ui";
 import { directMessagesIdsSelector } from "../../../store/directMessages";
 import DirectMessageChatCard from "./directMessages/DirectMessageChatCard";
 
 const HomeNavBar = ({ currentDirectMessageId }) => {
   const dispatch = useDispatch();
   const directMessageChatIds = useSelector(directMessagesIdsSelector);
+  const uiDirectMessageId = useSelector(uiDirectMessageIdSelector);
 
-  // rerender on change in directMessageChatIds
-  useEffect(() => {}, [directMessageChatIds]);
+  // rerender on change in directMessageChatIds or uiDirectMessageId
+  useEffect(() => {}, [directMessageChatIds, uiDirectMessageId]);
 
   return (
     <div className="nav-bar left-inset-shadow">
@@ -28,7 +29,7 @@ const HomeNavBar = ({ currentDirectMessageId }) => {
       <h2 className="unselectable sub-header-text">Direct messages</h2>
 
       <ul>
-        {directMessageChatIds.map((userId) => <li key={userId}><DirectMessageChatCard userId={userId}/></li>)}
+        {directMessageChatIds.map((userId) => <li key={userId}><DirectMessageChatCard userId={userId} active={userId === uiDirectMessageId}/></li>)}
       </ul>
     </div>
   );
