@@ -94,7 +94,7 @@ export const friendUser = (userId) => async (dispatch) => {
 
 // unfriend user thunk
 export const unfriendUser = (userId) => async (dispatch) => {
-  const response = await fetch(`/api/users/friends/${userId}`, {
+  const response = await fetch(`/api/users/${userId}/friends`, {
     method: "DELETE",
   });
 
