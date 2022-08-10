@@ -21,26 +21,32 @@ const AddFriend = () => {
   };
 
   return (
-    <div className="add-friend header-box-shadow">
-      <form onSubmit={onSubmit}>
-        <h1>Add friend</h1>
-        <p>You can add a friend by entering their username here.</p>
-        <input
-          name="username"
-          type="text"
-          placeholder="Dino#0924"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
+    <div className="shadow-container header-box-shadow">
+      <div className="friends add-friend">
+        <form onSubmit={onSubmit}>
+          <h1>Add friend</h1>
+          <p>You can add a friend by entering their username here.</p>
+          <input
+            name="username"
+            type="text"
+            placeholder="Dino#0924"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
 
-        <div className="foot-bar">
-          <button type="submit" active={isUsernameValid() + ""}>
-            Send
-          </button>
+          <div className="foot-bar">
+            <button type="submit" active={isUsernameValid() + ""}>
+              Send
+            </button>
 
-          {responseMessage && <p className={responseStatus < 300 ? "" : "error"}>{responseMessage}</p>}
-        </div>
-      </form>
+            {responseMessage && (
+              <p className={responseStatus < 300 ? "" : "error"}>
+                {responseMessage}
+              </p>
+            )}
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
