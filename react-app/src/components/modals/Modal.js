@@ -11,7 +11,7 @@ const Modal = ({ modal }) => {
     let modalComponent;
     switch (modal.type) {
         case IMAGE_MODAL:
-            modalComponent = <ImageModal modal={modal} closeModal={closeModal} stopPropagation={stopPropagation}/>
+            modalComponent = <ImageModal modal={modal} stopPropagation={stopPropagation}/>
             break;
 
         default:

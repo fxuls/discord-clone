@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export const IMAGE_MODAL = "modals/IMAGE_MODAL";
 
-const ImageModal = ({ modal, closeModal, stopPropagation }) => {
+const ImageModal = ({ modal, stopPropagation }) => {
   const { imageUrl } = modal;
 
   return (
