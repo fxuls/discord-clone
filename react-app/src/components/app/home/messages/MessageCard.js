@@ -1,7 +1,12 @@
 import { useSelector } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+
 import { userSelector } from "../../../../store/users";
+import { currentUserIdSelector } from "../../../../store/session";
 
 const MessageCard = ({ message }) => {
+  const userId = useSelector(currentUserIdSelector);
   const sender = useSelector(userSelector(message.sender_id));
   const name = sender.username.split("#")[0];
 
@@ -14,7 +19,8 @@ const MessageCard = ({ message }) => {
             src={sender.profile_image_url}
           />
         ) : (
-          <div className="default-image-container"
+          <div
+            className="default-image-container"
             style={{ backgroundColor: sender.color }}
           >
             <img
@@ -29,6 +35,10 @@ const MessageCard = ({ message }) => {
 
       <div className="message-content">
         <p>{message.text}</p>
+      </div>
+
+      <div className="message-options unselectable transparent-caret-color">
+        {sender.id === userId && <FontAwesomeIcon icon={faXmark} className="message-option-icon"/>}
       </div>
     </div>
   );
