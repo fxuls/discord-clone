@@ -3,8 +3,9 @@ import { fetchUser } from "./users";
 const SET_DIRECT_MESSAGES = "messages/SET_DIRECT_MESSAGES";
 
 // selectors
-export const directMessagesIdsSelector = (state) =>
+export const directMessageChatIdsSelector = (state) =>
   Object.keys(state.directMessages);
+export const directMessageChatSelector = (chatId) => (state) => state.directMessages[chatId];
 
 // SET_DIRECT_MESSAGES action creator
 export const setDirectMessages = (directMessages) => ({
@@ -14,18 +15,30 @@ export const setDirectMessages = (directMessages) => ({
 
 export const fetchDirectMessages = () => async (dispatch) => {
   const response = await fetch("/api/direct-messages", {});
+  const data = await response.json();
 
   if (response.ok) {
-    const directMessages = await response.json();
-
-    dispatch(setDirectMessages(directMessages));
+    dispatch(setDirectMessages(data));
 
     // fetch the users who have chats
-    Object.keys(directMessages).forEach((userId) =>
+    Object.keys(data).forEach((userId) =>
       dispatch(fetchUser(userId))
     );
   }
+  return data;
 };
+
+export const deleteDirectMessageChat =
+  (directMessageChatId) => async (dispatch) => {
+    const response = await fetch(`/api/direct-messages/${directMessageChatId}`, {
+      method: "DELETE",
+    });
+
+    dispatch(fetchDirectMessages());
+
+    const data = await response.json();
+    return data;
+  };
 
 const initialState = {};
 
