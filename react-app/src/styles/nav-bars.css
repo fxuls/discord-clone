@@ -16,7 +16,6 @@
     transition: none;
     border-radius: 4px;
     display: flex;
-    color: var(--caret-color);
     margin-bottom: 0.3rem;
     align-items: center;
 }
