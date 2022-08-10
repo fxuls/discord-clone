@@ -56,6 +56,7 @@ def add_friend(id):
         friendship = Friend(user_one_id=current_user.id, user_two_id=id)
 
         db.session.add(friendship)
+        db.session.delete(fr_req)
         db.session.commit()
 
         return jsonify({
