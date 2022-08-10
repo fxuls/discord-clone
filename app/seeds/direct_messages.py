@@ -20,7 +20,7 @@ def seed_direct_messages():
 
     u1_u4 = [
         DirectMessage(direct_message_chat_id=3, sender_id=4, text="Hey! Saw you in the pet photo server and wanted to see if you could send me the pics of your dog directly", sent_at="2022-07-26 02:33:00"),
-        DirectMessage(direct_message_chat_id=3, sender_id=1, text="Here you go :) She is super cute", image_id=12, sent_at="2022-07-26 02:40:00"),
+        DirectMessage(direct_message_chat_id=3, sender_id=1, text="Here you go :) She is super cute", image_id=8, sent_at="2022-07-26 02:40:00"),
         DirectMessage(direct_message_chat_id=3, sender_id=4, text="Soooo cute", sent_at="2022-07-26 05:00:32"),
     ]
     messages += u1_u4
