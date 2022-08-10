@@ -5,6 +5,8 @@ import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import {
   setDirectMessageId,
   uiDirectMessageIdSelector,
+  setFriendsTab,
+  FRIENDS_TAB_ALL,
 } from "../../../store/ui";
 import { directMessagesIdsSelector } from "../../../store/directMessages";
 import DirectMessageChatCard from "./directMessages/DirectMessageChatCard";
@@ -17,13 +19,18 @@ const HomeNavBar = ({ currentDirectMessageId }) => {
   // rerender on change in directMessageChatIds or uiDirectMessageId
   useEffect(() => {}, [directMessageChatIds, uiDirectMessageId]);
 
+  const onOpenFriends = () => {
+    dispatch(setDirectMessageId(null));
+    dispatch(setFriendsTab(FRIENDS_TAB_ALL));
+  }
+
   return (
     <div className="nav-bar left-inset-shadow">
       <div
         className="nav-item unselectable"
         id="friends-button"
         active={(currentDirectMessageId === null) + ""}
-        onClick={() => dispatch(setDirectMessageId(null))}
+        onClick={onOpenFriends}
       >
         <div className="nav-icon flex-center">
           <FontAwesomeIcon icon={faUsers} />
