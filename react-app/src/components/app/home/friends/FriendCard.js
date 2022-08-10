@@ -7,7 +7,7 @@ import {
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { unfriendUser, userSelector, friendUser } from "../../../../store/users";
+import { unfriendUser, userSelector, friendUserById } from "../../../../store/users";
 import { setDirectMessageId } from "../../../../store/ui";
 
 const FriendCard = ({ userId, type }) => {
@@ -17,7 +17,7 @@ const FriendCard = ({ userId, type }) => {
 
   const onRemoveFriend = () => dispatch(unfriendUser(user.id));
   const onOpenMessages = () => dispatch(setDirectMessageId(user.id));
-  const onAcceptRequest = () => dispatch(friendUser(user.id));
+  const onAcceptRequest = () => dispatch(friendUserById(user.id));
 
   let buttons;
   switch (type) {
