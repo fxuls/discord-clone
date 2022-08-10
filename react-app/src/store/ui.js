@@ -1,3 +1,5 @@
+import { IMAGE_MODAL } from "../components/modals/ImageModal";
+
 export const SET_SERVER = "ui/SHOW_SERVER";
 export const CLEAR_SERVER = "ui/CLEAR_SERVER";
 export const SET_DIRECT_MESSAGE_ID = "ui/SET_DIRECT_MESSAGE";
@@ -53,6 +55,15 @@ export const showModal = (modal) => ({
 // HIDE_MODAL action creator
 export const hideModal = () => ({
   type: HIDE_MODAL,
+});
+
+// IMAGE_MODAL action creator
+export const showImageModal = (imageUrl) => ({
+    type: SHOW_MODAL,
+    payload: {
+        type: IMAGE_MODAL,
+        imageUrl,
+    }
 });
 
 const initialState = {
