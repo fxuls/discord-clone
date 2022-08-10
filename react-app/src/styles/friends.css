@@ -125,6 +125,11 @@
     padding: 0.4rem 1rem;
 }
 
+.friends-header .text-button.add-friend {
+    background-color: var(--main-color);
+    color: var(--alt-text-color);
+}
+
 .friends-header .text-button:hover, .friends-header .text-button[active="true"] {
     backdrop-filter: brightness(150%);
     color: var(--alt-text-color);
