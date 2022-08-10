@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { userSelector } from "../../../../store/users";
 import { setDirectMessageId } from "../../../../store/ui";
-import { directMessageChatSelector } from "../../../../store/directMessages";
+import { directMessageChatSelector, deleteDirectMessageChat } from "../../../../store/directMessages";
 
 const DirectMessageChatCard = ({ directMessageChatId, active }) => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const DirectMessageChatCard = ({ directMessageChatId, active }) => {
   // rerender on change in user
   useEffect(() => {}, [user]);
 
-  const onDeleteDirectChat = () => dispatch();
+  const onDeleteDirectChat = () => dispatch(deleteDirectMessageChat(directMessageChatId));
 
   return (
     <div
