@@ -6,9 +6,14 @@
         "friends";
 }
 
+.shadow-container {
+    width: 100%;
+}
+
 .friends {
     grid-area: friends;
     padding: 2rem 2.4rem;
+    max-width: 46rem;
 }
 
 .friends-list {
@@ -133,11 +138,6 @@
 .friends-header .text-button:hover, .friends-header .text-button[active="true"] {
     backdrop-filter: brightness(150%);
     color: var(--alt-text-color);
-}
-
-.add-friend {
-    padding: 2rem 2.4rem;
-    max-height: 20rem;
 }
 
 .add-friend h1 {
