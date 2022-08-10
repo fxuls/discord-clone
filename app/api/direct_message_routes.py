@@ -29,7 +29,7 @@ def get_direct_messages():
     return jsonify(direct_messages), 200
 
 
-@direct_message_routes.route("/<int:id>")
+@direct_message_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
 def delete_direct_message_chat(id):
     """
