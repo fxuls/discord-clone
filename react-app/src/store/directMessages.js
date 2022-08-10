@@ -7,6 +7,7 @@ export const directMessageChatIdsSelector = (state) =>
   Object.keys(state.directMessages);
 export const directMessageChatSelector = (chatId) => (state) => state.directMessages[chatId];
 export const directMessagesSelector = (chatId) => (state) => state.directMessages[chatId].messages;
+export const chatByUserId = (userId) => (state) => Object.values(state.directMessages).find((chat) => chat.userId === userId);
 
 // SET_DIRECT_MESSAGES action creator
 export const setDirectMessages = (directMessages) => ({
