@@ -8,12 +8,12 @@ import {
   setFriendsTab,
   FRIENDS_TAB_ALL,
 } from "../../../store/ui";
-import { directMessagesIdsSelector } from "../../../store/directMessages";
+import { directMessageChatIdsSelector } from "../../../store/directMessages";
 import DirectMessageChatCard from "./directMessages/DirectMessageChatCard";
 
-const HomeNavBar = ({ currentDirectMessageId }) => {
+const HomeNavBar = ({ currentDirectMessageId, loaded }) => {
   const dispatch = useDispatch();
-  const directMessageChatIds = useSelector(directMessagesIdsSelector);
+  const directMessageChatIds = useSelector(directMessageChatIdsSelector);
   const uiDirectMessageId = useSelector(uiDirectMessageIdSelector);
 
   // rerender on change in directMessageChatIds or uiDirectMessageId
@@ -23,6 +23,8 @@ const HomeNavBar = ({ currentDirectMessageId }) => {
     if (uiDirectMessageId) dispatch(setFriendsTab(FRIENDS_TAB_ALL));
     dispatch(setDirectMessageId(null));
   };
+
+  if (!loaded) return null;
 
   return (
     <div className="nav-bar left-inset-shadow transparent-caret-color">
@@ -41,11 +43,11 @@ const HomeNavBar = ({ currentDirectMessageId }) => {
       <h2 className="unselectable sub-header-text">Direct messages</h2>
 
       <ul>
-        {directMessageChatIds.map((userId) => (
-          <li key={userId}>
+        {directMessageChatIds.map((directMessageChatId) => (
+          <li key={directMessageChatId}>
             <DirectMessageChatCard
-              userId={userId}
-              active={userId === uiDirectMessageId}
+              directMessageChatId={directMessageChatId}
+              active={directMessageChatId === uiDirectMessageId}
             />
           </li>
         ))}
