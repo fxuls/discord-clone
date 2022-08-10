@@ -1,12 +1,17 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
-from app.models import db, DirectMessageChat
+from app.models import db, DirectMessageChat, DirectMessage
 
 direct_message_routes = Blueprint("direct-messages", __name__)
 
 USER_NOT_MEMBER = {
     "message": "User is not a member of this chat",
     "status_code": 401,
+}
+
+MESSAGE_NOT_EXIST = {
+    "message": "Message does not exist",
+    "status_code": 404,
 }
 
 @direct_message_routes.route("")
@@ -48,5 +53,35 @@ def delete_direct_message_chat(id):
 
     return jsonify({
         "message": "Chat deleted",
+        "status_code": 200,
+    }), 200
+
+
+
+@direct_message_routes.route("/messages/<int:id>", methods=["DELETE"])
+@login_required
+def delete_message(id):
+    """
+    Delete a direct message by its id
+    """
+    message = DirectMessage.query.get(id)
+
+    # check message exists
+    if message is None:
+        return jsonify(MESSAGE_NOT_EXIST), 404
+
+    # check that current user is sender of message
+    if current_user.id != message.sender_id:
+        return jsonify({
+            "message": "Message does not belong to user",
+            "status_code": 401,
+        }), 401
+
+    # delete message
+    db.session.delete(message)
+    db.session.commit()
+
+    return jsonify({
+        "message": "Successfully deleted",
         "status_code": 200,
     }), 200
