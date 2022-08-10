@@ -134,3 +134,43 @@
     backdrop-filter: brightness(150%);
     color: var(--alt-text-color);
 }
+
+.add-friend {
+    padding: 1.7rem 2.5rem;
+    max-height: 20rem;
+}
+
+.add-friend h1 {
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+}
+
+.add-friend p {
+    color: var(--caret-color);
+    font-weight: 300;
+    font-size: 0.88rem;
+    margin-bottom: 0.9rem;
+}
+
+.add-friend input {
+    box-sizing: border-box;
+    width: 100%;
+    border: 2px solid var(--alt-bg-color);
+    background-color: rgba(var(--alt-bg-color-values), 0.1);
+    backdrop-filter: brightness(80%);
+    padding: 0.9rem 1.6rem;
+    color: var(--text-color);
+    font-size: 1rem;
+    border-radius: 10px;
+    letter-spacing: 1.52px;
+    margin-bottom: 1rem;
+}
+
+.add-friend input::placeholder {
+    color: rgba(var(--alt-text-color-values), 0.5);
+}
+
+.add-friend button {
+    padding: 0.7rem 1.7rem;
+}
