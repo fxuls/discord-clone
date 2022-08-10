@@ -113,6 +113,7 @@
 .friends-header h1 .icon {
     height: 1.4rem;
     margin-right: 0.4rem;
+    color: var(--caret-color);
 }
 
 .friends-header .text-button {
