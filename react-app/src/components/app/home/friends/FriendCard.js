@@ -16,7 +16,7 @@ const FriendCard = ({ userId, type }) => {
   const username = user.username.split("#");
 
   const onRemoveFriend = () => dispatch(unfriendUser(user.id));
-  const onOpenMessages = () => dispatch(setDirectMessageId(user.id));
+  const onOpenMessages = () => dispatch(setDirectMessageId(user.id + ""));
   const onAcceptRequest = () => dispatch(friendUserById(user.id));
 
   let buttons;
