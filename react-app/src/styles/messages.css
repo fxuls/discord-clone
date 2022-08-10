@@ -32,14 +32,19 @@
     grid-template-columns: min-content 1fr;
     grid-template-rows: min-content min-content;
     padding: 0.5rem 0;
+    transition: none;
+}
+
+.message-card:hover {
+    backdrop-filter: brightness(90%);
 }
 
 .message-icon {
     grid-area: icon;
-    height: 2rem;
-    width: 2rem;
+    height: 3rem;
+    width: 3rem;
     border-radius: 50px;
-    margin: 0 0.3rem;
+    margin: 0 1rem;
 }
 
 .message-card h1 {
