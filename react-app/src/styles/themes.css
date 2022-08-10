@@ -31,8 +31,8 @@
   --alt-text-color-values: 246, 246, 246;
   --alt-text-color: rgb(var(--alt-text-color-values));
 
-  /* error-color #E32B2B */
-  --error-color-values: 227, 43, 43;
+  /* error-color #FF4848 */
+  --error-color-values: 255, 72, 72;
   --error-color: rgb(var(--error-color-values));
 }
 
