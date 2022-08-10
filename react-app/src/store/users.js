@@ -77,19 +77,46 @@ export const fetchFriends = () => async (dispatch) => {
   return false;
 };
 
-// friend user thunk
-export const friendUser = (userId) => async (dispatch) => {
-  const response = await fetch(`/api/users/${userId}/friends`, {
+// friend user by id thunk
+export const friendUserById = (userId) => async (dispatch) => {
+  const response = await fetch(`/api/users/friends`, {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      userId,
+    }),
   });
 
   if (response.ok) {
     dispatch(fetchFriendRequests());
     dispatch(fetchFriends());
-    return true;
   }
 
-  return false;
+  const data = await response.json();
+  return data;
+};
+
+// friend user by id thunk
+export const friendUserByUsername = (username) => async (dispatch) => {
+  const response = await fetch(`/api/users/friends`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      username,
+    }),
+  });
+
+  if (response.ok) {
+    dispatch(fetchFriendRequests());
+    dispatch(fetchFriends());
+  }
+
+  const data = await response.json();
+  return data;
 };
 
 // unfriend user thunk
@@ -101,10 +128,10 @@ export const unfriendUser = (userId) => async (dispatch) => {
   if (response.ok) {
     dispatch(fetchFriendRequests());
     dispatch(fetchFriends());
-    return true;
   }
 
-  return false;
+  const data = await response.json();
+  return data;
 };
 
 // fetch friend requests thunk
