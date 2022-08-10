@@ -12,12 +12,13 @@
 }
 
 .nav-bar .nav-item {
-    padding: 0.9rem 0.6rem;
+    padding: 0.4rem 0.6rem;
     transition: none;
     border-radius: 4px;
     display: flex;
     color: var(--caret-color);
     margin-bottom: 0.3rem;
+    align-items: center;
 }
 
 .nav-bar .nav-item:hover {
@@ -33,8 +34,15 @@
     font-size: 100%;
 }
 
-.nav-bar .icon {
+.nav-bar .nav-icon {
     margin-right: 0.6rem;
+    height: 2rem;
+    width: 2rem;
+}
+
+.nav-bar .nav-icon svg {
+    height: 80%;
+    width: 80%;
 }
 
 #friends-button {
