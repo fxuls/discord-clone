@@ -37,7 +37,7 @@ const MessageCard = ({ message }) => {
         )}
       </div>
 
-      <h1>{name}</h1>
+      <h1 style={{ color: sender.color }}>{name}</h1>
 
       <div className="message-content">
         <p>{message.text}</p>
