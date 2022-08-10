@@ -39,6 +39,8 @@ const MessageCard = ({ message }) => {
 
       <div className="message-content">
         <p>{message.text}</p>
+
+        {message.image_url && <img src={message.image_url} />}
       </div>
 
       <div className="message-options unselectable transparent-caret-color">
