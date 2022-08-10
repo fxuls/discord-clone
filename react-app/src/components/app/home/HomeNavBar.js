@@ -25,7 +25,7 @@ const HomeNavBar = ({ currentDirectMessageId }) => {
   };
 
   return (
-    <div className="nav-bar left-inset-shadow">
+    <div className="nav-bar left-inset-shadow transparent-caret-color">
       <div
         className="nav-item unselectable"
         id="friends-button"
