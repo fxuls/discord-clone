@@ -19,8 +19,8 @@
   --sub-color-values: 88, 101, 242;
   --sub-color: rgb(var(--sub-color-values));
 
-  /* caret-color #99AAB5 */
-  --caret-color-values: 153, 170, 181;
+  /* caret-color #BBBBBB */
+  --caret-color-values: 187, 187, 187;
   --caret-color: rgb(var(--caret-color-values));
 
   /* text-color #FFFFFF */
