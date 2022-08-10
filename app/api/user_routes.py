@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
-from app.models import db, User, Friend
+from app.models import db, User, Friend, FriendRequest
 
 user_routes = Blueprint('users', __name__)
 
@@ -35,7 +35,44 @@ def user(id):
 @user_routes.route("/friends")
 @login_required
 def get_friends():
+    """
+    Get current user's friends
+    """
     return jsonify(current_user.friends), 200
+
+
+@user_routes.route("/<int:id>/friends", methods=["POST"])
+@login_required
+def add_friend(id):
+    """
+    Create a friend request to a user or accept one if it
+    already exists
+    """
+    # check if there is an existing friend request
+    fr_req = FriendRequest.query.filter(FriendRequest.sending_user_id == id).first()
+
+    if fr_req is not None:
+        # create friendship
+        friendship = Friend(user_one_id=current_user.id, user_two_id=id)
+
+        db.session.add(friendship)
+        db.session.commit()
+
+        return jsonify({
+            "message": "Friend request accepted",
+            "status_code": 201,
+        })
+
+    # create friend request
+    new_fr_req = FriendRequest(sending_user_id=current_user.id, receiving_user_id=id)
+
+    db.session.add(new_fr_req)
+    db.session.commit()
+
+    return jsonify({
+        "message": "Friend request sent successfully",
+        "status_code": 201,
+    })
 
 
 @user_routes.route("/<int:id>/friends", methods=["DELETE"])
