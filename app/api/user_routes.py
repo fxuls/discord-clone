@@ -1,11 +1,11 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, User, Friend, FriendRequest
 
 user_routes = Blueprint('users', __name__)
 
 USER_NOT_FOUND = {
-    "message": "Server not found",
+    "message": "User not found",
     "status_code": 404,
 }
 
@@ -41,15 +41,46 @@ def get_friends():
     return jsonify(current_user.friends), 200
 
 
-@user_routes.route("/<int:id>/friends", methods=["POST"])
+@user_routes.route("/friends", methods=["POST"])
 @login_required
-def add_friend_by_id(id):
+def add_friend():
     """
     Create a friend request to a user or accept one if it
     already exists
     """
+    body = request.get_json()
+
+    # if username supplied look up user by username
+    if "username" in body:
+        user = User.query.filter(User.username == body["username"]).first()
+
+        if user is None:
+            return jsonify(USER_NOT_FOUND), 404
+
+        id = user.id
+
+    if "userId" in body:
+        id = body["userId"]
+
+    # check if users are already friends
+    left_friendship = Friend.query.filter(Friend.user_one_id == current_user.id, Friend.user_two_id == id).first()
+    right_friendship = Friend.query.filter(Friend.user_one_id == id, Friend.user_two_id == current_user.id).first()
+    if left_friendship or right_friendship:
+        return jsonify({
+            "message": "Already friends",
+            "status_code": 400,
+        }), 400
+
+    # check if friend request has already been sent
+    sent_fr_req = FriendRequest.query.filter(FriendRequest.sending_user_id == current_user.id, FriendRequest.receiving_user_id == id).first()
+    if sent_fr_req:
+        return jsonify({
+            "message": "Friend request already sent",
+            "status_code": 400,
+        }), 400
+
     # check if there is an existing friend request
-    fr_req = FriendRequest.query.filter(FriendRequest.sending_user_id == id).first()
+    fr_req = FriendRequest.query.filter(FriendRequest.sending_user_id == id, FriendRequest.receiving_user_id == current_user.id).first()
 
     if fr_req is not None:
         # create friendship
@@ -62,7 +93,7 @@ def add_friend_by_id(id):
         return jsonify({
             "message": "Friend request accepted",
             "status_code": 201,
-        })
+        }), 201
 
     # create friend request
     new_fr_req = FriendRequest(sending_user_id=current_user.id, receiving_user_id=id)
@@ -71,9 +102,12 @@ def add_friend_by_id(id):
     db.session.commit()
 
     return jsonify({
-        "message": "Successfully created friend request",
+        "message": "Friend request sent",
         "status_code": 201,
-    })
+    }), 201
+
+
+@user_routes.route("/friends")
 
 
 @user_routes.route("/<int:id>/friends", methods=["DELETE"])
