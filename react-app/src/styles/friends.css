@@ -93,43 +93,8 @@
     background-color: var(--alt-bg-color);
 }
 
-.friends-header {
-    grid-area: header;
-    box-sizing: border-box;
-    padding: 0.4rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.friends-header h1 {
-    margin: 0 auto 0 0.9rem;
-    display: flex;
-    align-items: center;
-    font-size: 120%;
-    font-weight: 500;
-}
-
-.friends-header h1 .icon {
-    height: 1.4rem;
-    margin-right: 0.4rem;
-    color: var(--caret-color);
-}
-
-.friends-header .text-button {
-    background-color: transparent;
-    color: var(--caret-color);
-    font-size: 0.95rem;
-    padding: 0.4rem 1rem;
-}
-
-.friends-header .text-button.add-friend {
+.header .text-button.add-friend {
     background-color: var(--sub-color);
-    color: var(--alt-text-color);
-}
-
-.friends-header .text-button:hover, .friends-header .text-button[active="true"] {
-    backdrop-filter: brightness(150%);
     color: var(--alt-text-color);
 }
 
