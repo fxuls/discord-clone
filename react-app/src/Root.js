@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Switch } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authenticate } from "./store/session";
+import { uiModalSelector } from "./store/ui";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import App from "./components/app/App";
 import UnauthenticatedApp from "./components/UnauthenticatedApp";
+import Modal from "./components/modals/Modal";
 
 const Root = () => {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+
+  const modal = useSelector(uiModalSelector);
 
   // set theme
   document.body.setAttribute("data-theme", "default");
@@ -23,11 +27,13 @@ const Root = () => {
           setLoaded(true);
         }
       })();
-  }, [dispatch, loaded]);
+  }, [dispatch, loaded, modal]);
 
   if (!loaded) return null;
 
   return (
+    <div>
+      {modal && <Modal modal={modal} />}
       <BrowserRouter>
         <Switch>
           <ProtectedRoute path="/app">
@@ -37,6 +43,7 @@ const Root = () => {
           <UnauthenticatedApp />
         </Switch>
       </BrowserRouter>
+    </div>
   );
 };
 
