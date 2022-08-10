@@ -53,3 +53,7 @@
     background-color: var(--main-color);
     border-radius: 50px;
 }
+
+.shadow-container {
+    width: 100%;
+}

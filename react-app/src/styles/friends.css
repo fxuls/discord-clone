@@ -6,10 +6,6 @@
         "friends";
 }
 
-.shadow-container {
-    width: 100%;
-}
-
 .friends {
     grid-area: friends;
     padding: 2rem 2.4rem;
