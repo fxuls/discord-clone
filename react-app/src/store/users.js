@@ -99,6 +99,7 @@ export const unfriendUser = (userId) => async (dispatch) => {
   });
 
   if (response.ok) {
+    dispatch(fetchFriendRequests());
     dispatch(fetchFriends());
     return true;
   }
