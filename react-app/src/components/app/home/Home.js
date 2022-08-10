@@ -5,6 +5,7 @@ import { uiDirectMessageIdSelector } from "../../../store/ui";
 import { fetchDirectMessages } from "../../../store/directMessages";
 import HomeNavBar from "./HomeNavBar";
 import Friends from "./friends/Friends";
+import DirectMessages from "./directMessages/DirectMessages";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -24,9 +25,13 @@ const Home = () => {
 
   return (
     <div className="home content">
-      <HomeNavBar currentDirectMessageId={currentDirectMessageId}/>
+      <HomeNavBar currentDirectMessageId={currentDirectMessageId} />
 
-      {currentDirectMessageId ? "" : <Friends loaded={loaded}/>}
+      {currentDirectMessageId ? (
+        <DirectMessages loaded={loaded} />
+      ) : (
+        <Friends loaded={loaded} />
+      )}
     </div>
   );
 };
