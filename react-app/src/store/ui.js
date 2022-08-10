@@ -6,6 +6,7 @@ export const SET_FRIENDS_TAB = "ui/SET_FRIENDS_TAB";
 
 export const FRIENDS_TAB_ALL = "ui/FRIENDS_TAB_ALL";
 export const FRIENDS_TAB_PENDING = "ui/FRIENDS_TAB_PENDING";
+export const FRIENDS_TAB_ADD = "ui/FRIENDS_TAB_ADD";
 
 // selectors
 export const uiServerIdSelector = (state) => state.ui.serverId;
