@@ -8,6 +8,7 @@ import "./nav-bars.css";
 import "./friends.css";
 import "./home.css";
 import "./messages.css";
+import "./headers.css";
 
 export const colors = [
   "#5865F2", // Blurple
