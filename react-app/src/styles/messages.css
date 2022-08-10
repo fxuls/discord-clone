@@ -23,3 +23,12 @@
     height: 100%;
     overflow-y: auto;
 }
+
+.message-card {
+    display: flex;
+}
+
+.message-icon {
+    height: 3rem;
+    width: 3rem;
+}
