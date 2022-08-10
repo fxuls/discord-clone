@@ -15,6 +15,10 @@
     font-weight: 500;
 }
 
+.header h1 span {
+    color: var(--alt-text-color);
+}
+
 .header h1 .icon {
     height: 1.4rem;
     margin-right: 0.4rem;
@@ -22,9 +26,9 @@
 
 .header .text-button {
     background-color: transparent;
-    color: var(--caret-color);
-    font-size: 0.95rem;
+    font-size: 0.87rem;
     padding: 0.4rem 1rem;
+    font-weight: 600;
 }
 
 .header .text-button:hover, .header .text-button[active="true"] {
