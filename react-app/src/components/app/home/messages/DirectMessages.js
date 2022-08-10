@@ -1,6 +1,12 @@
+import { useSelector } from "react-redux";
+import { uiDirectMessageIdSelector } from "../../../../store/ui";
+
 import DirectMessagesHeader from "./DirectMessagesHeader";
+import DirectMessageChatBox from "./DirectMessageChatBox";
 
 const DirectMessages = ({ loaded }) => {
+  const uiDirectMessageId = useSelector(uiDirectMessageIdSelector);
+  
   if (!loaded) return null;
 
   return (
@@ -11,7 +17,7 @@ const DirectMessages = ({ loaded }) => {
         Direct messages here
       </div>
 
-      <div className="chatbox">Chatbox</div>
+      <DirectMessageChatBox />
     </div>
   );
 };
