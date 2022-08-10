@@ -14,3 +14,12 @@
 .chat-box {
     grid-area: chatbox;
 }
+
+.message-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    box-sizing: border-box;
+    height: 100%;
+    overflow-y: auto;
+}
