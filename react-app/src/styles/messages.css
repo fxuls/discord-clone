@@ -25,10 +25,27 @@
 }
 
 .message-card {
-    display: flex;
+    display: grid;
+    grid-template-areas:
+        "icon name"
+        "icon content";
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: min-content min-content;
+    padding: 0.5rem 0;
 }
 
 .message-icon {
-    height: 3rem;
-    width: 3rem;
+    grid-area: icon;
+    height: 2rem;
+    width: 2rem;
+    border-radius: 50px;
+    margin: 0 0.3rem;
+}
+
+.message-card h1 {
+    grid-area: name;
+}
+
+.message-card .content {
+    grid-area: content;
 }
