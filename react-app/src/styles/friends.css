@@ -148,7 +148,7 @@
 
 .add-friend p {
     color: var(--caret-color);
-    font-weight: 300;
+    font-weight: 400;
     font-size: 0.88rem;
     margin-bottom: 0.9rem;
 }
@@ -185,4 +185,19 @@
 
 .add-friend button[active="false"]:hover {
     cursor: default;
+}
+
+.add-friend .foot-bar {
+    display: flex;
+    flex-direction: row-reverse;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.add-friend .foot-bar p {
+    font-weight: 500;
+}
+
+.add-friend .foot-bar .error {
+    color: var(--error-color);
 }
