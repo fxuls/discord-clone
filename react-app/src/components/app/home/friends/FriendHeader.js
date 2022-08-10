@@ -7,6 +7,7 @@ import {
   FRIENDS_TAB_ALL,
   FRIENDS_TAB_PENDING,
   uiFriendsTabSelector,
+  FRIENDS_TAB_ADD,
 } from "../../../../store/ui";
 
 const FriendHeader = () => {
@@ -35,6 +36,14 @@ const FriendHeader = () => {
         onClick={() => dispatch(setFriendsTab(FRIENDS_TAB_PENDING))}
       >
         Pending
+      </button>
+
+      <button
+        className="text-button unselectable add-friend"
+        active={(currentTab === FRIENDS_TAB_ADD) + ""}
+        onClick={() => dispatch(setFriendsTab(FRIENDS_TAB_ADD))}
+      >
+        Add friend
       </button>
     </div>
   );
