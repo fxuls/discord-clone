@@ -71,7 +71,7 @@ def add_friend(id):
     db.session.commit()
 
     return jsonify({
-        "message": "Friend request sent successfully",
+        "message": "Successfully created friend request",
         "status_code": 201,
     })
 
@@ -88,6 +88,21 @@ def remove_friend(id):
         friendship = Friend.query.filter(Friend.user_one_id == id, Friend.user_two_id == current_user.id).first()
 
     if friendship is None:
+        # check if there is an existing request
+        fr_req = FriendRequest.query.filter(FriendRequest.sending_user_id == current_user.id, FriendRequest.receiving_user_id == id)
+        if fr_req is None:
+            fr_req = FriendRequest.query.filter(FriendRequest.sending_user_id == id, FriendRequest.receiving_user_id == current_user.id)
+
+        if fr_req:
+            # remove the friend request
+            db.session.delete(fr_req)
+            db.session.commit()
+
+            return jsonify({
+                "message": "Successfully deleted friend request",
+                "status_code": 200,
+            }), 200
+
         return jsonify(USERS_NOT_FRIENDS), 400
 
     db.session.delete(friendship)
