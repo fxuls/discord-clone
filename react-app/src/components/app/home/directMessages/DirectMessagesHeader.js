@@ -3,10 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAt } from "@fortawesome/free-solid-svg-icons";
 import { uiDirectMessageIdSelector } from "../../../../store/ui";
 import { userSelector } from "../../../../store/users";
+import { directMessageChatSelector } from "../../../../store/directMessages";
 
 const DirectMessagesHeader = () => {
     const uiDirectMessageId = useSelector(uiDirectMessageIdSelector);
-    const user = useSelector(userSelector(uiDirectMessageId));
+    const chat = useSelector (directMessageChatSelector(uiDirectMessageId))
+    const user = useSelector(userSelector(chat.userId));
     const name = user.username.split("#")[0]
 
     return <div className="header transparent-caret-color">
