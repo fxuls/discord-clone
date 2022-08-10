@@ -1,14 +1,18 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import { userSelector } from "../../../../store/users";
 import { currentUserIdSelector } from "../../../../store/session";
+import { deleteDirectMessage } from "../../../../store/directMessages";
 
 const MessageCard = ({ message }) => {
+  const dispatch = useDispatch();
   const userId = useSelector(currentUserIdSelector);
   const sender = useSelector(userSelector(message.sender_id));
   const name = sender.username.split("#")[0];
+
+  const onDeleteMessage = () => dispatch(deleteDirectMessage(message.id));
 
   return (
     <div className="message-card">
@@ -38,7 +42,13 @@ const MessageCard = ({ message }) => {
       </div>
 
       <div className="message-options unselectable transparent-caret-color">
-        {sender.id === userId && <FontAwesomeIcon icon={faXmark} className="message-option-icon"/>}
+        {sender.id === userId && (
+          <FontAwesomeIcon
+            icon={faXmark}
+            className="message-option-icon"
+            onClick={onDeleteMessage}
+          />
+        )}
       </div>
     </div>
   );
