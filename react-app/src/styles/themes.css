@@ -30,6 +30,10 @@
   /* alt-text-color #F6F6F6 */
   --alt-text-color-values: 246, 246, 246;
   --alt-text-color: rgb(var(--alt-text-color-values));
+
+  /* error-color #E32B2B */
+  --error-color-values: 227, 43, 43;
+  --error-color: rgb(var(--error-color-values));
 }
 
 /* 8008 */
