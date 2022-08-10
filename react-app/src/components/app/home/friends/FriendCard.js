@@ -7,7 +7,7 @@ import {
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { unfriendUser, userSelector } from "../../../../store/users";
+import { unfriendUser, userSelector, friendUser } from "../../../../store/users";
 import { setDirectMessageId } from "../../../../store/ui";
 
 const FriendCard = ({ userId, type }) => {
@@ -17,13 +17,14 @@ const FriendCard = ({ userId, type }) => {
 
   const onRemoveFriend = () => dispatch(unfriendUser(user.id));
   const onOpenMessages = () => dispatch(setDirectMessageId(user.id));
+  const onAcceptRequest = () => dispatch(friendUser(user.id));
 
   let buttons;
   switch (type) {
     case "incoming":
       buttons = (
         <div className="buttons">
-          <button>
+          <button onClick={onAcceptRequest}>
             <FontAwesomeIcon className="icon" icon={faCheck} />
           </button>
           <button>
