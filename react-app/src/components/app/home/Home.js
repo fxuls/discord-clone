@@ -25,7 +25,7 @@ const Home = () => {
 
   return (
     <div className="home content">
-      <HomeNavBar currentDirectMessageId={currentDirectMessageId} />
+      <HomeNavBar currentDirectMessageId={currentDirectMessageId} loaded={loaded}/>
 
       {currentDirectMessageId ? (
         <DirectMessages loaded={loaded} />
