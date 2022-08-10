@@ -4,6 +4,7 @@ const REMOVE_USER = "session/REMOVE_USER";
 
 // selectors
 export const userSelector = (state) => state.session.user;
+export const currentUserIdSelector = (state) => state.session.user?.id;
 
 // action creators
 const setUser = (user) => ({
@@ -106,7 +107,7 @@ export default function reducer(state = initialState, action) {
 
     case REMOVE_USER:
       return { user: null };
-      
+
     default:
       return state;
   }
