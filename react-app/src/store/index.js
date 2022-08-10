@@ -4,12 +4,14 @@ import session from "./session";
 import servers from "./servers";
 import ui from "./ui";
 import users from "./users";
+import directMessages from "./directMessages";
 
 const rootReducer = combineReducers({
   session,
   servers,
   ui,
   users,
+  directMessages,
 });
 
 let enhancer;
