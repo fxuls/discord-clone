@@ -23,6 +23,7 @@ def get_direct_messages():
         chat_id = direct_message_chats[i]["id"]
         chat = DirectMessageChat.query.get(chat_id)
         direct_messages[chat_id] = {
+            "id": chat_id,
             "userId": user_id,
             "messages": [message.to_dict() for message in chat.messages]
         }
