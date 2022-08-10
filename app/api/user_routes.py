@@ -89,9 +89,9 @@ def remove_friend(id):
 
     if friendship is None:
         # check if there is an existing request
-        fr_req = FriendRequest.query.filter(FriendRequest.sending_user_id == current_user.id, FriendRequest.receiving_user_id == id)
+        fr_req = FriendRequest.query.filter(FriendRequest.sending_user_id == current_user.id, FriendRequest.receiving_user_id == id).first()
         if fr_req is None:
-            fr_req = FriendRequest.query.filter(FriendRequest.sending_user_id == id, FriendRequest.receiving_user_id == current_user.id)
+            fr_req = FriendRequest.query.filter(FriendRequest.sending_user_id == id, FriendRequest.receiving_user_id == current_user.id).first()
 
         if fr_req:
             # remove the friend request
