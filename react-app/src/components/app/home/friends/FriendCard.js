@@ -9,14 +9,16 @@ import {
 
 import { unfriendUser, userSelector, friendUserById } from "../../../../store/users";
 import { setDirectMessageId } from "../../../../store/ui";
+import { chatByUserId } from "../../../../store/directMessages";
 
 const FriendCard = ({ userId, type }) => {
   const dispatch = useDispatch();
   const user = useSelector(userSelector(userId));
   const username = user.username.split("#");
+  const chat = useSelector(chatByUserId(user.id));
 
   const onRemoveFriend = () => dispatch(unfriendUser(user.id));
-  const onOpenMessages = () => dispatch(setDirectMessageId(user.id + ""));
+  const onOpenMessages = () => dispatch(setDirectMessageId(chat.id + ""));
   const onAcceptRequest = () => dispatch(friendUserById(user.id));
 
   let buttons;
