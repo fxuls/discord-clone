@@ -80,7 +80,7 @@ def add_friend(id):
 @login_required
 def remove_friend(id):
     """
-    Remove a friend
+    Remove a friend or cancel a pending friend request
     """
     # find the friend obj
     friendship = Friend.query.filter(Friend.user_one_id == current_user.id, Friend.user_two_id == id).first()
