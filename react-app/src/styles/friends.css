@@ -46,15 +46,11 @@
 .friend-icon {
     height: 3rem;
     width: 3rem;
-    object-fit: cover;
-    border-radius: 50px;
 }
 
 .default-image-container {
     height: 3rem;
     width: 3rem;
-    background-color: var(--main-color);
-    border-radius: 50px;
 }
 
 .friend-card .info {
