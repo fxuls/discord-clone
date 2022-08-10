@@ -43,3 +43,13 @@
 .sub-header-text:hover {
     color: var(--alt-text-color);
 }
+
+.user-icon {
+    object-fit: cover;
+    border-radius: 50px;
+}
+
+.default-image-container {
+    background-color: var(--main-color);
+    border-radius: 50px;
+}
