@@ -43,7 +43,7 @@ def get_friends():
 
 @user_routes.route("/<int:id>/friends", methods=["POST"])
 @login_required
-def add_friend(id):
+def add_friend_by_id(id):
     """
     Create a friend request to a user or accept one if it
     already exists
