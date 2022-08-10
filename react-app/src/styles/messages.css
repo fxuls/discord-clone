@@ -1,0 +1,16 @@
+.direct-messages-container {
+    display: grid;
+    grid-template-rows: 3.23rem 1fr 6rem;
+    grid-template-areas:
+        "header"
+        "messages"
+        "chatbox";
+}
+
+.direct-messages-header {
+    grid-area: header;
+}
+
+.chat-box {
+    grid-area: chatbox;
+}
