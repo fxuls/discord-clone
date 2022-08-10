@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux";
-import { userSelector } from "../../../../store/users";
 import FriendCard from "./FriendCard";
 
 const PendingFriendsList = ({ friendRequests }) => {
