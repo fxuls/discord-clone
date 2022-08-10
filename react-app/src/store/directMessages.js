@@ -3,6 +3,8 @@ import { fetchUser } from "./users";
 const SET_DIRECT_MESSAGES = "messages/SET_DIRECT_MESSAGES";
 
 // selectors
+export const directMessagesIdsSelector = (state) =>
+  Object.keys(state.directMessages);
 
 // SET_DIRECT_MESSAGES action creator
 export const setDirectMessages = (directMessages) => ({
