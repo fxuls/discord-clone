@@ -77,7 +77,22 @@ export const fetchFriends = () => async (dispatch) => {
   return false;
 };
 
-// unfriendUser thunk
+// friend user thunk
+export const friendUser = (userId) => async (dispatch) => {
+  const response = await fetch(`/api/users/${userId}/friends`, {
+    method: "POST",
+  });
+
+  if (response.ok) {
+    dispatch(fetchFriendRequests());
+    dispatch(fetchFriends());
+    return true;
+  }
+
+  return false;
+};
+
+// unfriend user thunk
 export const unfriendUser = (userId) => async (dispatch) => {
   const response = await fetch(`/api/users/friends/${userId}`, {
     method: "DELETE",
