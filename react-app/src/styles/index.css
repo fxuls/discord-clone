@@ -24,6 +24,10 @@ body * {
   height: 100%;
 }
 
+#root > div {
+  height: 100%;
+}
+
 button {
     padding: 0.4rem;
     background-color: var(--sub-color);
