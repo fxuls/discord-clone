@@ -14,7 +14,7 @@ def seed_direct_messages():
 
     u1_u3 = [
         DirectMessage(direct_message_chat_id=2, sender_id=3, text="I saw that ranked game lol", sent_at="2022-07-23 05:55:55"),
-        DirectMessage(direct_message_chat_id=2, sender_id=3, text="We aren't going to talk about it......", sent_at="2022-07-26 10:05:02"),
+        DirectMessage(direct_message_chat_id=2, sender_id=1, text="We aren't going to talk about it......", sent_at="2022-07-26 10:05:02"),
     ]
     messages += u1_u3
 
