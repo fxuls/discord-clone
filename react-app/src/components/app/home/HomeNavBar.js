@@ -9,9 +9,9 @@ import {
   FRIENDS_TAB_ALL,
 } from "../../../store/ui";
 import { directMessageChatIdsSelector } from "../../../store/directMessages";
-import DirectMessageChatCard from "./directMessages/DirectMessageChatCard";
+import DirectMessageChatCard from "./messages/DirectMessageChatCard";
 
-const HomeNavBar = ({ currentDirectMessageId, loaded }) => {
+const HomeNavBar = ({ loaded }) => {
   const dispatch = useDispatch();
   const directMessageChatIds = useSelector(directMessageChatIdsSelector);
   const uiDirectMessageId = useSelector(uiDirectMessageIdSelector);
@@ -33,7 +33,7 @@ const HomeNavBar = ({ currentDirectMessageId, loaded }) => {
       <div
         className="nav-item unselectable"
         id="friends-button"
-        active={(currentDirectMessageId === null) + ""}
+        active={(uiDirectMessageId === null) + ""}
         onClick={onOpenFriends}
       >
         <div className="nav-icon flex-center">
