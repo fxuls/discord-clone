@@ -4,6 +4,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import { userSelector } from "../../../../store/users";
 import { currentUserIdSelector } from "../../../../store/session";
+import { showImageModal } from "../../../../store/ui";
 import { deleteDirectMessage } from "../../../../store/directMessages";
 
 const MessageCard = ({ message }) => {
@@ -13,6 +14,7 @@ const MessageCard = ({ message }) => {
   const name = sender.username.split("#")[0];
 
   const onDeleteMessage = () => dispatch(deleteDirectMessage(message.id));
+  const onImageClick = () => dispatch(showImageModal(message.image_url));
 
   return (
     <div className="message-card">
@@ -40,7 +42,9 @@ const MessageCard = ({ message }) => {
       <div className="message-content">
         <p>{message.text}</p>
 
-        {message.image_url && <img src={message.image_url} />}
+        {message.image_url && (
+          <img src={message.image_url} onClick={onImageClick} />
+        )}
       </div>
 
       <div className="message-options unselectable transparent-caret-color">
