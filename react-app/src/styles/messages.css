@@ -82,6 +82,10 @@
     border-radius: 5px;
 }
 
+.message-card .message-content img:hover {
+    cursor: pointer;
+}
+
 .message-options {
     grid-area: options;
     display: flex;
