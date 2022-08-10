@@ -20,9 +20,9 @@ const HomeNavBar = ({ currentDirectMessageId }) => {
   useEffect(() => {}, [directMessageChatIds, uiDirectMessageId]);
 
   const onOpenFriends = () => {
+    if (uiDirectMessageId) dispatch(setFriendsTab(FRIENDS_TAB_ALL));
     dispatch(setDirectMessageId(null));
-    dispatch(setFriendsTab(FRIENDS_TAB_ALL));
-  }
+  };
 
   return (
     <div className="nav-bar left-inset-shadow">
