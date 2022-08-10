@@ -40,3 +40,9 @@ button:hover {
   -ms-user-select: none;
   user-select: none;
 }
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
