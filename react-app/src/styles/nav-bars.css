@@ -47,3 +47,17 @@
 #friends-button {
     margin-bottom: 0.5rem;
 }
+
+.delete-chat-icon {
+    margin-left: auto;
+    height: 1.14rem;
+    visibility: hidden;
+}
+
+.nav-bar .nav-item:hover .delete-chat-icon {
+    visibility: visible;
+}
+
+.delete-chat-icon:hover {
+    color: var(--alt-text-color);
+}
