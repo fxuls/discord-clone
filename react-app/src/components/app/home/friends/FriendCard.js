@@ -59,7 +59,7 @@ const FriendCard = ({ userId, type }) => {
 
   return (
     <div className="friend-card">
-      <div className="friend-icon">
+      <div className="unselectable">
         {user.profile_image_url ? (
           <img className="friend-icon" src={user.profile_image_url} />
         ) : (

@@ -10,7 +10,7 @@ const ServerCard = ({ server }) => {
     <div className="server-card">
       <img
         onClick={openServer}
-        className="server-icon"
+        className="server-icon unselectable"
         src={server.server_image_url}
       />
       <div className="server-info-modal">
