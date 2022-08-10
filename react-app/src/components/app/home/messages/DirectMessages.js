@@ -1,10 +1,11 @@
 import { useSelector } from "react-redux";
 import { uiDirectMessageIdSelector } from "../../../../store/ui";
-import { directMessageChatSelector, directMessagesSelector } from "../../../../store/directMessages";
+import { directMessageChatSelector } from "../../../../store/directMessages";
 import { userSelector } from "../../../../store/users";
 
 import DirectMessagesHeader from "./DirectMessagesHeader";
 import DirectMessageChatBox from "./DirectMessageChatBox";
+import MessageCard from "./MessageCard";
 
 const DirectMessages = ({ loaded }) => {
   const uiDirectMessageId = useSelector(uiDirectMessageIdSelector);
@@ -18,7 +19,14 @@ const DirectMessages = ({ loaded }) => {
       <DirectMessagesHeader user={user} />
 
       <div className="direct-messages header-box-shadow">
-        Direct messages here
+        <ul className="message-list">
+          {chat.messages.length &&
+            chat.messages.map((message) => (
+              <li key={message.id}>
+                <MessageCard message={message} />
+              </li>
+            ))}
+        </ul>
       </div>
 
       <DirectMessageChatBox />
