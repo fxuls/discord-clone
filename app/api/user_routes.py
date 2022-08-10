@@ -38,7 +38,7 @@ def get_friends():
     return jsonify(current_user.friends), 200
 
 
-@user_routes.route("/friends/<int:id>", methods=["DELETE"])
+@user_routes.route("/<int:id>/friends", methods=["DELETE"])
 @login_required
 def remove_friend(id):
     """
