@@ -5,9 +5,12 @@ const SET_DIRECT_MESSAGES = "messages/SET_DIRECT_MESSAGES";
 // selectors
 export const directMessageChatIdsSelector = (state) =>
   Object.keys(state.directMessages);
-export const directMessageChatSelector = (chatId) => (state) => state.directMessages[chatId];
-export const directMessagesSelector = (chatId) => (state) => state.directMessages[chatId].messages;
-export const chatByUserId = (userId) => (state) => Object.values(state.directMessages).find((chat) => chat.userId === userId);
+export const directMessageChatSelector = (chatId) => (state) =>
+  state.directMessages[chatId];
+export const directMessagesSelector = (chatId) => (state) =>
+  state.directMessages[chatId].messages;
+export const chatByUserId = (userId) => (state) =>
+  Object.values(state.directMessages).find((chat) => chat.userId === userId);
 
 // SET_DIRECT_MESSAGES action creator
 export const setDirectMessages = (directMessages) => ({
@@ -23,24 +26,36 @@ export const fetchDirectMessages = () => async (dispatch) => {
     dispatch(setDirectMessages(data));
 
     // fetch the users who have chats
-    Object.keys(data).forEach((userId) =>
-      dispatch(fetchUser(userId))
-    );
+    Object.keys(data).forEach((userId) => dispatch(fetchUser(userId)));
   }
   return data;
 };
 
 export const deleteDirectMessageChat =
   (directMessageChatId) => async (dispatch) => {
-    const response = await fetch(`/api/direct-messages/${directMessageChatId}`, {
-      method: "DELETE",
-    });
+    const response = await fetch(
+      `/api/direct-messages/${directMessageChatId}`,
+      {
+        method: "DELETE",
+      }
+    );
 
     dispatch(fetchDirectMessages());
 
     const data = await response.json();
     return data;
   };
+
+export const deleteDirectMessage = (directMessageId) => async (dispatch) => {
+  const response = await fetch(`/api/direct-messages/messages/${directMessageId}`, {
+    method: "DELETE",
+  });
+
+  dispatch(fetchDirectMessages());
+
+  const data = await response.json();
+  return data;
+};
 
 const initialState = {};
 
