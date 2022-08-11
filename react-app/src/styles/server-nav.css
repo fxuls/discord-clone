@@ -37,12 +37,16 @@
 }
 
 .home-icon-container {
-  background-color: var(--main-color);
+  background-color: var(--third-bg-color);
   padding: 11px;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 70%;
+}
+
+.home-icon-container[active="true"] {
+  background-color: var(--main-color);
 }
 
 .home-icon {
