@@ -6,7 +6,7 @@ const ImageModal = ({ modal, stopPropagation }) => {
   return (
     <div className="image-modal">
       <div className="image-container">
-        <img src={imageUrl} onMouseDown={stopPropagation} />
+        <img src={imageUrl} onMouseDown={stopPropagation} alt={imageUrl}/>
         <a
           href={imageUrl}
           target="_blank"
