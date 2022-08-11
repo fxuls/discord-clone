@@ -10,6 +10,7 @@ const ServerCard = ({ server }) => {
     <div className="server-card">
       <img
         onClick={openServer}
+        alt="Server icon"
         className="server-icon unselectable"
         src={server.server_image_url}
       />
