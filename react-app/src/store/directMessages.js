@@ -101,7 +101,10 @@ export default function reducer(state = initialState, action) {
       break;
 
     case ADD_DIRECT_MESSAGE_TO_CHAT:
-      newState[payload.direct_message_chat_id].messages.push(payload);
+      newState[payload.direct_message_chat_id].messages = [
+        ...newState[payload.direct_message_chat_id].messages,
+        payload,
+      ];
       break;
 
     default:
