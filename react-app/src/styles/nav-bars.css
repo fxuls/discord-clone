@@ -71,6 +71,7 @@
 
 .nav-bar.server-nav-bar > * {
     padding-left: 0.88rem;
+    padding-right: 0.88rem;
 }
 
 .nav-bar .server-nav-header {
