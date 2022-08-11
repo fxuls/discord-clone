@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { uiDirectMessageIdSelector } from "../../../../store/ui";
-import { directMessageChatSelector } from "../../../../store/directMessages";
+import { directMessageChatSelector, directMessagesSelector } from "../../../../store/directMessages";
 import { userSelector } from "../../../../store/users";
 
 import DirectMessagesHeader from "./DirectMessagesHeader";
@@ -11,10 +11,11 @@ import MessageCard from "./MessageCard";
 const DirectMessages = ({ loaded }) => {
   const uiDirectMessageId = useSelector(uiDirectMessageIdSelector);
   const chat = useSelector(directMessageChatSelector(uiDirectMessageId));
+  const messages = useSelector(directMessagesSelector(chat.id));
   const user = useSelector(userSelector(chat.userId));
 
   // rerender on change in chat
-  useEffect(() => {}, [chat]);
+  useEffect(() => {}, [messages]);
 
   if (!loaded) return null;
 
