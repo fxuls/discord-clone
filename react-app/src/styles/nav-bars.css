@@ -26,7 +26,7 @@
     cursor: pointer;
 }
 
-.nav-item:hover, .nav-bar .nav-item[active="true"] {
+.nav-item:hover, .nav-item[active="true"] {
     color: var(--alt-text-color);
     backdrop-filter: brightness(140%);
 }
@@ -105,4 +105,5 @@
 .channel-card .channel-name {
     text-transform: lowercase;
     font-size: 0.9rem;
+    line-height: 1.05rem;
 }
