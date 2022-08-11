@@ -7,7 +7,7 @@ import { setServer } from "../../../store/ui";
 
 import ChannelCard from "./ChannelCard";
 
-const ServerNavBar = ({ server, loaded }) => {
+const ServerNavBar = ({ server, loaded, activeChannelId }) => {
   const dispatch = useDispatch();
   const channels = server.channels;
 
@@ -38,7 +38,11 @@ const ServerNavBar = ({ server, loaded }) => {
             channels &&
             channels.map((channel) => (
               <li key={channel.id}>
-                <ChannelCard channel={channel} />
+                <ChannelCard
+                  channel={channel}
+                  className="nav-item"
+                  active={channel.id === activeChannelId}
+                />
               </li>
             ))}
         </ul>
