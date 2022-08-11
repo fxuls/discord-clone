@@ -25,6 +25,7 @@ const FriendCard = ({ userId, type }) => {
   const onRemoveFriend = () => dispatch(unfriendUser(user.id));
   const onOpenMessages = () => dispatch(setDirectMessageId(chat.id + ""));
   const onAcceptRequest = () => dispatch(friendUserById(user.id));
+  const onCopyUsername = () => navigator.clipboard.writeText(user.username);
 
   let buttons;
   switch (type) {
@@ -90,7 +91,7 @@ const FriendCard = ({ userId, type }) => {
       <div className="info">
         <span className="name">{username[0]}</span>
         <span className="numbers">{"#" + username[1]}</span>
-        <span className="copy-icon transparent-caret-color">
+        <span className="copy-icon transparent-caret-color" onClick={onCopyUsername}>
           <FontAwesomeIcon icon={faCopy} />
         </span>
       </div>
