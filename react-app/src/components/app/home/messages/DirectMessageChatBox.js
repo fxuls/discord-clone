@@ -12,7 +12,11 @@ const DirectMessageChatBox = ({ userName }) => {
   };
   return (
     <div className="chat-box">
-      <form className="send-message-form" onSubmit={onSendMessage} autoComplete="off">
+      <form
+        className="send-message-form"
+        onSubmit={onSendMessage}
+        autoComplete="off"
+      >
         <input
           type="text"
           name="messageText"
