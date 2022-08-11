@@ -35,6 +35,7 @@ const ServerNavBar = ({ server, loaded }) => {
 
         <ul>
           {loaded &&
+            channels &&
             channels.map((channel) => (
               <li key={channel.id}>
                 <ChannelCard channel={channel} />
