@@ -18,6 +18,8 @@
     margin-top: 0.2rem;
     box-sizing: border-box;
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column-reverse;
 }
 
 .chat-box {
