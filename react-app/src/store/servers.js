@@ -2,6 +2,7 @@ const SET_SERVERS = "servers/SET_SERVERS";
 const SET_SERVER = "servers/SET_SERVER";
 const REMOVE_SERVER = "servers/REMOVE_SERVER";
 const SET_JOINED_SERVERS = "servers/SET_JOINED_SERVERS";
+const SET_SERVER_CHANNELS = "servers/SET_SERVER_CHANNELS";
 
 // selectors
 export const serverSelector = (serverId) => (state) => state.servers[serverId];
@@ -9,6 +10,7 @@ export const joinedServersIdsSelector = (state) =>
   Object.keys(state.servers.joined);
 export const joinedServersSelector = (state) =>
   Object.keys(state.servers.joined).map((id) => state.servers[id]);
+export const serverChannelsSelector = (serverId) => (state) => state.servers[serverId]?.channels
 
 // action creators
 export const setServers = (servers) => ({
@@ -29,6 +31,14 @@ export const removeServer = (serverId) => ({
 export const setJoinedServers = (serverMemberships) => ({
   type: SET_JOINED_SERVERS,
   payload: serverMemberships,
+});
+
+export const setServerChannels = (serverId, channels) => ({
+  type: SET_SERVER_CHANNELS,
+  payload: {
+    serverId,
+    channels,
+  },
 });
 
 // fetch all servers
@@ -130,10 +140,18 @@ export const leaveServer = (serverId) => async (dispatch) => {
   return null;
 };
 
-// create server thunk
-// export const createServer = (server) => async (dispatch) => {
+// fetch server channels thunk
+export const fetchServerChannels = (serverId) => async (dispatch) => {
+  const response = await fetch(`/api/servers/${serverId}/channels`, {});
 
-// }
+  const data = await response.json();
+
+  if (response.ok) {
+    dispatch(setServerChannels(serverId, data));
+  }
+
+  return data;
+}
 
 const initialState = { joined: {} };
 
@@ -156,6 +174,10 @@ export default function reducer(state = initialState, action) {
 
     case SET_JOINED_SERVERS:
       newState.joined = payload;
+      break;
+
+    case SET_SERVER_CHANNELS:
+      newState[payload.serverId].channels = payload.channels;
       break;
 
     default:
