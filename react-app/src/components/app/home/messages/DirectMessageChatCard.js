@@ -23,7 +23,7 @@ const DirectMessageChatCard = ({ directMessageChatId, active }) => {
 
   return (
     <div
-      className="nav-item direct-message-chat-card"
+      className="nav-item direct-message-chat-card unselectable"
       active={active + ""}
       onClick={() => dispatch(setDirectMessageId(directMessageChatId))}
     >
