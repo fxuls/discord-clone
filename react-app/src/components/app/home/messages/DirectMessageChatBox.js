@@ -1,14 +1,18 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
-const DirectMessageChatBox = ({ userName }) => {
+import { sendDirectMessage } from "../../../../store/directMessages";
+
+const DirectMessageChatBox = ({ partnerId, userName }) => {
+  const dispatch = useDispatch();
   const [messageText, setMessageText] = useState("");
 
-  const onSendMessage = (e) => {
+  const onSendMessage = async (e) => {
     e.preventDefault();
 
-    console.log("Submit ", messageText);
+    dispatch(sendDirectMessage({ recipientId: partnerId, text: messageText }));
   };
   return (
     <div className="chat-box">
