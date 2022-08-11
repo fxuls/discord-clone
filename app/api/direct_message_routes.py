@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, DirectMessageChat, DirectMessage
 
@@ -13,6 +13,12 @@ MESSAGE_NOT_EXIST = {
     "message": "Message does not exist",
     "status_code": 404,
 }
+
+CHAT_NOT_EXIST = {
+    "message": "Chat does not exist",
+    "status_code": 404,
+}
+
 
 @direct_message_routes.route("")
 @login_required
@@ -85,3 +91,52 @@ def delete_message(id):
         "message": "Successfully deleted",
         "status_code": 200,
     }), 200
+
+
+@direct_message_routes.route("/messages", methods=["POST"])
+@login_required
+def post_new_message():
+    """
+    Sends a new message to a chat
+    """
+    body = request.get_json()
+
+    # if recipient_id not provided
+    if "recipient_id" not in body:
+        return jsonify({
+            "message": "recipient_id is required",
+            "status_code": 400,
+        }), 400
+
+    # if message content is missing
+    if "text" not in body and "image_id" not in body:
+        return jsonify({
+            "message": "Content missing",
+            "status_code": 400,
+        }), 400
+
+    # find the chat
+    chat = DirectMessageChat.query.filter(DirectMessageChat.user_one_id == current_user.id, DirectMessageChat.user_two_id == body["recipient_id"]).first()
+    if chat is None:
+        chat = DirectMessageChat.query.filter(DirectMessageChat.user_one_id == body["recipient_id"], DirectMessageChat.user_two_id == current_user.id).first()
+
+    if chat is None:
+        return jsonify(CHAT_NOT_EXIST), 404
+
+    # check that current user is a member of chat
+    if current_user.id not in (chat.user_one_id, chat.user_two_id):
+        return jsonify(USER_NOT_MEMBER), 401
+
+    # create the message
+    message = DirectMessage(
+        sender_id=current_user.id,
+        direct_message_chat_id=chat.id,
+        text=(body["text"] if "text" in body else None),
+        image_id=(body["image_id"] if "image_id" in body else None),
+    )
+
+    # add the message to db and return it
+    db.session.add(message)
+    db.session.commit()
+
+    return jsonify(message.to_dict())
