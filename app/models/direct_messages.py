@@ -20,7 +20,7 @@ class DirectMessage(db.Model):
         direct_message_dict = {
             "id": self.id,
             "sender_id": self.sender_id,
-            "direct_message_chat": self.direct_message_chat.to_dict(),
+            "direct_message_chat_id": self.direct_message_chat_id,
             "text": self.text,
             "sent_at": self.sent_at,
         }
