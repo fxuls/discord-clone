@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -12,7 +12,7 @@ const ServerNavBar = ({ server }) => {
   const channels = server.channels;
 
   // rerender on change in channels
-  useEffect(() => {}, [channels, server]);
+  useEffect(() => {}, [channels]);
 
   const onLeave = async () => {
     await dispatch(leaveServer(server.id));
