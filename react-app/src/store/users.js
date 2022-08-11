@@ -181,9 +181,8 @@ export default function usersReducer(state = initialState, action) {
     case SET_USER:
       const currentColor = newState[payload.id]?.color;
       newState[payload.id] = payload;
-      
+
       // give user a random color if does not have
-      console.log(payload.id, currentColor)
       newState[payload.id].color = currentColor ? currentColor : getRandomColor();
       break;
 
