@@ -7,7 +7,11 @@ import {
   faCheck,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { unfriendUser, userSelector, friendUserById } from "../../../../store/users";
+import {
+  unfriendUser,
+  userSelector,
+  friendUserById,
+} from "../../../../store/users";
 import { setDirectMessageId } from "../../../../store/ui";
 import { chatByUserId } from "../../../../store/directMessages";
 
@@ -63,13 +67,21 @@ const FriendCard = ({ userId, type }) => {
     <div className="friend-card">
       <div className="unselectable">
         {user.profile_image_url ? (
-          <img className="friend-icon user-icon" src={user.profile_image_url} />
+          <img
+            draggable={false}
+            className="friend-icon user-icon"
+            src={user.profile_image_url}
+          />
         ) : (
           <div
             className="default-image-container"
             style={{ backgroundColor: user.color }}
           >
-            <img className="friend-icon user-icon" src="/assets/default-user.png" />
+            <img
+              draggable={false}
+              className="friend-icon user-icon"
+              src="/assets/default-user.png"
+            />
           </div>
         )}
       </div>
