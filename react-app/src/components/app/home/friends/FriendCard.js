@@ -72,6 +72,7 @@ const FriendCard = ({ userId, type }) => {
           <img
             draggable={false}
             className="friend-icon user-icon"
+            alt="User icon"
             src={user.profile_image_url}
           />
         ) : (
@@ -82,6 +83,7 @@ const FriendCard = ({ userId, type }) => {
             <img
               draggable={false}
               className="friend-icon user-icon"
+              alt="Default user icon"
               src="/assets/default-user.png"
             />
           </div>

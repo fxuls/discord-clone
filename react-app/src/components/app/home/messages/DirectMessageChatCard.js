@@ -31,6 +31,7 @@ const DirectMessageChatCard = ({ directMessageChatId, active }) => {
         <img
           draggable={false}
           className="user-icon nav-icon"
+          alt="User icon"
           src={user.profile_image_url}
         />
       ) : (
@@ -41,6 +42,7 @@ const DirectMessageChatCard = ({ directMessageChatId, active }) => {
           <img
             draggable={false}
             className="user-icon nav-icon"
+            alt="Default user icon"
             src="/assets/default-user.png"
           />
         </div>

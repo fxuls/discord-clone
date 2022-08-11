@@ -31,6 +31,7 @@ const DirectMessages = ({ loaded }) => {
                 <img
                   draggable={false}
                   className="user-icon message-icon"
+                  alt="User icon"
                   src={user.profile_image_url}
                 />
               ) : (
@@ -41,6 +42,7 @@ const DirectMessages = ({ loaded }) => {
                   <img
                     draggable={false}
                     className="message-icon user-icon"
+                    alt="Default user icon"
                     src="/assets/default-user.png"
                   />
                 </div>

@@ -46,6 +46,7 @@ const MessageCard = ({ message }) => {
         {sender.profile_image_url ? (
           <img
             className="user-icon message-icon"
+            alt="Sender icon"
             src={sender.profile_image_url}
           />
         ) : (
@@ -55,6 +56,7 @@ const MessageCard = ({ message }) => {
           >
             <img
               className="message-icon user-icon"
+              alt="Default user icon"
               src="/assets/default-user.png"
             />
           </div>
@@ -70,7 +72,7 @@ const MessageCard = ({ message }) => {
         <p>{message.text}</p>
 
         {message.image_url && (
-          <img src={message.image_url} onClick={onImageClick} />
+          <img src={message.image_url} onClick={onImageClick} alt={message.image_url}/>
         )}
       </div>
 
