@@ -11,7 +11,7 @@
 }
 
 .nav-bar h2 {
-    margin: 0.5rem 0 0.3rem;
+    margin: 0.5rem 0 0.3rem 0.6rem;
 }
 
 .nav-bar .nav-item {
@@ -94,4 +94,10 @@
 .nav-bar .server-channels {
     box-sizing: border-box;
     height: 100%;
+}
+
+.channel-card .hashtag-icon {
+    margin-right: 0.6rem;
+    height: 1rem;
+
 }
