@@ -143,6 +143,7 @@
 
 .messages-top p {
     font-weight: 400;
+    line-height: 125%;
 }
 
 .messages-top .username {
