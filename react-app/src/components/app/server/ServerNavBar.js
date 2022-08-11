@@ -3,20 +3,21 @@ import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import {
-  serverChannelsSelector,
-  serverSelector,
   leaveServer,
 } from "../../../store/servers";
+import { setServer} from "../../../store/ui";
 
-const ServerNavBar = ({ loaded, serverId }) => {
+const ServerNavBar = ({ server }) => {
   const dispatch = useDispatch();
-  const server = useSelector(serverSelector(serverId));
-  const channels = useSelector(serverChannelsSelector(serverId));
+  const channels = server.channels;
 
   // rerender on change in channels
-  useEffect(() => {}, [channels]);
+  useEffect(() => {}, [channels, server]);
 
-  const onLeave = () => dispatch(leaveServer());
+  const onLeave = async () => {
+    await dispatch(leaveServer(server.id));
+    dispatch(setServer(null));
+  }
 
   return (
     <div className="nav-bar server-nav-bar left-inset-shadow">
