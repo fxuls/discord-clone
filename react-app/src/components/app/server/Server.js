@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { uiServerIdSelector } from "../../../store/ui";
-import { fetchServerChannels } from "../../../store/servers";
+import { fetchServerChannels, joinedServersIdsSelector, serverSelector, joinedServersSelector } from "../../../store/servers";
 
 import ServerNavBar from "./ServerNavBar";
 import ServerMessages from "./ServerMessages";
@@ -10,6 +10,7 @@ const Server = () => {
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
   const uiServerId = useSelector(uiServerIdSelector);
+  const server = useSelector(serverSelector(uiServerId));
 
   useEffect(() => {
     if (!loaded)
@@ -17,13 +18,13 @@ const Server = () => {
         await dispatch(fetchServerChannels(uiServerId));
         setLoaded(true);
       })();
-  }, [dispatch, loaded, uiServerId]);
+  }, [dispatch, loaded, uiServerId, server]);
 
   return (
     <div className="server content">
-      <ServerNavBar loaded={loaded} serverId={uiServerId} />
+      <ServerNavBar server={server} />
 
-      <ServerMessages loaded={loaded} />
+      <ServerMessages loaded={loaded} server={server}/>
     </div>
   );
 };
