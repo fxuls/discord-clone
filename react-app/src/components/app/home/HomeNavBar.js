@@ -27,7 +27,7 @@ const HomeNavBar = ({ loaded }) => {
   };
 
   return (
-    <div className="nav-bar left-inset-shadow transparent-caret-color">
+    <div className="nav-bar nav-padding left-inset-shadow transparent-caret-color">
       <div
         className="nav-item unselectable"
         id="friends-button"
