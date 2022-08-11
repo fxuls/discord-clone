@@ -1,4 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
+import moment from "moment";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
@@ -12,6 +14,28 @@ const MessageCard = ({ message }) => {
   const userId = useSelector(currentUserIdSelector);
   const sender = useSelector(userSelector(message.sender_id));
   const name = sender.username.split("#")[0];
+
+  // calculate dateString
+  let dateString;
+  const sentAt = moment(message.sent_at);
+  const now = moment(new Date());
+  switch (now.diff(sentAt, "days")) {
+    case 1:
+      dateString = "Yesterday at " + sentAt.format("h:mm A");
+      break;
+    case 0:
+      if (now.diff(sentAt, "hours") === 0)
+        if (now.diff(sentAt, "minutes") === 0)
+          dateString = "Under a minute ago";
+        else
+          dateString = now.diff(sentAt, "minutes") + " minutes ago";
+      else
+        dateString = "Today at " + sentAt.format("h:mm A");
+      break;
+
+    default:
+      dateString = sentAt.format("MM/DD/YYYY");
+  }
 
   const onDeleteMessage = () => dispatch(deleteDirectMessage(message.id));
   const onImageClick = () => dispatch(showImageModal(message.image_url));
@@ -37,7 +61,10 @@ const MessageCard = ({ message }) => {
         )}
       </div>
 
-      <h1 style={{ color: sender.color }}>{name}</h1>
+      <div className="message-header">
+        <h1 style={{ color: sender.color }}>{name}</h1>
+        <h2 className="timestamp transparent-caret-color">{dateString}</h2>
+      </div>
 
       <div className="message-content">
         <p>{message.text}</p>
