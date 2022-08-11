@@ -10,8 +10,12 @@ const Server = () => {
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
   const uiServerId = useSelector(uiServerIdSelector);
-  const uiServerChannelId = useSelector(uiServerChannelSelector(uiServerId));
   const server = useSelector(serverSelector(uiServerId));
+
+  let uiServerChannelId = useSelector(uiServerChannelSelector(uiServerId));
+  // if no channel click set use the first channel
+  if (loaded && server?.channels && !uiServerChannelId)
+    uiServerChannelId = server.channels[0].id;
 
   useEffect(() => setLoaded(false), [uiServerId])
 
