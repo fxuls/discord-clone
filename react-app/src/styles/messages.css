@@ -160,7 +160,7 @@
     padding: 1rem;
     background-color: transparent;
     border: none;
-    border-radius: 10px;
+    border-radius: 6px;
     backdrop-filter: brightness(160%);
     background-color: rgba(var(--alt-bg-color-values), 0.3);
     color: var(--alt-text-color);
