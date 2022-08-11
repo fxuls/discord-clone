@@ -22,7 +22,7 @@ const Server = () => {
 
   return (
     <div className="server content">
-      <ServerNavBar server={server} />
+      <ServerNavBar loaded={loaded} server={server} />
 
       <ServerMessages loaded={loaded} server={server}/>
     </div>
