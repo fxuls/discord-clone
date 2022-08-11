@@ -5,6 +5,7 @@
         "header"
         "messages"
         "chatbox";
+    max-height: 100vh;
 }
 
 .direct-messages-header {
@@ -12,7 +13,11 @@
 }
 
 .direct-messages {
-    padding-right: 0.95rem;
+    grid-area: messages;
+    padding-right: 0.97rem;
+    margin-top: 0.2rem;
+    box-sizing: border-box;
+    overflow-y: scroll;
 }
 
 .chat-box {
@@ -24,8 +29,7 @@
     flex-direction: column;
     justify-content: flex-end;
     box-sizing: border-box;
-    height: 100%;
-    overflow-y: auto;
+    min-height: 100%;
 }
 
 .message-card {
@@ -37,6 +41,8 @@
     grid-template-rows: auto auto;
     padding: 0.5rem 0;
     transition: none;
+    word-break: break-all;
+    hyphens: auto;
 }
 
 .message-card:hover {
@@ -104,5 +110,40 @@
 }
 
 .message-option-icon:hover {
+    color: var(--alt-text-color);
+}
+
+.messages-top {
+    margin: 0 1rem 2rem;
+}
+
+.messages-top .message-icon-container {
+    height: 5.7rem;
+    width: 5.7rem;
+    margin: 0;
+}
+
+.messages-top .message-icon-container .message-icon {
+    height: 5.7rem;
+    width: 5.7rem;
+}
+
+.messages-top .default-image-container {
+    height: 5.7rem;
+    width: 5.7rem;
+}
+
+.messages-top h1 {
+    margin: 0.65rem 0 1rem;
+    font-weight: 600;
+    font-size: 3rem;
+    color: var(--text-color);
+}
+
+.messages-top p {
+    font-weight: 400;
+}
+
+.messages-top .username {
     color: var(--alt-text-color);
 }
