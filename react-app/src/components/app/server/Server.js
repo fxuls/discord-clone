@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { uiServerIdSelector } from "../../../store/ui";
+import { fetchServerChannels } from "../../../store/servers";
 
 import ServerNavBar from "./ServerNavBar";
 import ServerMessages from "./ServerMessages";
@@ -13,10 +14,10 @@ const Server = () => {
   useEffect(() => {
     if (!loaded)
       (async () => {
-        console.log("Fetch server resouces");
+        await dispatch(fetchServerChannels(uiServerId));
         setLoaded(true);
       })();
-  }, [dispatch, loaded]);
+  }, [dispatch, loaded, uiServerId]);
 
   return (
     <div>
