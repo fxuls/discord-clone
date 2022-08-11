@@ -25,7 +25,7 @@ const Server = () => {
 
   return (
     <div className="server content">
-      <ServerNavBar loaded={loaded} server={server} uiServerChannelId={uiServerChannelId}/>
+      <ServerNavBar loaded={loaded} server={server} activeChannelId={uiServerChannelId}/>
 
       <ServerMessages loaded={loaded} server={server}/>
     </div>
