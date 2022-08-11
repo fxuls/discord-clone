@@ -12,6 +12,7 @@ const ImageModal = ({ modal, stopPropagation }) => {
         <a
           href={imageUrl}
           target="_blank"
+          rel="noreferrer"
           className="transparent-caret-color"
           onMouseDown={stopPropagation}
         >
