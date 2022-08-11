@@ -10,7 +10,8 @@ export const joinedServersIdsSelector = (state) =>
   Object.keys(state.servers.joined);
 export const joinedServersSelector = (state) =>
   Object.keys(state.servers.joined).map((id) => state.servers[id]);
-export const serverChannelsSelector = (serverId) => (state) => state.servers[serverId]?.channels
+export const serverChannelsSelector = (serverId) => (state) =>
+  state.servers[serverId]?.channels;
 
 // action creators
 export const setServers = (servers) => ({
@@ -131,13 +132,13 @@ export const leaveServer = (serverId) => async (dispatch) => {
     method: "DELETE",
   });
 
+  const data = await response.json();
+
   if (response.ok) {
-    const data = await response.json();
     dispatch(fetchJoinedServers());
-    return data;
   }
 
-  return null;
+  return data;
 };
 
 // fetch server channels thunk
@@ -151,7 +152,7 @@ export const fetchServerChannels = (serverId) => async (dispatch) => {
   }
 
   return data;
-}
+};
 
 const initialState = { joined: {} };
 
