@@ -167,6 +167,26 @@ def leave_server(id):
     }), 200
 
 
+@server_routes.route("/<int:id>/channels", methods=["GET"])
+@login_required
+def get_server_channels(id):
+    """
+    Gets a list of channels for the server with parameter id
+    """
+    server = Server.query.get(id)
+
+    # if server does not exist
+    if server is None:
+        return jsonify(SERVER_NOT_FOUND), 404
+
+    # if server is private check that user is a member
+    if not server.public:
+        user_permission = server.get_member_permission.permission(current_user.id)
+        if user_permission is None or user_permission.permission.name == "banned":
+            return jsonify(SERVER_IS_PRIVATE), 401
+
+    return jsonify([channel.to_dict() for channel in server.channels]), 200
+
 # TODO fix
 # @server_routes.route("/", methods=["POST"])
 # @login_required
