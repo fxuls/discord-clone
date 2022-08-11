@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import Root from "./Root";
 import configureStore from "./store";
+// eslint-disable-next-line
 import * as styles from "./styles/index";
 
 const store = configureStore();
