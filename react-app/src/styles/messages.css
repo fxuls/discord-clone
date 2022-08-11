@@ -15,7 +15,6 @@
 .direct-messages {
     grid-area: messages;
     padding-right: 0.97rem;
-    margin-top: 0.2rem;
     box-sizing: border-box;
     overflow-y: scroll;
     display: flex;
