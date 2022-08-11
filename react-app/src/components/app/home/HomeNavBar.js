@@ -26,8 +26,6 @@ const HomeNavBar = ({ loaded }) => {
     }
   };
 
-  if (!loaded) return null;
-
   return (
     <div className="nav-bar left-inset-shadow transparent-caret-color">
       <div
