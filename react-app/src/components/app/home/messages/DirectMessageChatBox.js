@@ -13,6 +13,9 @@ const DirectMessageChatBox = ({ partnerId, userName }) => {
     e.preventDefault();
 
     dispatch(sendDirectMessage({ recipientId: partnerId, text: messageText }));
+
+    // reset input box
+    setMessageText("");
   };
   return (
     <div className="chat-box">
