@@ -1,11 +1,16 @@
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { joinedServersSelector } from "../../../store/servers";
-import { clearServer } from "../../../store/ui";
+import { clearServer, uiServerIdSelector } from "../../../store/ui";
 import ServerCard from "./ServerCard";
 
 const ServerList = () => {
   const dispatch = useDispatch();
   const joinedServers = useSelector(joinedServersSelector);
+  const uiServerId = useSelector(uiServerIdSelector);
+
+  // rerender on change in uiServerId
+  useEffect(() => {}, [uiServerId]);
 
   const showHome = () => dispatch(clearServer());
 
@@ -16,6 +21,7 @@ const ServerList = () => {
           <div
             className="server-card home-icon-container server-icon"
             onClick={showHome}
+            active={(uiServerId === null) + ""}
           >
             <svg
               className="home-icon"
