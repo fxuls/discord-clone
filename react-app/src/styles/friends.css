@@ -64,7 +64,22 @@
     font-size: 90%;
 }
 
-.friend-card:hover .info .numbers {
+.friend-card .copy-icon {
+    visibility: hidden;
+    margin-left: 0.5rem;
+    display: inline-block;
+    align-items: center;
+}
+
+.friend-card .info .copy-icon:hover {
+    color: var(--alt-text-color);
+}
+
+.friend-card .copy-icon svg {
+    height: 0.9rem;
+}
+
+.friend-card:hover .info .numbers, .friend-card:hover .copy-icon {
     visibility: visible;
 }
 
