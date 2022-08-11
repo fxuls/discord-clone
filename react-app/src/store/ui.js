@@ -7,6 +7,7 @@ export const CLEAR_DIRECT_MESSAGE_ID = "ui/CLEAR_DIRECT_MESSAGE";
 export const SET_FRIENDS_TAB = "ui/SET_FRIENDS_TAB";
 export const SHOW_MODAL = "ui/SHOW_MODAL";
 export const HIDE_MODAL = "ui/HIDE_MODAL";
+export const SET_SERVER_CHANNEL_ID = "ui/SET_SERVER_CHANNEL_ID";
 
 export const FRIENDS_TAB_ALL = "ui/FRIENDS_TAB_ALL";
 export const FRIENDS_TAB_PENDING = "ui/FRIENDS_TAB_PENDING";
@@ -17,6 +18,8 @@ export const uiServerIdSelector = (state) => state.ui.serverId;
 export const uiDirectMessageIdSelector = (state) => state.ui.directMessageId;
 export const uiFriendsTabSelector = (state) => state.ui.friendsTab;
 export const uiModalSelector = (state) => state.ui.modal;
+export const uiServerChannelSelector = (serverId) => (state) =>
+  state.ui.serverChannels[serverId];
 
 // SET_SERVER action creator
 export const setServer = (serverId) => ({
@@ -59,11 +62,17 @@ export const hideModal = () => ({
 
 // IMAGE_MODAL action creator
 export const showImageModal = (imageUrl) => ({
-    type: SHOW_MODAL,
-    payload: {
-        type: IMAGE_MODAL,
-        imageUrl,
-    }
+  type: SHOW_MODAL,
+  payload: {
+    type: IMAGE_MODAL,
+    imageUrl,
+  },
+});
+
+// SET_SERVER_CHANNEL_ID action creator
+export const setServerChannelId = (serverId, channelId) => ({
+  type: SET_SERVER_CHANNEL_ID,
+  payload: { serverId, channelId },
 });
 
 const initialState = {
@@ -71,6 +80,7 @@ const initialState = {
   directMessageId: null,
   friendsTab: FRIENDS_TAB_ALL,
   modal: null,
+  serverChannels: {},
 };
 
 export default function uiReducer(state = initialState, action) {
@@ -104,6 +114,10 @@ export default function uiReducer(state = initialState, action) {
 
     case HIDE_MODAL:
       newState.modal = null;
+      break;
+
+    case SET_SERVER_CHANNEL_ID:
+      newState.serverChannels[payload.serverId] = payload.channelId;
       break;
 
     default:
