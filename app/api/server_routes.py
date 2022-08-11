@@ -181,7 +181,7 @@ def get_server_channels(id):
 
     # if server is private check that user is a member
     if not server.public:
-        user_permission = server.get_member_permission.permission(current_user.id)
+        user_permission = server.get_member_permission(current_user.id)
         if user_permission is None or user_permission.permission.name == "banned":
             return jsonify(SERVER_IS_PRIVATE), 401
 
