@@ -92,9 +92,11 @@ export default function uiReducer(state = initialState, action) {
 
     case CLEAR_DIRECT_MESSAGE_ID:
       newState.directMessageId = null;
+      break;
 
     case SET_FRIENDS_TAB:
       newState.friendsTab = payload;
+      break;
 
     case SHOW_MODAL:
       newState.modal = payload;
