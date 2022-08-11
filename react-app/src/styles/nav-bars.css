@@ -97,7 +97,13 @@
 }
 
 .channel-card .hashtag-icon {
-    margin-right: 0.6rem;
+    margin-right: 5px;
     height: 1rem;
+    opacity: 55%;
 
+}
+
+.channel-card .channel-name {
+    text-transform: lowercase;
+    font-size: 0.9rem;
 }
