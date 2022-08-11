@@ -5,6 +5,7 @@ import {
   faUserXmark,
   faXmark,
   faCheck,
+  faCopy,
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
@@ -89,6 +90,9 @@ const FriendCard = ({ userId, type }) => {
       <div className="info">
         <span className="name">{username[0]}</span>
         <span className="numbers">{"#" + username[1]}</span>
+        <span className="copy-icon transparent-caret-color">
+          <FontAwesomeIcon icon={faCopy} />
+        </span>
       </div>
 
       {buttons}
