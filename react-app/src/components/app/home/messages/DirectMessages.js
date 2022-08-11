@@ -55,7 +55,7 @@ const DirectMessages = ({ loaded }) => {
         </ul>
       </div>
 
-      <DirectMessageChatBox />
+      <DirectMessageChatBox userName={ user.username.split("#")[0] }/>
     </div>
   );
 };
