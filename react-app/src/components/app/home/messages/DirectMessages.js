@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { uiDirectMessageIdSelector } from "../../../../store/ui";
 import { directMessageChatSelector } from "../../../../store/directMessages";
@@ -11,6 +12,9 @@ const DirectMessages = ({ loaded }) => {
   const uiDirectMessageId = useSelector(uiDirectMessageIdSelector);
   const chat = useSelector(directMessageChatSelector(uiDirectMessageId));
   const user = useSelector(userSelector(chat.userId));
+
+  // rerender on change in chat
+  useEffect(() => {}, [chat]);
 
   if (!loaded) return null;
 
