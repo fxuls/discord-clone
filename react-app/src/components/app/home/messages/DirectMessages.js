@@ -20,6 +20,32 @@ const DirectMessages = ({ loaded }) => {
 
       <div className="direct-messages header-box-shadow">
         <ul className="message-list">
+          <div className="messages-top unselectable">
+            <div className="message-icon-container">
+              {user.profile_image_url ? (
+                <img
+                  draggable={false}
+                  className="user-icon message-icon"
+                  src={user.profile_image_url}
+                />
+              ) : (
+                <div
+                  className="default-image-container"
+                  style={{ backgroundColor: user.color }}
+                >
+                  <img
+                    draggable={false}
+                    className="message-icon user-icon"
+                    src="/assets/default-user.png"
+                  />
+                </div>
+              )}
+            </div>
+
+            <h1>{user.username.split("#")[0]}</h1>
+
+            <p className="transparent-caret-color">This is the beginning of your direct message history with <span className="username">{user.username}</span>.</p>
+          </div>
           {chat.messages.length &&
             chat.messages.map((message) => (
               <li key={message.id}>
