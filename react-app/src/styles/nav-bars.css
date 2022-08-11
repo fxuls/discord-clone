@@ -2,7 +2,6 @@
     grid-area: navbar;
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
     background-color: var(--bg-color);
 }
 
@@ -11,7 +10,7 @@
 }
 
 .nav-bar h2 {
-    margin: 0.5rem 0 0.3rem 0.6rem;
+    margin: 0.5rem 0 0.6rem 0.6rem;
 }
 
 .nav-bar .nav-item {
