@@ -65,6 +65,32 @@
     color: var(--alt-text-color);
 }
 
+.nav-bar.server-nav-bar {
+    gap: 0;
+}
+
+.nav-bar.server-nav-bar > * {
+    padding-left: 0.88rem;
+}
+
 .nav-bar .server-nav-header {
-    background-color: var(--alt-bg-color);
+    box-sizing: border-box;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-bar .server-nav-header h1 {
+    font-weight: 600;
+}
+
+.nav-bar .server-nav-header .leave-server-icon:hover {
+    color: var(--alt-text-color);
+    cursor: pointer;
+}
+
+.nav-bar .server-channels {
+    box-sizing: border-box;
+    height: 100%;
 }
