@@ -84,8 +84,7 @@ export const sendDirectMessage =
 
     const data = await response.json();
 
-    if (response.ok)
-      dispatch(addDirectMessageToChat(data));
+    if (response.ok) dispatch(addDirectMessageToChat(data));
 
     return data;
   };
