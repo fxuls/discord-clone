@@ -171,16 +171,20 @@ export default function usersReducer(state = initialState, action) {
   switch (action.type) {
     case SET_USERS:
       payload.forEach((user) => {
-        // give user a random color
-        user.color = getRandomColor();
+        // give user a random color if does not have one
+        const currentColor = newState[user.id]?.color;
+        user.color = currentColor ? currentColor : getRandomColor();
         newState[user.id] = user;
       });
       break;
 
     case SET_USER:
-      // give user a random color
-      payload.color = getRandomColor();
+      const currentColor = newState[payload.id]?.color;
       newState[payload.id] = payload;
+      
+      // give user a random color if does not have
+      console.log(payload.id, currentColor)
+      newState[payload.id].color = currentColor ? currentColor : getRandomColor();
       break;
 
     case REMOVE_USER:
