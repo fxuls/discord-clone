@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchJoinedServers } from "../../store/servers";
 import { uiServerIdSelector } from "../../store/ui";
 
-import SignOutButton from "../auth/SignOutButton";
 import ServerList from "./serversList/ServerList";
 import Home from "./home/Home";
 import Server from "./server/Server";
