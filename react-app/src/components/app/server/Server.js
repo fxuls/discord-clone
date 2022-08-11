@@ -20,7 +20,7 @@ const Server = () => {
   }, [dispatch, loaded, uiServerId]);
 
   return (
-    <div>
+    <div className="server content">
       <ServerNavBar loaded={loaded} serverId={uiServerId} />
 
       <ServerMessages loaded={loaded} />
