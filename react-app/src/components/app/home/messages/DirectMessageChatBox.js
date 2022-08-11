@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 import { sendDirectMessage } from "../../../../store/directMessages";
 
