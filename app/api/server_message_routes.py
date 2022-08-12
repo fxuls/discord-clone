@@ -93,7 +93,7 @@ def delete_message(message_id):
     """
     Delete a server message by its id
     """
-    message = ServerMessage.query.get(id)
+    message = ServerMessage.query.get(message_id)
 
     # check that message exists
     if message is None:
