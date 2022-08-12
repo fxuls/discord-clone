@@ -3,10 +3,14 @@ const SET_SERVER_MESSAGES = "messages/SET_SERVER_MESSAGES";
 // selectors
 export const serverMessagesSelector = (serverId) => (state) =>
   state.serverMessages[serverId];
-export const serverChannelMessagesSelector = (serverId, channelId) => (state) => {
-  const serverMessages = state.serverMessages[serverId];
-  return serverMessages && serverMessages.filter((message) => message.channel_id === channelId);
-};
+export const serverChannelMessagesSelector =
+  (serverId, channelId) => (state) => {
+    const serverMessages = state.serverMessages[serverId];
+    return (
+      serverMessages &&
+      serverMessages.filter((message) => message.channel_id === channelId)
+    );
+  };
 
 // SET_SERVER_MESSAGES action creator
 export const setServerMessages = (serverId, serverMessages) => ({
@@ -28,6 +32,34 @@ export const fetchServerMessages = (serverId) => async (dispatch) => {
   if (response.ok) dispatch(setServerMessages(serverId, data));
   return data;
 };
+
+// send server message thunk
+export const sendServerMessage =
+  ({ serverId, channelId, text, imageId }) =>
+  async (dispatch) => {
+    const response = await fetch(
+      `/api/server-messages/servers/${serverId}/messages`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          channel_id: channelId,
+          text: text,
+          image_id: imageId,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (response.ok) {
+      console.log("New message", data);
+    }
+
+    return data;
+  };
 
 const initialState = {};
 
