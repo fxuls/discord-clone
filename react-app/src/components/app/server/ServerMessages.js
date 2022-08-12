@@ -5,6 +5,7 @@ import {
 } from "../../../store/serverMessages";
 
 import MessageCard from "../home/messages/MessageCard";
+import ServerMessagesHeader from "./ServerMessagesHeader";
 
 const ServerMessages = ({ loaded, server, channelId }) => {
   const messages = useSelector(
@@ -14,7 +15,8 @@ const ServerMessages = ({ loaded, server, channelId }) => {
   if (!loaded || !messages?.length) return <div>No messages here yet...</div>;
 
   return (
-    <div className="server-messages">
+    <div className="messages-container main left-inset-shadow">
+      <ServerMessagesHeader serverId={server.id} channelId={channelId} />
       {messages.map((message) => (
         <li key={message.id}>
           <MessageCard message={message} />
