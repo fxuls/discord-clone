@@ -180,7 +180,10 @@ export default function reducer(state = initialState, action) {
       break;
 
     case SET_SERVER_CHANNELS:
-      newState[payload.serverId].channels = payload.channels;
+      newState[payload.serverId].channels = {};
+      payload.channels.forEach(
+        (channel) => (newState[payload.serverId].channels[channel.id] = channel)
+      );
       break;
 
     default:
