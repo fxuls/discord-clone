@@ -99,7 +99,7 @@ def delete_message(message_id):
     if message is None:
         return jsonify(MESSAGE_NOT_EXIST), 404
 
-    membership = ServerMember.query.filter(ServerMember.server_id == server_id, ServerMember.user_id == current_user.id).first()
+    membership = ServerMember.query.filter(ServerMember.server_id == message.server_id, ServerMember.user_id == current_user.id).first()
 
     # check if user is a member of this server
     if membership is None:
