@@ -1,20 +1,16 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 
-import { sendDirectMessage } from "../../../../store/directMessages";
-
-const DirectMessageChatBox = ({ partnerId, userName }) => {
-  const dispatch = useDispatch();
+const ChatBox = ({ sendMessage, placeholder }) => {
   const [messageText, setMessageText] = useState("");
 
-  const onSendMessage = async (e) => {
+  const onSendMessage = (e) => {
     e.preventDefault();
 
-    dispatch(sendDirectMessage({ recipientId: partnerId, text: messageText }));
-
-    // reset input box
+    sendMessage(messageText);
+    //reset input box
     setMessageText("");
   };
+
   return (
     <div className="chat-box">
       <form
@@ -26,13 +22,14 @@ const DirectMessageChatBox = ({ partnerId, userName }) => {
           type="text"
           name="messageText"
           value={messageText}
-          placeholder={`Message @${userName}`}
+          placeholder={placeholder}
           onChange={(e) => setMessageText(e.target.value)}
         />
+
         <input type="submit" style={{ display: "none" }} />
       </form>
     </div>
   );
 };
 
-export default DirectMessageChatBox;
+export default ChatBox;
