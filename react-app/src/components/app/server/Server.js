@@ -16,15 +16,16 @@ const Server = () => {
   let uiServerChannelId = useSelector(uiServerChannelSelector(uiServerId));
   // if no channel click set use the first channel
   if (loaded && server?.channels && !uiServerChannelId)
-    uiServerChannelId = server.channels[0].id;
+    uiServerChannelId = Object.values(server.channels)[0].id;
 
   useEffect(() => setLoaded(false), [uiServerId])
 
   useEffect(() => {
     if (!loaded)
       (async () => {
-        await dispatch(fetchServerChannels(uiServerId));
-        await dispatch(fetchServerMessages(uiServerId));
+        const results = [];
+        results.push(await dispatch(fetchServerChannels(uiServerId)));
+        results.push(await dispatch(fetchServerMessages(uiServerId)));
         setLoaded(true);
       })();
   }, [dispatch, loaded, uiServerId, server]);
