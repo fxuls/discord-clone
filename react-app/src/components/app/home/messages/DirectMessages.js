@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { uiDirectMessageIdSelector } from "../../../../store/ui";
-import { directMessageChatSelector, directMessagesSelector } from "../../../../store/directMessages";
+import { directMessageChatSelector, directMessagesSelector, deleteDirectMessage } from "../../../../store/directMessages";
 import { userSelector } from "../../../../store/users";
 
 import DirectMessagesHeader from "./DirectMessagesHeader";
@@ -9,6 +9,7 @@ import DirectMessageChatBox from "./DirectMessageChatBox";
 import MessageCard from "./MessageCard";
 
 const DirectMessages = ({ loaded }) => {
+  const dispatch = useDispatch();
   const uiDirectMessageId = useSelector(uiDirectMessageIdSelector);
   const chat = useSelector(directMessageChatSelector(uiDirectMessageId));
   const messages = useSelector(directMessagesSelector(chat.id));
@@ -56,7 +57,7 @@ const DirectMessages = ({ loaded }) => {
           {chat.messages.length &&
             chat.messages.map((message) => (
               <li key={message.id}>
-                <MessageCard message={message} />
+                <MessageCard message={message} onDeleteMessage={() => dispatch(deleteDirectMessage(message.id))}/>
               </li>
             ))}
         </ul>
