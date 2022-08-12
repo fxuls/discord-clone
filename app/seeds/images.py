@@ -13,7 +13,7 @@ def seed_images():
         Image(url="/assets/molly.jpeg"),
         Image(url="/assets/study-guide-1.png"),
         Image(url="/assets/study-guide-2.png"),
-        Image(url="/assets/ex-machina.png"),
+        Image(url="/assets/ex-machina.jpg"),
         Image(url="/assets/dog-picture1.png"),
         Image(url="/assets/dog-picture2.png"),
         Image(url="/assets/cat-picture1.png"),
