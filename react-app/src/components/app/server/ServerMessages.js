@@ -1,5 +1,8 @@
-import { useSelector } from "react-redux";
-import { serverChannelMessagesSelector } from "../../../store/serverMessages";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  serverChannelMessagesSelector,
+  sendServerMessage,
+} from "../../../store/serverMessages";
 import { serverChannelSelector } from "../../../store/servers";
 
 import MessageCard from "../home/messages/MessageCard";
@@ -7,15 +10,16 @@ import ServerMessagesHeader from "./ServerMessagesHeader";
 import ChatBox from "../home/messages/ChatBox";
 
 const ServerMessages = ({ loaded, server, channelId }) => {
+  const dispatch = useDispatch();
   const messages = useSelector(
     serverChannelMessagesSelector(server.id, channelId)
   );
   const channel = serverChannelSelector(server.id, channelId);
 
-  const sendMessage = (e) => {
-    e.preventDefault();
-    console.log("send message to channel");
-  }
+  const sendMessage = (text, imageId) =>
+    dispatch(
+      sendServerMessage({ serverId: server.id, channelId, text, imageId })
+    );
 
   return (
     <div className="messages-container main left-inset-shadow">
@@ -33,7 +37,10 @@ const ServerMessages = ({ loaded, server, channelId }) => {
         </ul>
       </div>
 
-      <ChatBox sendMessage={sendMessage} placeholder={channel && `Message #${channel.name.toLowerCase()}`} />
+      <ChatBox
+        sendMessage={sendMessage}
+        placeholder={channel && `Message #${channel.name.toLowerCase()}`}
+      />
     </div>
   );
 };
