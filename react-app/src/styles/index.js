@@ -16,7 +16,7 @@ export const colors = [
   "#02C39A", // Green
   "#F7B801", // Yellow
   "#EB459E", // Fuscsia
-  "#ED4245", // Red
+  "#FF0A54", // Red
   "#9D4EDD", // Purple
 ];
 
