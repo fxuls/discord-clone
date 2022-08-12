@@ -54,7 +54,7 @@ const DirectMessages = ({ loaded }) => {
 
             <p className="transparent-caret-color">This is the beginning of your direct message history with <span className="username">{user.username}</span>.</p>
           </div>
-          {chat.messages.length &&
+          {loaded && chat.messages &&
             chat.messages.map((message) => (
               <li key={message.id}>
                 <MessageCard message={message} onDeleteMessage={() => dispatch(deleteDirectMessage(message.id))}/>
