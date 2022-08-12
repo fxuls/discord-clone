@@ -12,6 +12,8 @@ export const joinedServersSelector = (state) =>
   Object.keys(state.servers.joined).map((id) => state.servers[id]);
 export const serverChannelsSelector = (serverId) => (state) =>
   state.servers[serverId]?.channels;
+export const serverChannelSelector = (serverId, channelId) => (state) =>
+  state.servers[serverId]?.channels[channelId];
 
 // action creators
 export const setServers = (servers) => ({
