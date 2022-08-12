@@ -1,5 +1,9 @@
 const SET_SERVER_MESSAGES = "messages/SET_SERVER_MESSAGES";
 
+// selectors
+export const serverMessagesSelector = (serverId) => (state) =>
+  state.serverMessages[serverId];
+
 // SET_SERVER_MESSAGES action creator
 export const setServerMessages = (serverId, serverMessages) => ({
   type: SET_SERVER_MESSAGES,
