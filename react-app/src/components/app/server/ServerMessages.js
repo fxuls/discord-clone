@@ -12,8 +12,6 @@ const ServerMessages = ({ loaded, server, channelId }) => {
     serverChannelMessagesSelector(server.id, channelId)
   );
 
-  if (!loaded || !messages?.length) return <div>No messages here yet...</div>;
-
   return (
     <div className="messages-container main left-inset-shadow">
       <ServerMessagesHeader serverId={server.id} channelId={channelId} />
