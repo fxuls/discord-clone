@@ -21,7 +21,7 @@ const DirectMessages = ({ loaded }) => {
   if (!loaded) return null;
 
   return (
-    <div className="direct-messages-container main left-inset-shadow">
+    <div className="messages-container main left-inset-shadow">
       <DirectMessagesHeader user={user} />
 
       <div className="direct-messages header-box-shadow">
