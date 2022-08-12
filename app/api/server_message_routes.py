@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
+from app.api.direct_message_routes import MESSAGE_NOT_EXIST
 from app.api.server_routes import USER_IS_BANNED, USER_NOT_MEMBER
 from app.models import db, ServerMessage, Server, ServerMember
 
@@ -84,3 +85,50 @@ def post_message_to_server(id):
     db.session.commit()
 
     return jsonify(message.to_dict()), 201
+
+
+@server_message_routes.route("/servers/<int:server_id>/messages/<int:message_id>")
+@login_required
+def delete_message(server_id, message_id):
+    """
+    Delete a server message by its id
+    """
+    server = Server.query.get(server_id)
+
+    # check that server exists
+    if server is None:
+        return jsonify(SERVER_NOT_EXIST), 404
+
+    message = ServerMessage.query.get(id)
+
+    # check that message exists
+    if message is None:
+        return jsonify(MESSAGE_NOT_EXIST), 404
+
+    membership = ServerMember.query.filter(ServerMember.server_id == server_id, ServerMember.user_id == current_user.id).first()
+
+    # check if user is a member of this server
+    if membership is None:
+        return jsonify(USER_NOT_MEMBER), 400
+
+    permission_level = membership.permission.permission
+
+    # check if user is banned
+    if permission_level == 1:
+        return jsonify(USER_IS_BANNED), 401
+
+    # check if has permission to delete the message
+    if message.sender_id != current_user.id and permission_level < 3:
+        return jsonify({
+            "message": "No permission to delete this message",
+            "status_code": 401,
+        }), 401
+
+    # delete the message
+    db.session.delete(message)
+    db.session.commit()
+
+    return jsonify({
+        "message": "Successfuly delete",
+        "status_code": 200,
+    }), 200
