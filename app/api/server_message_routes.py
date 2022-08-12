@@ -87,18 +87,12 @@ def post_message_to_server(id):
     return jsonify(message.to_dict()), 201
 
 
-@server_message_routes.route("/servers/<int:server_id>/messages/<int:message_id>")
+@server_message_routes.route("/messages/<int:message_id>")
 @login_required
-def delete_message(server_id, message_id):
+def delete_message(message_id):
     """
     Delete a server message by its id
     """
-    server = Server.query.get(server_id)
-
-    # check that server exists
-    if server is None:
-        return jsonify(SERVER_NOT_EXIST), 404
-
     message = ServerMessage.query.get(id)
 
     # check that message exists
