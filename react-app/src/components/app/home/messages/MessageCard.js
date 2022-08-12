@@ -42,7 +42,7 @@ const MessageCard = ({ message }) => {
 
   return (
     <div className="message-card">
-      <div className="message-icon-container">
+      <div className="message-icon-container unselectable">
         {sender.profile_image_url ? (
           <img
             className="user-icon message-icon"
