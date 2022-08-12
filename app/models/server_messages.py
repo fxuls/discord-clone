@@ -26,7 +26,7 @@ class ServerMessage(db.Model):
         server_message_dict = {
             "id": self.id,
             "server_id": self.server_id,
-            "channel": self.channel.to_dict(),
+            "channel_id": self.channel_id,
             "text": self.text,
             "sent_at": self.sent_at,
             "sender_id": self.sender_id,
