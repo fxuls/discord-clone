@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { uiDirectMessageIdSelector } from "../../../../store/ui";
-import { directMessageChatSelector, directMessagesSelector, deleteDirectMessage } from "../../../../store/directMessages";
+import { directMessageChatSelector, directMessagesSelector, deleteDirectMessage, sendDirectMessage } from "../../../../store/directMessages";
 import { userSelector } from "../../../../store/users";
 
 import DirectMessagesHeader from "./DirectMessagesHeader";
-import DirectMessageChatBox from "./DirectMessageChatBox";
+import ChatBox from "./ChatBox";
 import MessageCard from "./MessageCard";
 
 const DirectMessages = ({ loaded }) => {
@@ -17,6 +17,8 @@ const DirectMessages = ({ loaded }) => {
 
   // rerender on change in chat
   useEffect(() => {}, [messages]);
+
+  const sendMessage = (text, imageId) => dispatch(sendDirectMessage({ recipientId: chat.userId, text, imageId }));
 
   if (!loaded) return null;
 
@@ -63,7 +65,7 @@ const DirectMessages = ({ loaded }) => {
         </ul>
       </div>
 
-      <DirectMessageChatBox partnerId={user.id} userName={ user.username.split("#")[0] }/>
+      <ChatBox sendMessage={sendMessage} placeholder={`Message @${user.username.split("#")[0]}`} />
     </div>
   );
 };
