@@ -24,7 +24,7 @@ const DirectMessages = ({ loaded }) => {
     <div className="messages-container main left-inset-shadow">
       <DirectMessagesHeader user={user} />
 
-      <div className="direct-messages header-box-shadow">
+      <div className="messages header-box-shadow">
         <ul className="message-list">
           <div className="messages-top unselectable">
             <div className="message-icon-container">
