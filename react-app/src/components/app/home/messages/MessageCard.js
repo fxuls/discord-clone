@@ -7,9 +7,8 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { userSelector } from "../../../../store/users";
 import { currentUserIdSelector } from "../../../../store/session";
 import { showImageModal } from "../../../../store/ui";
-import { deleteDirectMessage } from "../../../../store/directMessages";
 
-const MessageCard = ({ message }) => {
+const MessageCard = ({ message, onDeleteMessage }) => {
   const dispatch = useDispatch();
   const userId = useSelector(currentUserIdSelector);
   const sender = useSelector(userSelector(message.sender_id));
@@ -37,7 +36,6 @@ const MessageCard = ({ message }) => {
       dateString = sentAt.format("MM/DD/YYYY");
   }
 
-  const onDeleteMessage = () => dispatch(deleteDirectMessage(message.id));
   const onImageClick = () => dispatch(showImageModal(message.image_url));
 
   return (
