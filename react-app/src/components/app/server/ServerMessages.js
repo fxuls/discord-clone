@@ -15,11 +15,16 @@ const ServerMessages = ({ loaded, server, channelId }) => {
   return (
     <div className="messages-container main left-inset-shadow">
       <ServerMessagesHeader serverId={server.id} channelId={channelId} />
-      {messages.map((message) => (
-        <li key={message.id}>
-          <MessageCard message={message} />
-        </li>
-      ))}
+
+      <div className="messages header-box-shadow">
+        <ul className="message-list">
+          {loaded && messages?.length && messages.map((message) => (
+            <li key={message.id}>
+              <MessageCard message={message} />
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
