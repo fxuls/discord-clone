@@ -5,7 +5,7 @@ export const serverMessagesSelector = (serverId) => (state) =>
   state.serverMessages[serverId];
 export const serverChannelMessagesSelector = (serverId, channelId) => (state) => {
   const serverMessages = state.serverMessages[serverId];
-  return serverMessages.filter((message) => message.channel_id === channelId);
+  return serverMessages && serverMessages.filter((message) => message.channel_id === channelId);
 };
 
 // SET_SERVER_MESSAGES action creator
