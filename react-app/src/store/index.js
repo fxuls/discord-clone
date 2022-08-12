@@ -5,6 +5,7 @@ import servers from "./servers";
 import ui from "./ui";
 import users from "./users";
 import directMessages from "./directMessages";
+import serverMessages from "./serverMessages";
 
 const rootReducer = combineReducers({
   session,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   ui,
   users,
   directMessages,
+  serverMessages,
 });
 
 let enhancer;
