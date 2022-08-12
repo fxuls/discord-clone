@@ -13,11 +13,11 @@ import "./modals.css";
 
 export const colors = [
   "#5865F2", // Blurple
-  "#02c39a", // Green
-  "#f7b801", // Yellow
+  "#02C39A", // Green
+  "#F7B801", // Yellow
   "#EB459E", // Fuscsia
   "#ED4245", // Red
-  "#7209b7", // Purple
+  "#9D4EDD", // Purple
 ];
 
 export const getRandomColor = () =>
