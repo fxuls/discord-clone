@@ -20,6 +20,8 @@ CHAT_NOT_EXIST = {
 }
 
 
+
+
 @direct_message_routes.route("")
 @login_required
 def get_direct_messages():
@@ -110,10 +112,7 @@ def post_new_message():
 
     # if message content is missing
     if "text" not in body and "image_id" not in body:
-        return jsonify({
-            "message": "Content missing",
-            "status_code": 400,
-        }), 400
+        return jsonify(CONTENT_MISSING), 400
 
     # find the chat
     chat = DirectMessageChat.query.filter(DirectMessageChat.user_one_id == current_user.id, DirectMessageChat.user_two_id == body["recipient_id"]).first()
