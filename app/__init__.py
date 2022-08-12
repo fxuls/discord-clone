@@ -11,6 +11,7 @@ from .api.auth_routes import auth_routes
 from .api.dev_routes import dev_routes
 from .api.server_routes import server_routes
 from .api.direct_message_routes import direct_message_routes
+from .api.server_message_routes import server_message_routes
 
 from .seeds import seed_commands
 
@@ -37,6 +38,7 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(dev_routes, url_prefix='/api/dev')
 app.register_blueprint(server_routes, url_prefix='/api/servers')
 app.register_blueprint(direct_message_routes, url_prefix='/api/direct-messages')
+app.register_blueprint(server_message_routes, url_prefix='/api/server-messages')
 db.init_app(app)
 Migrate(app, db)
 
