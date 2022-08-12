@@ -61,6 +61,18 @@ export const sendServerMessage =
     return data;
   };
 
+// delete server message thunk
+export const deleteServerMessage =
+  (serverId, messageId) => async (dispatch) => {
+    const response = await fetch(`/api/server-messages/messages/${messageId}`, {
+      method: "DELETE",
+    });
+
+    const data = await response.json();
+    if (response.ok) dispatch(fetchServerMessages(serverId));
+    return data;
+  };
+
 const initialState = {};
 
 export default function reducer(state = initialState, action) {
