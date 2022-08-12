@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   serverChannelMessagesSelector,
   sendServerMessage,
+  deleteServerMessage,
 } from "../../../store/serverMessages";
 import { serverChannelSelector } from "../../../store/servers";
 
@@ -31,7 +32,7 @@ const ServerMessages = ({ loaded, server, channelId }) => {
             messages &&
             messages.map((message) => (
               <li key={message.id}>
-                <MessageCard message={message} />
+                <MessageCard message={message} onDeleteMessage={() => dispatch(deleteServerMessage(server.id, message.id))}/>
               </li>
             ))}
         </ul>
