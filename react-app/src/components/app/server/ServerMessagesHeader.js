@@ -8,7 +8,7 @@ const ServerMessagesHeader = ({ serverId, channelId }) => {
   const name = channel?.name.toLowerCase();
 
   return (
-    <div className="header transparent-caret-color">
+    <div className="header messages-header transparent-caret-color">
       <h1 className="unselectable">
         <FontAwesomeIcon icon={faHashtag} className="icon" />
         <span>{name}</span>
