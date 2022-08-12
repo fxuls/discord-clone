@@ -1,4 +1,4 @@
-.direct-messages-container {
+.messages-container {
     display: grid;
     grid-template-rows: 3.23rem 1fr auto;
     grid-template-areas:
