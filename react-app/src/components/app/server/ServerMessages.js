@@ -18,7 +18,7 @@ const ServerMessages = ({ loaded, server, channelId }) => {
 
       <div className="messages header-box-shadow">
         <ul className="message-list">
-          {loaded && messages?.length && messages.map((message) => (
+          {loaded && messages && messages.map((message) => (
             <li key={message.id}>
               <MessageCard message={message} />
             </li>
