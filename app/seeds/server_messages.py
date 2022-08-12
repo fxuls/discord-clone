@@ -45,8 +45,8 @@ def seed_server_messages():
 
     s3_movie_recommendations = [
         ServerMessage(server_id=3, channel_id=7, sender_id=2, text="You guys should really try Ex Machina. It's super good", image_id=11, sent_at="2022-07-22 14:00:00"),
-        ServerMessage(server_id=3, channel_id=7, sender_id=1, text="I have heard that is good. I'm current rewatching Lord of the Rings", image_id=11, sent_at="2022-07-22 18:33:54"),
-        ServerMessage(server_id=3, channel_id=7, sender_id=1, text="I'm a hugeeeeee LOTR fan <3", image_id=11, sent_at="2022-07-22 19:12:04"),
+        ServerMessage(server_id=3, channel_id=7, sender_id=1, text="I have heard that is good. I'm current rewatching Lord of the Rings", sent_at="2022-07-22 18:33:54"),
+        ServerMessage(server_id=3, channel_id=7, sender_id=1, text="I'm a hugeeeeee LOTR fan <3", sent_at="2022-07-22 19:12:04"),
     ]
     server_messages += s3_movie_recommendations
 
