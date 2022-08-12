@@ -19,7 +19,10 @@ CHAT_NOT_EXIST = {
     "status_code": 404,
 }
 
-
+CONTENT_MISSING = {
+    "message": "Content missing",
+    "status_code": 400,
+}
 
 
 @direct_message_routes.route("")
@@ -138,4 +141,4 @@ def post_new_message():
     db.session.add(message)
     db.session.commit()
 
-    return jsonify(message.to_dict())
+    return jsonify(message.to_dict()), 201
