@@ -87,7 +87,7 @@ def post_message_to_server(id):
     return jsonify(message.to_dict()), 201
 
 
-@server_message_routes.route("/messages/<int:message_id>")
+@server_message_routes.route("/messages/<int:message_id>", methods=["DELETE"])
 @login_required
 def delete_message(message_id):
     """
