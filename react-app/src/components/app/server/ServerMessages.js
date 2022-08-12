@@ -15,7 +15,7 @@ const ServerMessages = ({ loaded, server, channelId }) => {
   const messages = useSelector(
     serverChannelMessagesSelector(server.id, channelId)
   );
-  const channel = serverChannelSelector(server.id, channelId);
+  const channel = useSelector(serverChannelSelector(server.id, channelId));
 
   const sendMessage = (text, imageId) =>
     dispatch(
