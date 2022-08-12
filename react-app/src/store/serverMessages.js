@@ -1,4 +1,5 @@
 const SET_SERVER_MESSAGES = "messages/SET_SERVER_MESSAGES";
+const ADD_SERVER_MESSAGE = "messages/ADD_SERVER_MESSAGE";
 
 // selectors
 export const serverMessagesSelector = (serverId) => (state) =>
@@ -19,6 +20,12 @@ export const setServerMessages = (serverId, serverMessages) => ({
     serverId,
     serverMessages,
   },
+});
+
+// ADD_SERVER_MESSAGE action creator
+export const addServerMessage = (message) => ({
+  type: ADD_SERVER_MESSAGE,
+  payload: message,
 });
 
 // fetch server messages thunk
@@ -54,9 +61,7 @@ export const sendServerMessage =
 
     const data = await response.json();
 
-    if (response.ok) {
-      console.log("New message", data);
-    }
+    if (response.ok) dispatch(addServerMessage(data));
 
     return data;
   };
@@ -82,6 +87,13 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_SERVER_MESSAGES:
       newState[payload.serverId] = payload.serverMessages;
+      break;
+
+    case ADD_SERVER_MESSAGE:
+      newState[payload.server_id] = [
+        ...newState[payload.server_id],
+        payload,
+      ];
       break;
 
     default:
