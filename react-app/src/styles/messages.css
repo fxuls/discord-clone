@@ -8,11 +8,11 @@
     max-height: 100vh;
 }
 
-.direct-messages-header {
+.messages-header {
     grid-area: header;
 }
 
-.direct-messages {
+.messages {
     grid-area: messages;
     padding-right: 0.97rem;
     box-sizing: border-box;
