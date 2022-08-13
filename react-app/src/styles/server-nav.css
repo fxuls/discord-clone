@@ -23,11 +23,11 @@
   width: 70%;
   object-fit: cover;
   border-radius: 50px;
-  transition: border-radius 0.2s ease-in-out;
+  transition: border-radius 0.2s;
   -webkit-transition: border-radius 0.2s ease-in-out;
 }
 
-.server-icon:hover {
+.server-icon:hover, .server-icon[active="true"] {
   border-radius: 20px;
   cursor: pointer;
 }
