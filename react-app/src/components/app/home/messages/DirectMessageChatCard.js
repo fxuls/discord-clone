@@ -13,10 +13,12 @@ const DirectMessageChatCard = ({ directMessageChatId, active }) => {
   const dispatch = useDispatch();
   const chat = useSelector(directMessageChatSelector(directMessageChatId));
   const user = useSelector(userSelector(chat.userId));
-  const name = user.username?.split("#")[0];
+  const name = user?.username?.split("#")[0];
 
   // rerender on change in user
   useEffect(() => {}, [user]);
+
+  if (!user || !chat) return null;
 
   const onDeleteDirectChat = () =>
     dispatch(deleteDirectMessageChat(directMessageChatId));
