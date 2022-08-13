@@ -18,8 +18,8 @@ export const serverChannelSelector = (serverId, channelId) => (state) => {
 };
 export const currentUserServerPermissionSelector = (serverId) => (state) => {
   // check that serverId is a joined server
-  if (!Object.keys(state.servers.joined).includes(serverId)) return null;
-  return state.servers.joined[serverId].permission.permission;
+  if (!Object.keys(state.servers.joined).includes(serverId + "")) return null;
+  return state.servers.joined[serverId].permission;
 }
 
 // action creators
