@@ -52,6 +52,7 @@ const Server = () => {
         loaded={loaded}
         server={server}
         channelId={uiServerChannelId}
+        permission={permission}
       />
     </div>
   );
