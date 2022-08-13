@@ -1,7 +1,8 @@
 import moment from "moment";
-import { fetchUser } from "./users";
+import { fetchUser, fetchUserIfNotExist } from "./users";
 
 const SET_DIRECT_MESSAGES = "messages/SET_DIRECT_MESSAGES";
+const ADD_DIRECT_MESSAGE_CHAT = "messages/ADD_DIRECT_MESSAGE_CHAT";
 const ADD_DIRECT_MESSAGE_TO_CHAT = "messages/ADD_DIRECT_MESSAGE_TO_CHAT";
 const SORT_All_MESSAGES_BY_DATE = "messages/SORT_MESSAGES_BY_DATE";
 
@@ -32,6 +33,12 @@ export const sortAllMessagesByDate = () => ({
   type: SORT_All_MESSAGES_BY_DATE,
 });
 
+// ADD_DIRECT_MESSAGE_CHAT action creator
+export const addDirectMessageChat = (chat) => ({
+  type: ADD_DIRECT_MESSAGE_CHAT,
+  payload: chat,
+});
+
 export const fetchDirectMessages = () => async (dispatch) => {
   const response = await fetch("/api/direct-messages", {});
   const data = await response.json();
@@ -45,6 +52,22 @@ export const fetchDirectMessages = () => async (dispatch) => {
     // sort the messages
     dispatch(sortAllMessagesByDate());
   }
+  return data;
+};
+
+export const createDirectMessageChat = (userId) => async (dispatch) => {
+  const response = await fetch("/api/direct-messages", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      user_id: userId,
+    }),
+  });
+
+  const data = await response.json();
+  if (response.ok) dispatch(addDirectMessageChat(data));
   return data;
 };
 
@@ -124,6 +147,10 @@ export default function reducer(state = initialState, action) {
         // create copy of array to trigger state change
         chat.messages = [...chat.messages];
       });
+      break;
+
+    case ADD_DIRECT_MESSAGE_CHAT:
+      newState[payload.id] = payload;
       break;
 
     default:
