@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "cf7044c81ff7890ebcdf3234e2121d064b60433bc78be211d713bb202f5e3b0a"
+            "sha256": "13594abe39eb9fd8ffea8f2e0a9418a74f5c710ebfeff1bfb007412587402259"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -79,6 +79,14 @@
             ],
             "index": "pypi",
             "version": "==3.0.1"
+        },
+        "flask-sock": {
+            "hashes": [
+                "sha256:bdd60520d031eb92e6fa2dbd3deffbb6e71d3662e9d39bfe53d2eccf971d0fd0",
+                "sha256:c36e92813e897a325a48caee640509f88c465b8df642e40126c1b25fc38a2c30"
+            ],
+            "index": "pypi",
+            "version": "==0.5.2"
         },
         "flask-sqlalchemy": {
             "hashes": [
@@ -158,6 +166,14 @@
             ],
             "index": "pypi",
             "version": "==20.1.0"
+        },
+        "h11": {
+            "hashes": [
+                "sha256:70813c1135087a248a4d38cc0e1a0181ffab2188141a93eaf567940c3957ff06",
+                "sha256:8ddd78563b633ca55346c8cd41ec0af27d3c79931828beffb46ce70a379e7442"
+            ],
+            "markers": "python_version >= '3.6'",
+            "version": "==0.13.0"
         },
         "idna": {
             "hashes": [
@@ -293,6 +309,14 @@
             "index": "pypi",
             "version": "==1.0.4"
         },
+        "simple-websocket": {
+            "hashes": [
+                "sha256:b25387c08a6455f8fac087117ad40dd56b9d1df28e18bd1b0b0a374c49a4f993",
+                "sha256:fe812eb97f3748b6bdf89470f3cc60f4c6f92cc8935e43df8634a1aed56813a6"
+            ],
+            "markers": "python_version >= '3.6'",
+            "version": "==0.8.0"
+        },
         "six": {
             "hashes": [
                 "sha256:30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259",
@@ -344,6 +368,14 @@
             ],
             "index": "pypi",
             "version": "==2.0.1"
+        },
+        "wsproto": {
+            "hashes": [
+                "sha256:2218cb57952d90b9fca325c0dcfb08c3bda93e8fd8070b0a17f048e2e47a521b",
+                "sha256:a2e56bfd5c7cd83c1369d83b5feccd6d37798b74872866e62616e0ecf111bda8"
+            ],
+            "markers": "python_full_version >= '3.7.0'",
+            "version": "==1.1.0"
         },
         "wtforms": {
             "hashes": [
