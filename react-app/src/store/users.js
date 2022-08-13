@@ -56,6 +56,16 @@ export const fetchUser = (userId) => async (dispatch) => {
   return false;
 };
 
+// fetch if not in store thunk
+export const fetchUserIfNotExist = (userId) => async (dispatch, getState) => {
+  const state = getState();
+
+  if (!state.users[userId]) {
+    const data = await dispatch(fetchUser(userId));
+    return data;
+  }
+}
+
 // fetch users by ids thunk
 export const fetchUsers = (userIds) => async (dispatch) => {
   for (let i = 0; i < userIds; i++) await dispatch(fetchUser(userIds[i]));
