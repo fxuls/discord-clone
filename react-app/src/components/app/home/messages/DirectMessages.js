@@ -59,7 +59,7 @@ const DirectMessages = ({ loaded }) => {
           {loaded && chat?.messages &&
             chat.messages.map((message) => (
               <li key={message.id}>
-                <MessageCard message={message} onDeleteMessage={() => dispatch(deleteDirectMessage(message.id))}/>
+                <MessageCard loaded={loaded} message={message} onDeleteMessage={() => dispatch(deleteDirectMessage(message.id))}/>
               </li>
             ))}
         </ul>
