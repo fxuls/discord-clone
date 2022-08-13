@@ -8,7 +8,7 @@ import { userSelector } from "../../../../store/users";
 import { currentUserIdSelector } from "../../../../store/session";
 import { showImageModal } from "../../../../store/ui";
 
-const MessageCard = ({ message, onDeleteMessage }) => {
+const MessageCard = ({ message, onDeleteMessage, permission }) => {
   const dispatch = useDispatch();
   const userId = useSelector(currentUserIdSelector);
   const sender = useSelector(userSelector(message.sender_id));
@@ -75,7 +75,7 @@ const MessageCard = ({ message, onDeleteMessage }) => {
       </div>
 
       <div className="message-options unselectable transparent-caret-color">
-        {sender.id === userId && (
+        {(sender.id === userId || permission?.permission >= 3) && (
           <FontAwesomeIcon
             icon={faXmark}
             className="message-option-icon"
