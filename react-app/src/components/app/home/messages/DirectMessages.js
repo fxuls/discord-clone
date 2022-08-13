@@ -13,14 +13,14 @@ const DirectMessages = ({ loaded }) => {
   const uiDirectMessageId = useSelector(uiDirectMessageIdSelector);
   const chat = useSelector(directMessageChatSelector(uiDirectMessageId));
   const messages = useSelector(directMessagesSelector(chat?.id));
-  const user = useSelector(userSelector(chat.userId));
+  const user = useSelector(userSelector(chat?.userId));
 
   // rerender on change in chat
-  useEffect(() => {}, [messages]);
+  useEffect(() => {}, [messages, chat, user]);
 
   const sendMessage = (text, imageId) => dispatch(sendDirectMessage({ recipientId: chat.userId, text, imageId }));
 
-  if (!loaded) return null;
+  if (!loaded || !user) return null;
 
   return (
     <div className="messages-container main left-inset-shadow">
@@ -56,7 +56,7 @@ const DirectMessages = ({ loaded }) => {
 
             <p className="transparent-caret-color">This is the beginning of your direct message history with <span className="tag-important">{user.username}</span>.</p>
           </div>
-          {loaded && chat.messages &&
+          {loaded && chat?.messages &&
             chat.messages.map((message) => (
               <li key={message.id}>
                 <MessageCard message={message} onDeleteMessage={() => dispatch(deleteDirectMessage(message.id))}/>
