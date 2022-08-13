@@ -162,8 +162,9 @@
     line-height: 125%;
 }
 
-.messages-top .username {
+.messages-top .tag-important {
     color: var(--alt-text-color);
+    font-weight: 600;
 }
 
 .chat-box {
@@ -187,4 +188,24 @@
 
 .send-message-form input:focus-visible {
     outline: none;
+}
+
+.server-messages .top-icon-container {
+    backdrop-filter: brightness(140%);
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    height: 5.7rem;
+    width: 5.7rem;
+}
+
+.server-messages .top-icon {
+    height: 64%;
+    opacity: 70%;
+}
+
+.server-messages .messages-top h1 {
+    font-size: 2rem;
 }
