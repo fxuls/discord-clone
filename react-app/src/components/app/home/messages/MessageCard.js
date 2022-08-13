@@ -7,12 +7,18 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { userSelector } from "../../../../store/users";
 import { currentUserIdSelector } from "../../../../store/session";
 import { showImageModal } from "../../../../store/ui";
+import { useEffect } from "react";
 
 const MessageCard = ({ message, onDeleteMessage, permission }) => {
   const dispatch = useDispatch();
   const userId = useSelector(currentUserIdSelector);
   const sender = useSelector(userSelector(message.sender_id));
-  const name = sender.username.split("#")[0];
+
+  useEffect(() => {}, [sender, userId]);
+
+  if (!sender || !message) return null;
+
+  const name = sender?.username.split("#")[0];
 
   // calculate dateString
   let dateString;
@@ -26,10 +32,8 @@ const MessageCard = ({ message, onDeleteMessage, permission }) => {
       if (now.diff(sentAt, "hours") === 0)
         if (now.diff(sentAt, "minutes") === 0)
           dateString = "Under a minute ago";
-        else
-          dateString = now.diff(sentAt, "minutes") + " minutes ago";
-      else
-        dateString = "Today at " + sentAt.format("h:mm A");
+        else dateString = now.diff(sentAt, "minutes") + " minutes ago";
+      else dateString = "Today at " + sentAt.format("h:mm A");
       break;
 
     default:
@@ -41,24 +45,25 @@ const MessageCard = ({ message, onDeleteMessage, permission }) => {
   return (
     <div className="message-card">
       <div className="message-icon-container unselectable">
-        {sender.profile_image_url ? (
-          <img
-            className="user-icon message-icon"
-            alt="Sender icon"
-            src={sender.profile_image_url}
-          />
-        ) : (
-          <div
-            className="default-image-container"
-            style={{ backgroundColor: sender.color }}
-          >
+        {sender &&
+          (sender.profile_image_url ? (
             <img
-              className="message-icon user-icon"
-              alt="Default user icon"
-              src="/assets/default-user.png"
+              className="user-icon message-icon"
+              alt="Sender icon"
+              src={sender.profile_image_url}
             />
-          </div>
-        )}
+          ) : (
+            <div
+              className="default-image-container"
+              style={{ backgroundColor: sender.color }}
+            >
+              <img
+                className="message-icon user-icon"
+                alt="Default user icon"
+                src="/assets/default-user.png"
+              />
+            </div>
+          ))}
       </div>
 
       <div className="message-header">
@@ -70,7 +75,11 @@ const MessageCard = ({ message, onDeleteMessage, permission }) => {
         <p>{message.text}</p>
 
         {message.image_url && (
-          <img src={message.image_url} onClick={onImageClick} alt={message.image_url}/>
+          <img
+            src={message.image_url}
+            onClick={onImageClick}
+            alt={message.image_url}
+          />
         )}
       </div>
 
