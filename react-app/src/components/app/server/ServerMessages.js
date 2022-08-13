@@ -9,6 +9,8 @@ import { serverChannelSelector } from "../../../store/servers";
 import MessageCard from "../home/messages/MessageCard";
 import ServerMessagesHeader from "./ServerMessagesHeader";
 import ChatBox from "../home/messages/ChatBox";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHashtag } from "@fortawesome/free-solid-svg-icons";
 
 const ServerMessages = ({ loaded, server, channelId }) => {
   const dispatch = useDispatch();
@@ -23,16 +25,31 @@ const ServerMessages = ({ loaded, server, channelId }) => {
     );
 
   return (
-    <div className="messages-container main left-inset-shadow">
+    <div className="messages-container main left-inset-shadow server-messages">
       <ServerMessagesHeader serverId={server.id} channelId={channelId} />
 
       <div className="messages header-box-shadow">
         <ul className="message-list">
+          <div className="messages-top unselectable">
+            <div className="top-icon-container">
+              <FontAwesomeIcon icon={faHashtag} className="top-icon transparent-caret-color" />
+            </div>
+
+            <h1>{channel && `Welcome to #${channel.name.toLowerCase()}!`}</h1>
+
+            <p className="transparent-caret-color">This is the start of the <span className="tag-important">#{channel && channel.name.toLowerCase()}</span> channel.</p>
+          </div>
+
           {loaded &&
             messages &&
             messages.map((message) => (
               <li key={message.id}>
-                <MessageCard message={message} onDeleteMessage={() => dispatch(deleteServerMessage(server.id, message.id))}/>
+                <MessageCard
+                  message={message}
+                  onDeleteMessage={() =>
+                    dispatch(deleteServerMessage(server.id, message.id))
+                  }
+                />
               </li>
             ))}
         </ul>
