@@ -54,7 +54,7 @@ const DirectMessages = ({ loaded }) => {
 
             <h1>{user.username.split("#")[0]}</h1>
 
-            <p className="transparent-caret-color">This is the beginning of your direct message history with <span className="username">{user.username}</span>.</p>
+            <p className="transparent-caret-color">This is the beginning of your direct message history with <span className="tag-important">{user.username}</span>.</p>
           </div>
           {loaded && chat.messages &&
             chat.messages.map((message) => (
