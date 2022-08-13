@@ -45,6 +45,7 @@ const Server = () => {
       <ServerNavBar
         loaded={loaded}
         server={server}
+        permission={permission}
         activeChannelId={uiServerChannelId}
       />
 
