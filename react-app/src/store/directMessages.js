@@ -11,7 +11,7 @@ export const directMessageChatIdsSelector = (state) =>
 export const directMessageChatSelector = (chatId) => (state) =>
   state.directMessages[chatId];
 export const directMessagesSelector = (chatId) => (state) =>
-  state.directMessages[chatId].messages;
+  state.directMessages[chatId]?.messages;
 export const chatByUserId = (userId) => (state) =>
   Object.values(state.directMessages).find((chat) => chat.userId === userId);
 
