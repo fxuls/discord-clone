@@ -10,6 +10,7 @@ import { fetchServerMessages } from "../../../store/serverMessages";
 
 import ServerNavBar from "./ServerNavBar";
 import ServerMessages from "./ServerMessages";
+import { fetchUserIfNotExist } from "../../../store/users";
 
 const Server = () => {
   const dispatch = useDispatch();
@@ -30,13 +31,11 @@ const Server = () => {
   useEffect(() => {
     if (!loaded)
       (async () => {
-        const results = [
-          await dispatch(fetchServerChannels(uiServerId)),
-          await dispatch(fetchServerMessages(uiServerId)),
-        ];
+        await dispatch(fetchServerChannels(uiServerId));
+        const messages = await dispatch(fetchServerMessages(uiServerId));
+        messages.forEach((message) => fetchUserIfNotExist(message.sender_id));
 
         setLoaded(true);
-        return results;
       })();
   }, [dispatch, loaded, uiServerId, server]);
 
