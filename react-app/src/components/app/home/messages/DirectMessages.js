@@ -12,7 +12,7 @@ const DirectMessages = ({ loaded }) => {
   const dispatch = useDispatch();
   const uiDirectMessageId = useSelector(uiDirectMessageIdSelector);
   const chat = useSelector(directMessageChatSelector(uiDirectMessageId));
-  const messages = useSelector(directMessagesSelector(chat.id));
+  const messages = useSelector(directMessagesSelector(chat?.id));
   const user = useSelector(userSelector(chat.userId));
 
   // rerender on change in chat
