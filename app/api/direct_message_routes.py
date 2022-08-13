@@ -25,7 +25,7 @@ CONTENT_MISSING = {
 }
 
 
-@direct_message_routes.route("")
+@direct_message_routes.route("", methods=["GET"])
 @login_required
 def get_direct_messages():
     """
