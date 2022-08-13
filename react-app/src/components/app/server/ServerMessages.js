@@ -12,7 +12,7 @@ import ChatBox from "../home/messages/ChatBox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHashtag } from "@fortawesome/free-solid-svg-icons";
 
-const ServerMessages = ({ loaded, server, channelId }) => {
+const ServerMessages = ({ loaded, server, channelId, permission }) => {
   const dispatch = useDispatch();
   const messages = useSelector(
     serverChannelMessagesSelector(server.id, channelId)
@@ -46,6 +46,7 @@ const ServerMessages = ({ loaded, server, channelId }) => {
               <li key={message.id}>
                 <MessageCard
                   message={message}
+                  permission={permission}
                   onDeleteMessage={() =>
                     dispatch(deleteServerMessage(server.id, message.id))
                   }
