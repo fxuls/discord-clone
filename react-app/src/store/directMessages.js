@@ -47,7 +47,7 @@ export const fetchDirectMessages = () => async (dispatch) => {
     await dispatch(setDirectMessages(data));
 
     // fetch the users who have chats
-    Object.keys(data).forEach((userId) => dispatch(fetchUser(userId)));
+    Object.values(data).forEach(({ userId} ) => dispatch(fetchUser(userId)));
 
     // sort the messages
     dispatch(sortAllMessagesByDate());
