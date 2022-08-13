@@ -1,12 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { uiDirectMessageIdSelector } from "../../../../store/ui";
-import { directMessageChatSelector, directMessagesSelector, deleteDirectMessage, sendDirectMessage } from "../../../../store/directMessages";
+import {
+  directMessageChatSelector,
+  directMessagesSelector,
+  deleteDirectMessage,
+  sendDirectMessage,
+} from "../../../../store/directMessages";
 import { userSelector } from "../../../../store/users";
 
 import DirectMessagesHeader from "./DirectMessagesHeader";
 import ChatBox from "./ChatBox";
 import MessageCard from "./MessageCard";
+import { SocketContext } from "../../../sockets";
 
 const DirectMessages = ({ loaded }) => {
   const dispatch = useDispatch();
@@ -14,11 +20,18 @@ const DirectMessages = ({ loaded }) => {
   const chat = useSelector(directMessageChatSelector(uiDirectMessageId));
   const messages = useSelector(directMessagesSelector(chat?.id));
   const user = useSelector(userSelector(chat?.userId));
+  const socket = useContext(SocketContext);
+
 
   // rerender on change in chat
   useEffect(() => {}, [loaded, messages, chat, user]);
 
-  const sendMessage = (text, imageId) => dispatch(sendDirectMessage({ recipientId: chat.userId, text, imageId }));
+  const sendMessage = (text, imageId) => {
+    dispatch(sendDirectMessage({ recipientId: chat.userId, text, imageId }));
+    socket.emit("DIRECT_MESSAGE_SENT", {
+      chat_id: chat.id,
+    });
+  };
 
   if (!loaded || !user) return null;
 
@@ -54,18 +67,31 @@ const DirectMessages = ({ loaded }) => {
 
             <h1>{user.username.split("#")[0]}</h1>
 
-            <p className="transparent-caret-color">This is the beginning of your direct message history with <span className="tag-important">{user.username}</span>.</p>
+            <p className="transparent-caret-color">
+              This is the beginning of your direct message history with{" "}
+              <span className="tag-important">{user.username}</span>.
+            </p>
           </div>
-          {loaded && chat?.messages &&
+          {loaded &&
+            chat?.messages &&
             chat.messages.map((message) => (
               <li key={message.id}>
-                <MessageCard loaded={loaded} message={message} onDeleteMessage={() => dispatch(deleteDirectMessage(message.id))}/>
+                <MessageCard
+                  loaded={loaded}
+                  message={message}
+                  onDeleteMessage={() =>
+                    dispatch(deleteDirectMessage(message.id))
+                  }
+                />
               </li>
             ))}
         </ul>
       </div>
 
-      <ChatBox sendMessage={sendMessage} placeholder={`Message @${user.username.split("#")[0]}`} />
+      <ChatBox
+        sendMessage={sendMessage}
+        placeholder={`Message @${user.username.split("#")[0]}`}
+      />
     </div>
   );
 };
