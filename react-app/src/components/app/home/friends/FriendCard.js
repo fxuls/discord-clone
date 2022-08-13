@@ -31,7 +31,7 @@ const FriendCard = ({ userId, type }) => {
   const onOpenMessages = async () => {
     if (!chat) {
       const newChat = await dispatch(createDirectMessageChat(userId));
-      dispatch(setDirectMessageId(newChat.id));
+      dispatch(setDirectMessageId(newChat.id + ""));
     } else {
       dispatch(setDirectMessageId(chat.id + ""));
     }
