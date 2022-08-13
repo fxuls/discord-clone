@@ -9,12 +9,12 @@ import { currentUserIdSelector } from "../../../../store/session";
 import { showImageModal } from "../../../../store/ui";
 import { useEffect } from "react";
 
-const MessageCard = ({ message, onDeleteMessage, permission }) => {
+const MessageCard = ({ message, onDeleteMessage, permission, loaded }) => {
   const dispatch = useDispatch();
   const userId = useSelector(currentUserIdSelector);
   const sender = useSelector(userSelector(message.sender_id));
 
-  useEffect(() => {}, [sender, userId]);
+  useEffect(() => {}, [sender, userId, loaded]);
 
   if (!sender || !message) return null;
 
