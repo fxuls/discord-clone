@@ -32,7 +32,7 @@ const ServerMessages = ({ loaded, server, channelId }) => {
         <ul className="message-list">
           <div className="messages-top unselectable">
             <div className="top-icon-container">
-              <FontAwesomeIcon icon={faHashtag} className="top-icon transparent-caret-color" />
+              <FontAwesomeIcon icon={faHashtag} className="top-icon" />
             </div>
 
             <h1>{channel && `Welcome to #${channel.name.toLowerCase()}!`}</h1>
