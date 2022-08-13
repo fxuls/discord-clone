@@ -14,7 +14,10 @@ import {
   friendUserById,
 } from "../../../../store/users";
 import { setDirectMessageId } from "../../../../store/ui";
-import { chatByUserId } from "../../../../store/directMessages";
+import {
+  chatByUserId,
+  createDirectMessageChat,
+} from "../../../../store/directMessages";
 
 const FriendCard = ({ userId, type }) => {
   const dispatch = useDispatch();
@@ -23,9 +26,16 @@ const FriendCard = ({ userId, type }) => {
   const chat = useSelector(chatByUserId(user.id));
 
   const onRemoveFriend = () => dispatch(unfriendUser(user.id));
-  const onOpenMessages = () => dispatch(setDirectMessageId(chat.id + ""));
   const onAcceptRequest = () => dispatch(friendUserById(user.id));
   const onCopyUsername = () => navigator.clipboard.writeText(user.username);
+  const onOpenMessages = async () => {
+    if (!chat) {
+      const newChat = await dispatch(createDirectMessageChat(userId));
+      dispatch(setDirectMessageId(newChat.id));
+    } else {
+      dispatch(setDirectMessageId(chat.id + ""));
+    }
+  };
 
   let buttons;
   switch (type) {
@@ -93,7 +103,10 @@ const FriendCard = ({ userId, type }) => {
       <div className="info">
         <span className="name">{username[0]}</span>
         <span className="numbers">{"#" + username[1]}</span>
-        <span className="copy-icon transparent-caret-color" onClick={onCopyUsername}>
+        <span
+          className="copy-icon transparent-caret-color"
+          onClick={onCopyUsername}
+        >
           <FontAwesomeIcon icon={faCopy} />
         </span>
       </div>
