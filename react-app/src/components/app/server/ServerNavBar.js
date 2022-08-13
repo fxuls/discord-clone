@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRightFromBracket, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { leaveServer } from "../../../store/servers";
 import { setServer } from "../../../store/ui";
 
@@ -31,7 +31,10 @@ const ServerNavBar = ({ server, loaded, activeChannelId }) => {
       </div>
 
       <div className="server-channels header-box-shadow nav-padding">
-        <h2 className="sub-header-text unselectable">Channels</h2>
+        <div className="channels-header-container">
+          <h2 className="sub-header-text unselectable">Channels</h2>
+          <FontAwesomeIcon icon={faPlus} className="delete-chat-icon" />
+        </div>
 
         <ul>
           {loaded &&
