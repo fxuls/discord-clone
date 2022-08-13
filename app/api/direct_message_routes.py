@@ -41,9 +41,55 @@ def get_direct_messages():
         direct_messages[chat_id] = {
             "id": chat_id,
             "userId": user_id,
-            "messages": [message.to_dict() for message in chat.messages]
+            "messages": [message.to_dict() for message in chat.messages],
         }
     return jsonify(direct_messages), 200
+
+
+@direct_message_routes.route("", methods=["POST"])
+@login_required
+def create_direct_message_chat():
+    """
+    Create a new direct message chat
+    """
+    body = request.get_json()
+
+    # check that user_id is in body
+    if "user_id" not in body:
+        return jsonify({
+            "message": "user_id is required",
+            "status_code": 400,
+        }), 400
+
+    user_id = body["user_id"]
+
+    # check that a chat does not already exist
+    chat = DirectMessageChat.query.filter(DirectMessageChat.user_one_id == current_user.id, DirectMessageChat.user_two_id == user_id).first()
+    if chat is None:
+        chat = DirectMessageChat.query.filter(DirectMessageChat.user_one_id == user_id, DirectMessageChat.user_two_id == current_user.id).first()
+    if chat is not None:
+        return jsonify({
+            "id": chat.id,
+            "userId": user_id,
+            "messages": [message.to_dict() for message in chat.messages],
+        }), 200
+
+    # create the new chat
+    new_chat = DirectMessageChat(
+        user_one_id=current_user.id,
+        user_two_id=user_id,
+    )
+    # add to db
+    db.session.add(new_chat)
+    db.session.commit()
+    # return
+    return jsonify({
+        "id": new_chat.id,
+        "userId": user_id,
+        "messages": [],
+    }), 201
+
+
 
 
 @direct_message_routes.route("/<int:id>", methods=["DELETE"])
