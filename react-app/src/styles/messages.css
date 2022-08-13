@@ -202,8 +202,8 @@
 }
 
 .server-messages .top-icon {
+    color: var(--text-color);
     height: 64%;
-    opacity: 70%;
 }
 
 .server-messages .messages-top h1 {
