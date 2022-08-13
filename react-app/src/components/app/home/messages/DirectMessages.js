@@ -16,7 +16,7 @@ const DirectMessages = ({ loaded }) => {
   const user = useSelector(userSelector(chat?.userId));
 
   // rerender on change in chat
-  useEffect(() => {}, [messages, chat, user]);
+  useEffect(() => {}, [loaded, messages, chat, user]);
 
   const sendMessage = (text, imageId) => dispatch(sendDirectMessage({ recipientId: chat.userId, text, imageId }));
 
