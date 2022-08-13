@@ -1,23 +1,18 @@
 import os
-from flask import Flask, render_template, request, session, redirect
+from flask import Flask, render_template, request, session, redirect, jsonify
 from flask_cors import CORS
 from flask_migrate import Migrate
-from flask_wtf.csrf import CSRFProtect, generate_csrf
+from flask_wtf.csrf import generate_csrf
 from flask_login import LoginManager
+from flask_socketio import SocketIO, send, emit
 
 from .models import db, User
-from .api.user_routes import user_routes
-from .api.auth_routes import auth_routes
-from .api.dev_routes import dev_routes
-from .api.server_routes import server_routes
-from .api.direct_message_routes import direct_message_routes
-from .api.server_message_routes import server_message_routes
-
+from .api import api as api_routes
 from .seeds import seed_commands
-
 from .config import Config
 
 app = Flask(__name__)
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 # Setup login manager
 login = LoginManager(app)
@@ -33,12 +28,7 @@ def load_user(id):
 app.cli.add_command(seed_commands)
 
 app.config.from_object(Config)
-app.register_blueprint(user_routes, url_prefix='/api/users')
-app.register_blueprint(auth_routes, url_prefix='/api/auth')
-app.register_blueprint(dev_routes, url_prefix='/api/dev')
-app.register_blueprint(server_routes, url_prefix='/api/servers')
-app.register_blueprint(direct_message_routes, url_prefix='/api/direct-messages')
-app.register_blueprint(server_message_routes, url_prefix='/api/server-messages')
+app.register_blueprint(api_routes)
 db.init_app(app)
 Migrate(app, db)
 
@@ -78,3 +68,16 @@ def react_root(path):
     if path == 'favicon.ico':
         return app.send_static_file('favicon.ico')
     return app.send_static_file('index.html')
+
+
+@socketio.on("DIRECT_MESSAGE_SENT")
+def message_sent(data):
+    print("DIRECT_MESSAGE_SENT " + str(data["chat_id"]))
+    emit("NEW_DIRECT_MESSAGE", data, broadcast=True)
+
+
+@socketio.on("connect")
+def on_connect():
+    send("A new connection", broadcast=True)
+
+socketio.run(app)
