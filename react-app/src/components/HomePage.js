@@ -14,7 +14,7 @@ const HomePage = () => {
         </p>
       </div>
 
-      <div className="homepage-servers fill-height">
+      <div className="homepage-servers fill-height header-box-shadow">
         The servers to join will go here
       </div>
     </div>
