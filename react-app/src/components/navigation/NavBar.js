@@ -10,7 +10,7 @@ const NavBar = () => {
 
   return (
     <nav>
-      <img className="masthead unselectable" src="/assets/discord-logo-banner.png" />
+      <img className="masthead unselectable" src="/assets/discord-logo-banner.png" onClick={() => history.push("/")}/>
 
       {sessionUser ? <AuthenticatedNav /> : <UnauthenticatedNav />}
     </nav>
