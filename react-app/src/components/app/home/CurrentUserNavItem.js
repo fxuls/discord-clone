@@ -13,7 +13,7 @@ const CurrentUserNavItem = () => {
   const onSignOut = () => dispatch(signOut());
 
   return (
-    <div className="current-user-bar header-box-shadow">
+    <div className="current-user-bar header-box-shadow transparent-caret-color">
       {user.profile_image_url ? (
         <img
           draggable={false}
