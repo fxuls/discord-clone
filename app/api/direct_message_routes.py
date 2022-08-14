@@ -46,6 +46,33 @@ def get_direct_messages():
     return jsonify(direct_messages), 200
 
 
+@direct_message_routes.route("/<int:id>", methods=["GET"])
+@login_required
+def get_direct_chat(id):
+    """
+    Get all the info and messages for a chat by chat id
+    """
+    chat = DirectMessageChat.query.get(id)
+
+    # check that chat exists
+    if chat is None:
+        return jsonify(CHAT_NOT_EXIST), 404
+
+    # check that user is a member of chat
+    if current_user.id not in (chat.user_one_id, chat.user_two_id):
+        return jsonify(USER_NOT_MEMBER), 401
+
+    user_id = chat.user_two_id if chat.user_one_id == current_user.id else chat.user_one_id
+    print(chat)
+    # return messages
+    return jsonify({
+        "id": chat.id,
+        "userId": user_id,
+        "messages": [message.to_dict() for message in chat.messages],
+        }), 200
+
+
+
 @direct_message_routes.route("", methods=["POST"])
 @login_required
 def create_direct_message_chat():
@@ -88,8 +115,6 @@ def create_direct_message_chat():
         "userId": user_id,
         "messages": [],
     }), 201
-
-
 
 
 @direct_message_routes.route("/<int:id>", methods=["DELETE"])
@@ -151,6 +176,7 @@ def post_new_message():
     Sends a new message to a chat
     """
     body = request.get_json()
+    print(body, current_user.id)
 
     # if recipient_id not provided
     if "recipient_id" not in body:
@@ -168,10 +194,13 @@ def post_new_message():
     if chat is None:
         chat = DirectMessageChat.query.filter(DirectMessageChat.user_one_id == body["recipient_id"], DirectMessageChat.user_two_id == current_user.id).first()
 
+    print(chat)
     if chat is None:
+        print("CHAT_NOT_FOUND")
         return jsonify(CHAT_NOT_EXIST), 404
 
     # check that current user is a member of chat
+    print("Past 404")
     if current_user.id not in (chat.user_one_id, chat.user_two_id):
         return jsonify(USER_NOT_MEMBER), 401
 
