@@ -6,7 +6,7 @@ import HomePage from "./HomePage";
 
 const UnauthenticatedApp = () => {
   return (
-    <div className="unauth-app">
+    <div className="unauth-app fill-height">
       <Route path="/" exact={true}>
         <HomePage />
       </Route>
