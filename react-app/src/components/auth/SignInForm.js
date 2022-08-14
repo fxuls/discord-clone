@@ -30,33 +30,34 @@ const SignInForm = () => {
   if (user) return <Redirect to="/app" />;
 
   return (
-    <form onSubmit={onSignIn}>
+    <form onSubmit={onSignIn} id="sign-in-form">
+      <h1>Sign in</h1>
       <div>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <div>
+      <div className="form-row">
         <label htmlFor="email">Email</label>
         <input
           name="email"
           type="text"
-          placeholder="Email"
+          placeholder="jasonsmith@gmail.com"
           value={email}
           onChange={updateEmail}
         />
       </div>
-      <div>
+      <div className="form-row">
         <label htmlFor="password">Password</label>
         <input
           name="password"
           type="password"
-          placeholder="Password"
+          placeholder="password"
           value={password}
           onChange={updatePassword}
         />
-        <button type="submit">Sign in</button>
       </div>
+      <button type="submit">Sign in</button>
     </form>
   );
 };
