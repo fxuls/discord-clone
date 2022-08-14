@@ -6,6 +6,7 @@ import { leaveServer } from "../../../store/servers";
 import { setServer } from "../../../store/ui";
 
 import ChannelCard from "./ChannelCard";
+import CurrentUserNavItem from "../home/CurrentUserNavItem";
 
 const ServerNavBar = ({ server, loaded, activeChannelId }) => {
   const dispatch = useDispatch();
@@ -49,7 +50,10 @@ const ServerNavBar = ({ server, loaded, activeChannelId }) => {
               </li>
             ))}
         </ul>
+
       </div>
+      
+      <CurrentUserNavItem />
     </div>
   );
 };
