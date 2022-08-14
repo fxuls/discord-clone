@@ -6,8 +6,10 @@ const SET_DIRECT_CHAT = "messages/SET_DIRECT_CHAT";
 const ADD_DIRECT_MESSAGE_CHAT = "messages/ADD_DIRECT_MESSAGE_CHAT";
 const ADD_DIRECT_MESSAGE_TO_CHAT = "messages/ADD_DIRECT_MESSAGE_TO_CHAT";
 const SORT_All_MESSAGES_BY_DATE = "messages/SORT_MESSAGES_BY_DATE";
+const REMOVE_DIRECT_MESSAGE_CHAT = "messages/REMOVE_DIRECT_MESSAGE_CHAT";
 
 // selectors
+export const allDirectMessagesSelector = (state) => state.directMessages;
 export const directMessageChatIdsSelector = (state) =>
   Object.keys(state.directMessages);
 export const directMessageChatSelector = (chatId) => (state) =>
@@ -44,6 +46,12 @@ export const sortAllMessagesByDate = () => ({
 export const addDirectMessageChat = (chat) => ({
   type: ADD_DIRECT_MESSAGE_CHAT,
   payload: chat,
+});
+
+// REMOVE_DIRECT_MESSAGE_CHAT action creator
+export const removeDirectMessageChat = (chatId) => ({
+  type: REMOVE_DIRECT_MESSAGE_CHAT,
+  payload: chatId,
 });
 
 export const fetchDirectMessages = () => async (dispatch) => {
@@ -101,7 +109,7 @@ export const deleteDirectMessageChat =
     );
 
     if (response.ok) {
-      await dispatch(fetchDirectChat(directMessageChatId));
+      await dispatch(removeDirectMessageChat(directMessageChatId));
     }
 
     const data = await response.json();
@@ -177,6 +185,10 @@ export default function reducer(state = initialState, action) {
 
     case SET_DIRECT_CHAT:
       newState[payload.id] = payload;
+      break;
+
+    case REMOVE_DIRECT_MESSAGE_CHAT:
+      delete newState[payload];
       break;
 
     default:
