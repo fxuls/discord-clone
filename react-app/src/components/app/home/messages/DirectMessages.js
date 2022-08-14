@@ -22,9 +22,13 @@ const DirectMessages = ({ loaded }) => {
   const user = useSelector(userSelector(chat?.userId));
   const socket = useContext(SocketContext);
 
-
   // rerender on change in chat
-  useEffect(() => {}, [loaded, messages, chat, user]);
+  useEffect(() => {
+    const elements = document.querySelectorAll(".scroll-to-top-on-submit");
+    elements.forEach((element) => element.scroll({
+      top: 0,
+    }));
+  }, [loaded, messages, chat, user]);
 
   const sendMessage = (text, imageId) => {
     dispatch(sendDirectMessage({ recipientId: chat.userId, text, imageId }));
@@ -39,7 +43,7 @@ const DirectMessages = ({ loaded }) => {
     <div className="messages-container main left-inset-shadow">
       <DirectMessagesHeader user={user} />
 
-      <div className="messages header-box-shadow">
+      <div className="messages header-box-shadow scroll-to-top-on-submit">
         <ul className="message-list">
           <div className="messages-top unselectable">
             <div className="message-icon-container">
