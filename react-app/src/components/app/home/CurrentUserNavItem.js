@@ -3,14 +3,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { currentUserIdSelector, signOut } from "../../../store/session";
 import { userSelector } from "../../../store/users";
+import { useHistory } from "react-router-dom";
 
 const CurrentUserNavItem = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   const currentUserId = useSelector(currentUserIdSelector);
   const user = useSelector(userSelector(currentUserId));
   const username = user.username.split("#");
 
-  const onSignOut = () => dispatch(signOut());
+  const onSignOut = () => {
+    dispatch(signOut());
+    history.push("/");
+  }
 
   return (
     <div className="current-user-bar header-box-shadow transparent-caret-color">
