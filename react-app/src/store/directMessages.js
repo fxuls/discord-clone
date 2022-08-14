@@ -1,5 +1,5 @@
 import moment from "moment";
-import { fetchUser, fetchUserIfNotExist } from "./users";
+import { fetchUser } from "./users";
 
 const SET_DIRECT_MESSAGES = "messages/SET_DIRECT_MESSAGES";
 const SET_DIRECT_CHAT = "messages/SET_DIRECT_CHAT";
@@ -54,7 +54,7 @@ export const fetchDirectMessages = () => async (dispatch) => {
     await dispatch(setDirectMessages(data));
 
     // fetch the users who have chats
-    Object.values(data).forEach(({ userId} ) => dispatch(fetchUser(userId)));
+    Object.values(data).forEach(({ userId }) => dispatch(fetchUser(userId)));
 
     // sort the messages
     dispatch(sortAllMessagesByDate());
@@ -66,9 +66,12 @@ export const fetchDirectChat = (chatId) => async (dispatch) => {
   const response = await fetch(`/api/direct-messages/${chatId}`);
 
   const data = await response.json();
-  if (response.ok) dispatch(setDirectChat(data));
+  if (response.ok) {
+    await dispatch(setDirectChat(data));
+    dispatch(sortAllMessagesByDate());
+  }
   return data;
-}
+};
 
 export const createDirectMessageChat = (userId) => async (dispatch) => {
   const response = await fetch("/api/direct-messages", {
@@ -82,20 +85,24 @@ export const createDirectMessageChat = (userId) => async (dispatch) => {
   });
 
   const data = await response.json();
-  if (response.ok) dispatch(addDirectMessageChat(data));
+  if (response.ok) {
+    dispatch(addDirectMessageChat(data));
+  }
   return data;
 };
 
 export const deleteDirectMessageChat =
   (directMessageChatId) => async (dispatch) => {
     const response = await fetch(
-      `/api/direct-messages/messages/${directMessageChatId}`,
+      `/api/direct-messages/${directMessageChatId}`,
       {
         method: "DELETE",
       }
     );
 
-    dispatch(fetchDirectChat(directMessageChatId));
+    if (response.ok) {
+      await dispatch(fetchDirectChat(directMessageChatId));
+    }
 
     const data = await response.json();
     return data;
@@ -109,7 +116,7 @@ export const deleteDirectMessage = (directMessageId) => async (dispatch) => {
     }
   );
 
-  dispatch(fetchDirectMessages);
+  dispatch(fetchDirectMessages());
 
   const data = await response.json();
   return data;

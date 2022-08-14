@@ -25,17 +25,30 @@ const DirectMessages = ({ loaded }) => {
   // rerender on change in chat
   useEffect(() => {
     const elements = document.querySelectorAll(".scroll-to-top-on-submit");
-    elements.forEach((element) => element.scroll({
-      top: 0,
-    }));
+    elements.forEach((element) =>
+      element.scroll({
+        top: 0,
+      })
+    );
   }, [loaded, messages, chat, user]);
 
-  const sendMessage = (text, imageId) => {
-    dispatch(sendDirectMessage({ recipientId: chat.userId, text, imageId }));
-    socket.emit("DIRECT_MESSAGE_SENT", {
+  const onSendMessage = async (text, imageId) => {
+    await dispatch(
+      sendDirectMessage({ recipientId: chat.userId, text, imageId })
+    );
+    socket.emit("UPDATE_DIRECT_MESSAGE_CHAT", {
       chat_id: chat.id,
     });
   };
+
+  const onDeleteMessage = async (messageId) => {
+    await dispatch(deleteDirectMessage(messageId));
+    await socket.emit("UPDATE_DIRECT_MESSAGE_CHAT", {
+      chat_id: chat.id,
+    });
+  };
+
+  console.log()
 
   if (!loaded || !user) return null;
 
@@ -83,9 +96,7 @@ const DirectMessages = ({ loaded }) => {
                 <MessageCard
                   loaded={loaded}
                   message={message}
-                  onDeleteMessage={() =>
-                    dispatch(deleteDirectMessage(message.id))
-                  }
+                  onDeleteMessage={() => onDeleteMessage(message.id)}
                 />
               </li>
             ))}
@@ -93,7 +104,7 @@ const DirectMessages = ({ loaded }) => {
       </div>
 
       <ChatBox
-        sendMessage={sendMessage}
+        sendMessage={onSendMessage}
         placeholder={`Message @${user.username.split("#")[0]}`}
       />
     </div>
