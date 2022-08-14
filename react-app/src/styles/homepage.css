@@ -1,6 +1,11 @@
 .homepage-container {
-    background-color: var(--sub-color);
+    box-sizing: border-box;
     height: 100%;
+    background-color: var(--alt-bg-color);
+}
+
+.homepage-container .bg-color-box {
+    background-color: var(--sub-color);
 }
 
 .homepage-container .homepage-header {
@@ -28,5 +33,5 @@
 }
 
 .homepage-servers {
-    background-color: var(--alt-bg-color);
+    min-height: 50%;
 }
