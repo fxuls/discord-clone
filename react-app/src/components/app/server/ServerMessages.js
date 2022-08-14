@@ -1,3 +1,4 @@
+import { useContext, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   serverChannelMessagesSelector,
@@ -11,21 +12,43 @@ import ServerMessagesHeader from "./ServerMessagesHeader";
 import ChatBox from "../home/messages/ChatBox";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHashtag } from "@fortawesome/free-solid-svg-icons";
+import { SocketContext } from "../../sockets";
 
 const ServerMessages = ({ loaded, server, channelId, permission }) => {
   const dispatch = useDispatch();
+  const socket = useContext(SocketContext);
   const messages = useSelector(
     serverChannelMessagesSelector(server.id, channelId)
   );
   const channel = useSelector(serverChannelSelector(server.id, channelId));
 
-  const sendMessage = (text, imageId) =>
-    dispatch(
+  useEffect(() => {
+    const elements = document.querySelectorAll(".scroll-to-top-on-submit");
+    elements.forEach((element) =>
+      element.scroll({
+        top: 0,
+      })
+    );
+  }, [loaded, messages, server, channelId]);
+
+  const onSendMessage = async (text, imageId) => {
+    await dispatch(
       sendServerMessage({ serverId: server.id, channelId, text, imageId })
     );
+    socket.emit("UPDATE_SERVER_MESSAGES", {
+      server_id: server.id,
+    });
+  };
+
+  const onDeleteMessage = async (messageId) => {
+    await dispatch(deleteServerMessage(server.id, messageId));
+    await socket.emit("UPDATE_SERVER_MESSAGES", {
+      server_id: server.id,
+    });
+  }
 
   return (
-    <div className="messages-container main left-inset-shadow server-messages">
+    <div className="messages-container main left-inset-shadow server-messages scroll-to-top-on-submit">
       <ServerMessagesHeader serverId={server.id} channelId={channelId} />
 
       <div className="messages header-box-shadow">
@@ -37,7 +60,13 @@ const ServerMessages = ({ loaded, server, channelId, permission }) => {
 
             <h1>{channel && `Welcome to #${channel.name.toLowerCase()}!`}</h1>
 
-            <p className="transparent-caret-color">This is the start of the <span className="tag-important">#{channel && channel.name.toLowerCase()}</span> channel.</p>
+            <p className="transparent-caret-color">
+              This is the start of the{" "}
+              <span className="tag-important">
+                #{channel && channel.name.toLowerCase()}
+              </span>{" "}
+              channel.
+            </p>
           </div>
 
           {loaded &&
@@ -47,9 +76,7 @@ const ServerMessages = ({ loaded, server, channelId, permission }) => {
                 <MessageCard
                   message={message}
                   permission={permission}
-                  onDeleteMessage={() =>
-                    dispatch(deleteServerMessage(server.id, message.id))
-                  }
+                  onDeleteMessage={() => onDeleteMessage(message.id)}
                 />
               </li>
             ))}
@@ -57,7 +84,7 @@ const ServerMessages = ({ loaded, server, channelId, permission }) => {
       </div>
 
       <ChatBox
-        sendMessage={sendMessage}
+        sendMessage={onSendMessage}
         placeholder={channel && `Message #${channel.name.toLowerCase()}`}
       />
     </div>
