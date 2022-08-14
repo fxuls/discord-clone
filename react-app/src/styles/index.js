@@ -6,7 +6,7 @@ import "./server-nav.css";
 import "./app.css";
 import "./nav-bars.css";
 import "./friends.css";
-import "./home.css";
+import "./homepage.css";
 import "./messages.css";
 import "./headers.css";
 import "./modals.css";
