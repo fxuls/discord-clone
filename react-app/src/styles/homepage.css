@@ -1,10 +1,23 @@
 .homepage-container {
     background-color: var(--sub-color);
+    height: 100%;
+}
+
+.homepage-container .homepage-header {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 3rem;
 }
 
 .homepage-container .homepage-header h1 {
-    font-size: 5rem;
+    font-size: 4.8rem;
     font-weight: 800;
     text-transform: uppercase;
     width: 40rem;
+    line-height: 90%;
+    text-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.homepage-servers {
+    background-color: var(--alt-bg-color);
 }
