@@ -32,8 +32,17 @@ def get_server_messages(id):
     if server is None:
         return jsonify(SERVER_NOT_EXIST), 404
 
-    # check that user is not banned
+    # get user permission in server
     user_permission = server.get_member_permission(current_user.id)
+
+    # check user is member
+    if user_permission is None:
+        return jsonify({
+            "message": "User is not a member of the server",
+            "status_code": 401,
+        }), 401
+
+    # check that user is not banned
     if user_permission["permission"]["name"] == "banned":
         return jsonify(USER_IS_BANNED), 401
 
