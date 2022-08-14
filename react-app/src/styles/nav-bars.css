@@ -92,7 +92,6 @@
 
 .nav-bar .server-channels {
     box-sizing: border-box;
-    height: 100%;
 }
 
 .channel-card .hashtag-icon {
@@ -114,7 +113,7 @@
     box-sizing: border-box;
     height: 4rem;
     display: flex;
-    padding: 0 1rem;
+    padding: 0 0.88rem;
     align-items: center;
     justify-content: flex-start;
 }
