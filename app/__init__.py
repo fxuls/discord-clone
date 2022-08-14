@@ -70,14 +70,11 @@ def react_root(path):
     return app.send_static_file('index.html')
 
 
-@socketio.on("DIRECT_MESSAGE_SENT")
+@socketio.on("UPDATE_DIRECT_MESSAGE_CHAT")
 def message_sent(data):
-    print("DIRECT_MESSAGE_SENT " + str(data["chat_id"]))
-    emit("NEW_DIRECT_MESSAGE", data, broadcast=True)
+    print("UPDATE_DIRECT_MESSAGE_CHAT")
+    emit("UPDATE_DIRECT_MESSAGE_CHAT", data, broadcast=True)
 
 
-@socketio.on("connect")
-def on_connect():
-    send("A new connection", broadcast=True)
-
-socketio.run(app)
+if __name__ == "__main__":
+    socketio.run(app)
