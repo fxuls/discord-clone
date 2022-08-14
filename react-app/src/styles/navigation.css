@@ -4,7 +4,6 @@ nav {
     align-items: center;
     padding: 1rem 1.4rem;
     color: var(--text-color);
-    background-color: var(--sub-alt-color);
 }
 
 .masthead {
@@ -34,6 +33,6 @@ nav {
 }
 
 .nav-links > button:hover, .nav-links > a:hover {
-    color: var(--sub-color);
+    color: var(--main-color);
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
