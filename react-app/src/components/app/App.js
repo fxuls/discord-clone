@@ -4,7 +4,7 @@ import { fetchJoinedServers } from "../../store/servers";
 import { fetchUser } from "../../store/users";
 import { currentUserIdSelector } from "../../store/session";
 import { uiServerIdSelector } from "../../store/ui";
-import { fetchDirectMessages } from "../../store/directMessages";
+import { fetchDirectChat } from "../../store/directMessages";
 
 import { SocketContext } from "../sockets";
 import ServerList from "./serversList/ServerList";
@@ -26,7 +26,8 @@ const App = () => {
         setLoaded(true);
 
         socket.on("NEW_DIRECT_MESSAGE", (data) => {
-          dispatch(fetchDirectMessages());
+          console.log("Message from webhook:", data);
+          dispatch(fetchDirectChat(data.chat_id));
         });
       })();
   }, [dispatch, loaded, uiServerId, currentUserId]);
