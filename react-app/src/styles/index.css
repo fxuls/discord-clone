@@ -49,6 +49,10 @@ button:hover {
   align-items: center;
 }
 
-.unauth-app {
+.fill-height {
   height: 100%;
+}
+
+.fill-width {
+  width: 100%;
 }
