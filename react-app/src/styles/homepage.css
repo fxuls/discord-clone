@@ -1,0 +1,10 @@
+.homepage-container {
+    background-color: var(--sub-color);
+}
+
+.homepage-container .homepage-header h1 {
+    font-size: 5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    width: 40rem;
+}
