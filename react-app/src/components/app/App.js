@@ -4,7 +4,10 @@ import { fetchJoinedServers } from "../../store/servers";
 import { fetchUser } from "../../store/users";
 import { currentUserIdSelector } from "../../store/session";
 import { uiServerIdSelector } from "../../store/ui";
-import { fetchDirectChat } from "../../store/directMessages";
+import {
+  directMessageChatIdsSelector,
+  fetchDirectChat,
+} from "../../store/directMessages";
 
 import { SocketContext } from "../sockets";
 import ServerList from "./serversList/ServerList";
@@ -17,6 +20,7 @@ const App = () => {
   const uiServerId = useSelector(uiServerIdSelector);
   const [loaded, setLoaded] = useState(false);
   const currentUserId = useSelector(currentUserIdSelector);
+  const directMessageChatIds = useSelector(directMessageChatIdsSelector);
 
   useEffect(() => {
     if (!loaded)
@@ -25,9 +29,10 @@ const App = () => {
         await dispatch(fetchUser(currentUserId));
         setLoaded(true);
 
-        socket.on("NEW_DIRECT_MESSAGE", (data) => {
-          console.log("Message from webhook:", data);
-          dispatch(fetchDirectChat(data.chat_id));
+        socket.on("UPDATE_DIRECT_MESSAGE_CHAT", async (data) => {
+          console.log("UPDATE_DIRECT_MESSAGE_CHAT", data, directMessageChatIds);
+          // if (directMessageChatIds.includes(data.chat_id + ""))
+            await dispatch(fetchDirectChat(data.chat_id));
         });
       })();
   }, [dispatch, loaded, uiServerId, currentUserId]);
@@ -40,7 +45,12 @@ const App = () => {
 
       {uiServerId ? <Server /> : <Home />}
 
-      <div style={{backgroundColor: "var(--third-bg-color)", gridArea: "messages"}} />
+      <div
+        style={{
+          backgroundColor: "var(--third-bg-color)",
+          gridArea: "messages",
+        }}
+      />
     </div>
   );
 };
