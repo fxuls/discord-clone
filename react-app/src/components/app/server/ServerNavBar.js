@@ -33,7 +33,7 @@ const ServerNavBar = ({ server, loaded, activeChannelId }) => {
       <div className="server-channels header-box-shadow nav-padding">
         <div className="channels-header-container">
           <h2 className="sub-header-text unselectable">Channels</h2>
-          <FontAwesomeIcon icon={faPlus} className="delete-chat-icon" />
+          {/* <FontAwesomeIcon icon={faPlus} className="delete-chat-icon" /> */}
         </div>
 
         <ul>
