@@ -107,3 +107,33 @@
     font-size: 0.9rem;
     line-height: 1.05rem;
 }
+
+.current-user-bar {
+    margin-top: auto;
+    backdrop-filter: brightness(100%);
+    box-sizing: border-box;
+    height: 4rem;
+    display: flex;
+    padding: 0 1rem;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.current-user-bar .user-bar-icon {
+    height: 2.2rem;
+    width: 2.2rem;
+    margin-right: 0.6rem;
+}
+
+.current-user-bar .user-bar-name .name {
+    color: var(--alt-text-color);
+}
+
+.current-user-bar .sign-out-icon {
+    margin-left: auto;
+}
+
+.current-user-bar .sign-out-icon:hover {
+    color: var(--alt-text-color);
+    cursor: pointer;
+}
