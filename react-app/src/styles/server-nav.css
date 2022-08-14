@@ -20,7 +20,8 @@
 }
 
 .server-icon {
-  width: 70%;
+  width: 3.5rem;
+  max-height: 3.5rem;
   object-fit: cover;
   border-radius: 50px;
   transition: border-radius 0.32s;
