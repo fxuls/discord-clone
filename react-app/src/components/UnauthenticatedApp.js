@@ -1,8 +1,7 @@
 import { Route } from "react-router-dom";
-import NavBar from "./navigation/NavBar";
-import SignInForm from "./auth/SignInForm";
 import SignUpForm from "./auth/SignUpForm";
 import HomePage from "./HomePage";
+import SignInPage from "./auth/SignInPage";
 
 const UnauthenticatedApp = () => {
   return (
@@ -12,7 +11,7 @@ const UnauthenticatedApp = () => {
       </Route>
 
       <Route path="/sign-in" exact={true}>
-        <SignInForm />
+        <SignInPage />
       </Route>
 
       <Route path="/sign-up" exact={true}>
