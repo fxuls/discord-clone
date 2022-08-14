@@ -71,9 +71,13 @@ def react_root(path):
 
 
 @socketio.on("UPDATE_DIRECT_MESSAGE_CHAT")
-def message_sent(data):
-    print("UPDATE_DIRECT_MESSAGE_CHAT")
+def update_direct_message_chat(data):
     emit("UPDATE_DIRECT_MESSAGE_CHAT", data, broadcast=True)
+
+
+@socketio.on("UPDATE_SERVER_MESSAGES")
+def update_server_messages(data):
+    emit("UPDATE_SERVER_MESSAGES", data, broadcast=True)
 
 
 if __name__ == "__main__":
