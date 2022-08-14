@@ -10,7 +10,7 @@ const NavBar = () => {
 
   return (
     <nav>
-      <img className="masthead" src="/assets/discord-logo-banner.png" />
+      <img className="masthead unselectable" src="/assets/discord-logo-banner.png" />
 
       {sessionUser ? <AuthenticatedNav /> : <UnauthenticatedNav />}
     </nav>
