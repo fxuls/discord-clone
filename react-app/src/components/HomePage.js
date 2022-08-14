@@ -13,7 +13,10 @@ const HomePage = () => {
           hang out more often.
         </p>
       </div>
-      The servers to join will go here
+
+      <div className="homepage-servers fill-height">
+        The servers to join will go here
+      </div>
     </div>
   );
 };
