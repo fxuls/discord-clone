@@ -20,13 +20,7 @@ body * {
     transition: background-color .2s ease;
 }
 
-#root {
-  min-height: 100%;
-  height: 100%;
-  max-height: 100%;
-}
-
-#root > div {
+#root, #root > div {
   min-height: 100%;
   height: 100%;
   max-height: 100%;
@@ -53,4 +47,8 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.unauth-app {
+  height: 100%;
 }
