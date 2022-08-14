@@ -2,6 +2,7 @@ import moment from "moment";
 import { fetchUser, fetchUserIfNotExist } from "./users";
 
 const SET_DIRECT_MESSAGES = "messages/SET_DIRECT_MESSAGES";
+const SET_DIRECT_CHAT = "messages/SET_DIRECT_CHAT";
 const ADD_DIRECT_MESSAGE_CHAT = "messages/ADD_DIRECT_MESSAGE_CHAT";
 const ADD_DIRECT_MESSAGE_TO_CHAT = "messages/ADD_DIRECT_MESSAGE_TO_CHAT";
 const SORT_All_MESSAGES_BY_DATE = "messages/SORT_MESSAGES_BY_DATE";
@@ -20,6 +21,12 @@ export const chatByUserId = (userId) => (state) =>
 export const setDirectMessages = (directMessages) => ({
   type: SET_DIRECT_MESSAGES,
   payload: directMessages,
+});
+
+// SET_DIRECT_CHAT_MESSAGES action creator
+export const setDirectChat = (chat) => ({
+  type: SET_DIRECT_CHAT,
+  payload: chat,
 });
 
 // ADD_DIRECT_MESSAGE_TO_CHAT action creator
@@ -55,6 +62,14 @@ export const fetchDirectMessages = () => async (dispatch) => {
   return data;
 };
 
+export const fetchDirectChat = (chatId) => async (dispatch) => {
+  const response = await fetch(`/api/direct-messages/${chatId}`);
+
+  const data = await response.json();
+  if (response.ok) dispatch(setDirectChat(data));
+  return data;
+}
+
 export const createDirectMessageChat = (userId) => async (dispatch) => {
   const response = await fetch("/api/direct-messages", {
     method: "POST",
@@ -74,13 +89,13 @@ export const createDirectMessageChat = (userId) => async (dispatch) => {
 export const deleteDirectMessageChat =
   (directMessageChatId) => async (dispatch) => {
     const response = await fetch(
-      `/api/direct-messages/${directMessageChatId}`,
+      `/api/direct-messages/messages/${directMessageChatId}`,
       {
         method: "DELETE",
       }
     );
 
-    dispatch(fetchDirectMessages());
+    dispatch(fetchDirectChat(directMessageChatId));
 
     const data = await response.json();
     return data;
@@ -94,7 +109,7 @@ export const deleteDirectMessage = (directMessageId) => async (dispatch) => {
     }
   );
 
-  dispatch(fetchDirectMessages());
+  dispatch(fetchDirectMessages);
 
   const data = await response.json();
   return data;
@@ -117,7 +132,7 @@ export const sendDirectMessage =
 
     const data = await response.json();
 
-    if (response.ok) dispatch(addDirectMessageToChat(data));
+    if (response.ok) dispatch(fetchDirectChat(data.direct_message_chat_id));
 
     return data;
   };
@@ -150,6 +165,10 @@ export default function reducer(state = initialState, action) {
       break;
 
     case ADD_DIRECT_MESSAGE_CHAT:
+      newState[payload.id] = payload;
+      break;
+
+    case SET_DIRECT_CHAT:
       newState[payload.id] = payload;
       break;
 
