@@ -20,8 +20,12 @@ const DirectMessageChatCard = ({ directMessageChatId, active }) => {
 
   if (!user || !chat) return null;
 
-  const onDeleteDirectChat = () =>
+  const onDeleteDirectChat = (e) => {
+    e.stopPropagation();
     dispatch(deleteDirectMessageChat(directMessageChatId));
+    // if deleted chat is active set tab to friends
+    if (active) dispatch(setDirectMessageId(null));
+  }
 
   return (
     <div
