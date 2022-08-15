@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import App from "./components/app/App";
 import UnauthenticatedApp from "./components/UnauthenticatedApp";
 import Modal from "./components/modals/Modal";
+import JoinServerPage from "./components/JoinServerPage";
 
 const Root = () => {
   const [loaded, setLoaded] = useState(false);
@@ -38,6 +39,10 @@ const Root = () => {
         <Switch>
           <ProtectedRoute path="/app">
             <App />
+          </ProtectedRoute>
+
+          <ProtectedRoute path="/join">
+            <JoinServerPage />
           </ProtectedRoute>
 
           <UnauthenticatedApp />
