@@ -163,6 +163,29 @@ export const fetchServerChannels = (serverId) => async (dispatch) => {
   return data;
 };
 
+// create server thunk
+export const createServer = () => async (dispatch) => {
+  const response = await fetch("/api/servers", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: "Server",
+    }),
+  });
+
+  const data = await response.json();
+
+  if (response.ok) {
+    await dispatch(setServer(data));
+    dispatch(fetchJoinedServers());
+  }
+
+  return data;
+};
+
+
 const initialState = { joined: {} };
 
 export default function reducer(state = initialState, action) {
