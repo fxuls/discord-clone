@@ -6,16 +6,16 @@ import SignUpPage from "./auth/SignUpPage";
 const UnauthenticatedApp = () => {
   return (
     <div className="unauth-app fill-height">
-      <Route path="/" exact={true}>
-        <HomePage />
-      </Route>
-
       <Route path="/sign-in" exact={true}>
         <SignInPage />
       </Route>
 
       <Route path="/sign-up" exact={true}>
         <SignUpPage />
+      </Route>
+
+      <Route path="/">
+        <HomePage />
       </Route>
     </div>
   );
