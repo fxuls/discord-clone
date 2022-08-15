@@ -87,3 +87,21 @@ footer a:hover {
     cursor: pointer;
     color: var(--sub-color);
 }
+
+form .radio-input-row {
+    display: inline-flex;
+    align-items: center;
+}
+
+form .radio-input-row label {
+    color: rgba(var(--caret-color-values), 0.7);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+}
+
+form .radio-input-row input {
+    height: 0.8rem;
+    width: 2rem;
+    backdrop-filter: unset;
+}
