@@ -29,14 +29,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .server-icon {
-  width: 3.5rem;
   height: 3.5rem;
+  width: 3.5rem;
   border-radius: 50px;
   transition: border-radius 0.25s;
   -webkit-transition: border-radius 0.25s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1.server-icon {
+  color: var(--alt-text-color);
+  font-size: 1.2rem;
 }
 
 .server-icon:hover, .server-icon[active="true"] {
