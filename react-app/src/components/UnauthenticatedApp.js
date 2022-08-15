@@ -1,7 +1,7 @@
 import { Route } from "react-router-dom";
-import SignUpForm from "./auth/SignUpForm";
 import HomePage from "./HomePage";
 import SignInPage from "./auth/SignInPage";
+import SignUpPage from "./auth/SignUpPage";
 
 const UnauthenticatedApp = () => {
   return (
@@ -15,7 +15,7 @@ const UnauthenticatedApp = () => {
       </Route>
 
       <Route path="/sign-up" exact={true}>
-        <SignUpForm />
+        <SignUpPage />
       </Route>
     </div>
   );
