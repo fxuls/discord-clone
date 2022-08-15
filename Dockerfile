@@ -8,6 +8,8 @@ RUN npm run build
 # Start with the python:3.9 image
 FROM python:3.9
 
+ENV REACT_APP_BASE_URL=https://fxuls-discord-clone.herokuapp.com/
+
 # Set the following enviroment variables
 #
 # REACT_APP_BASE_URL -> Your deployment URL
