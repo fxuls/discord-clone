@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllServers, publicServersSelector } from "../store/servers";
+import { fetchAllServers, publicServersSelector, fetchJoinedServers } from "../store/servers";
 import NavBar from "./navigation/NavBar";
 import ServerPreviewCard from "./ServerPreviewCard";
 
@@ -13,6 +13,7 @@ const HomePage = () => {
     if (!loaded)
       (async () => {
         await dispatch(fetchAllServers());
+        await dispatch(fetchJoinedServers());
         setLoaded(true);
       })();
   }, [loaded]);
