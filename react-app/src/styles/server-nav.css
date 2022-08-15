@@ -81,8 +81,15 @@
 }
 
 #add-server-icon {
-  height: 3.5rem;
-  width: 3.5rem;
-  background-color: lime;
-  border-radius: 50px;
+  background-color: #3BA55D;
+}
+
+#add-server-icon .server-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#add-server-icon .server-icon .icon {
+  height: 1.8rem;
 }
