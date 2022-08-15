@@ -3,7 +3,7 @@ const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 
 // selectors
-export const userSelector = (state) => state.session.user;
+export const sessionUserSelector = (state) => state.session.user;
 export const currentUserIdSelector = (state) => state.session.user?.id;
 
 // action creators
