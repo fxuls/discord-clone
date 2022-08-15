@@ -136,3 +136,21 @@
     color: var(--alt-text-color);
     cursor: pointer;
 }
+
+.channels-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.88rem 0 0.5rem;
+    box-sizing: border-box;
+    min-height: 1rem;
+}
+
+#channel-list-header {
+    margin: 0;
+}
+
+.add-channel-icon:hover {
+    color: var(--alt-text-color);
+    cursor: pointer;
+}
