@@ -153,6 +153,23 @@ export const fetchServerChannels = (serverId) => async (dispatch) => {
   return data;
 };
 
+// add server channel thunk
+export const addServerChannel = (serverId, name) => async (dispatch) => {
+  const response = await fetch(`/api/servers/${serverId}/channels`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name,
+    }),
+  });
+
+  const data = await response.json();
+  if (response.ok) await dispatch(fetchServerChannels(serverId));
+  return data;
+}
+
 // create server thunk
 export const createServer = (name, isPublic) => async (dispatch) => {
   const response = await fetch("/api/servers", {
