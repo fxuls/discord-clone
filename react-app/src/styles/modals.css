@@ -30,3 +30,9 @@
 .image-modal a:hover {
     color: var(--alt-text-color);
 }
+
+.modal-form-container {
+    background-color: var(--bg-color);
+    padding: 1rem;
+    border-radius: 6px;
+}
