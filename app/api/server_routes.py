@@ -188,7 +188,42 @@ def get_server_channels(id):
     return jsonify([channel.to_dict() for channel in server.channels]), 200
 
 
-# TODO fix
+@server_routes.route("/<int:id>/channels", methods=["POST"])
+@login_required
+def add_server_channel(server_id):
+    """
+    Add a channel to a server
+    """
+    body = request.get_json()
+
+    # check that name in body
+    if "name" not in body:
+        return jsonify({
+            "message": "name is required",
+            "status_code": 400,
+        }), 400
+
+    server = Server.query(server_id)
+
+    # if server does not exist
+    if server is None:
+        return jsonify(SERVER_NOT_FOUND), 404
+
+    # if server is not owned by user
+    if server.owner_id != current_user.id:
+        return jsonify({
+            "message": "You are not the server owner",
+            "status_code": 401,
+        }), 401
+
+    channel = Channel(server_id=server_id, name=body["name"])
+
+    db.session.add(channel)
+    db.session.commit()
+
+    return jsonify(channel.to_dict()), 201
+
+
 @server_routes.route("", methods=["POST"])
 @login_required
 def create_server():
