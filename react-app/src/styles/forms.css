@@ -40,6 +40,11 @@
     font-weight: 600;
 }
 
+.form-container form .form-row label.field-error {
+    font-size: 0.9rem;
+    color: var(--error-color);
+}
+
 .form-container form input {
     box-sizing: border-box;
     width: 100%;
