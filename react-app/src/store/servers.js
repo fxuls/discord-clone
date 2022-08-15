@@ -164,14 +164,15 @@ export const fetchServerChannels = (serverId) => async (dispatch) => {
 };
 
 // create server thunk
-export const createServer = () => async (dispatch) => {
+export const createServer = (name, isPublic) => async (dispatch) => {
   const response = await fetch("/api/servers", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      name: "Server",
+      name,
+      public: isPublic,
     }),
   });
 
@@ -180,9 +181,10 @@ export const createServer = () => async (dispatch) => {
   if (response.ok) {
     await dispatch(setServer(data));
     dispatch(fetchJoinedServers());
+    return { server: data }
   }
 
-  return data;
+  return { errors: data };
 };
 
 
