@@ -8,7 +8,7 @@ import { setServer } from "../../../store/ui";
 import ChannelCard from "./ChannelCard";
 import CurrentUserNavItem from "../home/CurrentUserNavItem";
 
-const ServerNavBar = ({ server, loaded, activeChannelId }) => {
+const ServerNavBar = ({ server, loaded, activeChannelId, permission }) => {
   const dispatch = useDispatch();
   const channels = server.channels && Object.values(server.channels);
 
@@ -33,8 +33,8 @@ const ServerNavBar = ({ server, loaded, activeChannelId }) => {
 
       <div className="server-channels header-box-shadow nav-padding">
         <div className="channels-header-container">
-          <h2 className="sub-header-text unselectable">Channels</h2>
-          {/* <FontAwesomeIcon icon={faPlus} className="delete-chat-icon" /> */}
+          <h2 className="sub-header-text unselectable" id="channel-list-header">Channels</h2>
+          {(permission.permission === 4) && <FontAwesomeIcon icon={faPlus} className="add-channel-icon transparent-caret-color" />}
         </div>
 
         <ul>
@@ -52,7 +52,7 @@ const ServerNavBar = ({ server, loaded, activeChannelId }) => {
         </ul>
 
       </div>
-      
+
       <CurrentUserNavItem />
     </div>
   );
