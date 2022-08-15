@@ -111,13 +111,9 @@ export const joinServerById = (serverId) => async (dispatch) => {
     method: "POST",
   });
 
-  if (response.ok) {
-    const data = await response.json();
-    dispatch(fetchJoinedServers());
-    return data;
-  }
-
-  return null;
+  const data = await response.json();
+  if (response.ok) dispatch(fetchJoinedServers());
+  return data;
 };
 
 // join server by url thunk
@@ -127,13 +123,9 @@ export const joinServerByUrl = (serverUrl) => async (dispatch) => {
 
   const response = await fetch(`/api/servers/join/${path}`);
 
-  if (response.ok) {
-    const data = await response.json();
-    dispatch(fetchJoinedServers());
-    return data;
-  }
-
-  return null;
+  const data = await response.json();
+  if (response.ok) dispatch(fetchJoinedServers());
+  return data;
 };
 
 // leave server thunk
