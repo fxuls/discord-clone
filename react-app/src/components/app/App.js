@@ -43,7 +43,7 @@ const App = () => {
       })();
   }, [dispatch, loaded, uiServerId, currentUserId]);
 
-  if (!loaded) return <div className="app">Loading...</div>;
+  if (!loaded) return null;
 
   return (
     <div className="app">
