@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import db, Server, ServerMember, Channel, ServerPermission
 from app.forms.server_form import ServerForm
@@ -31,7 +31,7 @@ USER_NOT_MEMBER = {
 }
 
 
-@server_routes.route("/", methods=["GET"])
+@server_routes.route("", methods=["GET"])
 def get_servers():
     """
     Get a list of all of all servers
@@ -187,33 +187,37 @@ def get_server_channels(id):
 
     return jsonify([channel.to_dict() for channel in server.channels]), 200
 
+
 # TODO fix
-# @server_routes.route("/", methods=["POST"])
-# @login_required
-# def create_server():
-#     """
-#     Create a new server
-#     """
-#     form = ServerForm()
-#     if form.validate_on_submit():
-#         # create server
-#         server = Server(
-#             owner_id = current_user.id,
-#             name = form.data["name"],
-#             public = form.data["name"],
-#         )
+@server_routes.route("", methods=["POST"])
+@login_required
+def create_server():
+    """
+    Create a new server
+    """
+    form = ServerForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-#         # create a default general channel
-#         channel = Channel(server_id=server.id, name="general")
+    if form.validate_on_submit():
+        # create server
+        server = Server(
+            owner_id = current_user.id,
+            name = form.data["name"],
+            public = form.data["public"],
+        )
 
-#         # create membership in channel for owner as admin
-#         # permission_id = ServerPermission.query.filter(ServerPermission.name == "admin").one().id
-#         # membership = ServerMember(user_id=current_user.id, server_id=server.id, permission_id=permission_id)
+        db.session.add(server)
+        db.session.commit()
 
-#         db.session.add_all([server, channel, membership])
-#         db.session.commit()
+        # create a default general channel
+        channel = Channel(server_id=server.id, name="general")
 
-#         return "Created", 201
-#         return jsonify(server.to_dict()), 201
-#     return "Bad", 200
-#     # return jsonify(form.errors), 200
+        # create membership in channel for owner as admin
+        permission_id = ServerPermission.query.filter(ServerPermission.name == "admin").one().id
+        membership = ServerMember(user_id=current_user.id, server_id=server.id, permission_id=permission_id)
+
+        db.session.add_all([channel, membership])
+        db.session.commit()
+
+        return jsonify(server.to_dict()), 201
+    return jsonify(form.errors), 400
