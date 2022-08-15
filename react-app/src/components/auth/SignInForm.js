@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { signIn } from "../../store/session";
 
 const SignInForm = () => {
@@ -10,7 +9,6 @@ const SignInForm = () => {
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
   const getEmailError = () => {
