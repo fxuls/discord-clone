@@ -121,7 +121,7 @@ export const joinServerByUrl = (serverUrl) => async (dispatch) => {
   const response = await fetch(`/api/servers/join/${serverUrl}`);
 
   const data = await response.json();
-  if (response.ok) dispatch(fetchJoinedServers());
+  if (response.ok) await dispatch(fetchServer(data.id));
   return data;
 };
 
