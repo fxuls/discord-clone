@@ -1,30 +1,42 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { signIn } from "../../store/session";
 
 const SignInForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
-  const history = useHistory();
+
+  const getEmailError = () => {
+    if (!email) return "Email is required";
+    if (!/\S+@\S+\.\S+/.test(email)) return "Email is invalid";
+    return "";
+  };
+
+  const getPasswordError = () => (password ? "" : "Password is required");
 
   const onSignIn = async (e) => {
     e.preventDefault();
+    setHasSubmitted(true);
 
-    const data = await dispatch(signIn(email, password));
-    if (data) setErrors(data);
-    else history.push("/app");
-  };
+    // validations
+    const emailValidationError = getEmailError();
+    const passwordValidationError = getPasswordError();
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
+    setEmailError(emailValidationError);
+    setPasswordError(passwordValidationError);
 
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
+    // if there are no errors make request
+    if (!emailValidationError && !passwordValidationError) {
+      const data = await dispatch(signIn(email, password));
+      if (data) setErrors(data);
+    }
   };
 
   const fillInDemoDetails = () => {
@@ -32,16 +44,27 @@ const SignInForm = () => {
     setPassword("password");
   };
 
-  if (user) return <Redirect to="/app" />;
+  useEffect(() => {
+    if (hasSubmitted) {
+      setEmailError(getEmailError());
+      setPasswordError(getPasswordError());
+
+      // parse errors obj
+      const errObj = errors.reduce((obj, error) => {
+        error = error.split(" : ");
+        obj[error[0]] = error[1];
+        return obj;
+      }, {});
+
+      if (errObj.email) setEmailError(errObj.email);
+      else if (errObj.password) setPasswordError(errObj.password);
+    }
+  }, [email, password, hasSubmitted, errors])
 
   return (
     <form onSubmit={onSignIn} id="sign-in-form">
       <h1>Sign in</h1>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
+
       <div className="form-row">
         <label htmlFor="email">Email</label>
         <input
@@ -49,9 +72,13 @@ const SignInForm = () => {
           type="text"
           placeholder="jasonsmith@gmail.com"
           value={email}
-          onChange={updateEmail}
+          onChange={(e) => setEmail(e.target.value)}
         />
+        <label htmlFor="email" className="field-error">
+          {emailError}
+        </label>
       </div>
+
       <div className="form-row">
         <label htmlFor="password">Password</label>
         <input
@@ -59,10 +86,15 @@ const SignInForm = () => {
           type="password"
           placeholder="password"
           value={password}
-          onChange={updatePassword}
+          onChange={(e) => setPassword(e.target.value)}
         />
+        <label htmlFor="password" className="field-error">
+          {passwordError}
+        </label>
       </div>
+
       <button type="submit">Sign in</button>
+
       <footer className="transparent-caret-color">
         <p>
           Need an account?<a href="/sign-up">Sign up</a>
