@@ -1,5 +1,7 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700;1,900&display=swap"); */
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800;900&display=swap');
 :root {
   --button-roundness: 7px;
   --modal-roundness: 8px;
@@ -11,7 +13,7 @@ body {
   height: 100%;
   background-color: var(--bg-color);
   color: var(--text-color);
-  font-family: "Rubik", sans-serif;
+  font-family: "Noto Sans", sans-serif;
   font-size: 16px;
 }
 
