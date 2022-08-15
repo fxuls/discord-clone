@@ -154,6 +154,12 @@ const SignUpForm = () => {
       </div>
 
       <button type="submit">Sign Up</button>
+
+      <footer className="transparent-caret-color">
+        <p>
+          Already have an account?<a href="/sign-in">Sign in</a>
+        </p>
+      </footer>
     </form>
   );
 };
