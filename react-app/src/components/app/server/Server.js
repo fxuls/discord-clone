@@ -18,7 +18,7 @@ const Server = () => {
   const uiServerId = useSelector(uiServerIdSelector);
   const server = useSelector(serverSelector(uiServerId));
   const permission = useSelector(
-    currentUserServerPermissionSelector(server.id)
+    currentUserServerPermissionSelector(uiServerId)
   );
 
   let uiServerChannelId = useSelector(uiServerChannelSelector(uiServerId));
