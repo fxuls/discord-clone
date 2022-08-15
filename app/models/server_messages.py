@@ -26,10 +26,10 @@ class ServerMessage(db.Model):
         server_message_dict = {
             "id": self.id,
             "server_id": self.server_id,
-            "channel": self.channel.to_dict(),
+            "channel_id": self.channel_id,
             "text": self.text,
             "sent_at": self.sent_at,
-            "sender": self.sender.to_dict() if self.sender else None,
+            "sender_id": self.sender_id,
         }
 
         if self.image is not None: server_message_dict["image_url"] = self.image.url

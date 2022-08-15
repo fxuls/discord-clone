@@ -1,0 +1,62 @@
+.homepage-container {
+    box-sizing: border-box;
+    height: 100%;
+    background-color: var(--main-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.homepage-container .bg-color-box {
+    background-color: var(--main-color);
+}
+
+.homepage-container .homepage-header {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 3rem;
+}
+
+.homepage-container .homepage-header h1 {
+    font-size: 4.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    max-width: 40rem;
+    line-height: 90%;
+    text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-bottom: 1rem;
+}
+
+.homepage-container .homepage-header p {
+    max-width: 35rem;
+    line-height: 2rem;
+    font-size: 1.2rem;
+    font-weight: 300;
+    text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.homepage-servers {
+    min-height: 20rem;
+    border-radius: 15px;
+    background-color: var(--third-bg-color);
+    box-sizing: border-box;
+    margin: 1rem 1.7rem;
+    padding: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.homepage-servers > h2 {
+    font-weight: 700;
+    font-size: 2.6rem;
+    text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-bottom: 1.3rem;
+}
+
+.server-cards-container {
+    box-sizing: border-box;
+    min-height: 16rem;
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding: 1rem 0;
+}

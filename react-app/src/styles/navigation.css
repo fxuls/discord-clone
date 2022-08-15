@@ -1,0 +1,38 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.4rem;
+    color: var(--text-color);
+}
+
+.masthead {
+    height: 50px;
+}
+
+.masthead:hover {
+    cursor: pointer;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-links > * {
+    padding: 0.8rem;
+    border-radius: 30px;
+    background-color: var(--alt-text-color);
+    color: var(--bg-color);
+    font-weight: 500;
+}
+
+.nav-links > button {
+    border: none;
+    font-weight: 600;
+}
+
+.nav-links > button:hover, .nav-links > a:hover {
+    color: var(--main-color);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}

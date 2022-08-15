@@ -19,7 +19,7 @@ def username_exists(form, field):
     username = field.data
     user = User.query.filter(func.lower(User.username) == username.lower()).first()
     if user:
-        raise ValidationError("Username is already in use")
+        raise ValidationError("Username is taken")
 
 
 def username_follows_format(form, field):

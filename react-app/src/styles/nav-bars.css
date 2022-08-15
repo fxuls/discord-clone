@@ -1,0 +1,138 @@
+.nav-bar {
+    grid-area: navbar;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg-color);
+}
+
+.nav-padding {
+    padding: 0.8rem 0.5rem;
+}
+
+.nav-bar h2 {
+    margin: 0.5rem 0 0.6rem 0.6rem;
+}
+
+.nav-bar .nav-item {
+    padding: 0.4rem 0.6rem;
+    transition: none;
+    border-radius: 4px;
+    display: flex;
+    margin-bottom: 0.3rem;
+    align-items: center;
+}
+
+.nav-bar .nav-item:hover {
+    cursor: pointer;
+}
+
+.nav-item:hover, .nav-item[active="true"] {
+    color: var(--alt-text-color);
+    backdrop-filter: brightness(140%);
+}
+
+.nav-bar .nav-item h1 {
+    font-size: 100%;
+}
+
+.nav-bar .nav-icon {
+    margin-right: 0.6rem;
+    height: 2rem;
+    width: 2rem;
+}
+
+.nav-bar .nav-icon svg {
+    height: 80%;
+    width: 80%;
+}
+
+#friends-button {
+    margin-bottom: 0.88rem;
+}
+
+.delete-chat-icon {
+    margin-left: auto;
+    height: 1.14rem;
+    visibility: hidden;
+}
+
+.nav-bar .nav-item:hover .delete-chat-icon {
+    visibility: visible;
+}
+
+.delete-chat-icon:hover {
+    color: var(--alt-text-color);
+}
+
+.nav-bar.server-nav-bar {
+    gap: 0;
+}
+
+.nav-bar.server-nav-bar > * {
+    padding-left: 0.88rem;
+    padding-right: 0.88rem;
+}
+
+.nav-bar .server-nav-header {
+    box-sizing: border-box;
+    height: 3.31rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-bar .server-nav-header h1 {
+    font-weight: 600;
+}
+
+.nav-bar .server-nav-header .leave-server-icon:hover {
+    color: var(--alt-text-color);
+    cursor: pointer;
+}
+
+.nav-bar .server-channels {
+    box-sizing: border-box;
+}
+
+.channel-card .hashtag-icon {
+    margin-right: 5px;
+    height: 1rem;
+    opacity: 55%;
+
+}
+
+.channel-card .channel-name {
+    text-transform: lowercase;
+    font-size: 0.9rem;
+    line-height: 1.05rem;
+}
+
+.current-user-bar {
+    margin-top: auto;
+    backdrop-filter: brightness(100%);
+    box-sizing: border-box;
+    height: 4rem;
+    display: flex;
+    padding: 0 0.88rem;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.current-user-bar .user-bar-icon {
+    height: 2.2rem;
+    width: 2.2rem;
+    margin-right: 0.6rem;
+}
+
+.current-user-bar .user-bar-name .name {
+    color: var(--alt-text-color);
+}
+
+.current-user-bar .sign-out-icon {
+    margin-left: auto;
+}
+
+.current-user-bar .sign-out-icon:hover {
+    color: var(--alt-text-color);
+    cursor: pointer;
+}

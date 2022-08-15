@@ -3,7 +3,8 @@ const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 
 // selectors
-export const userSelector = (state) => state.session.user;
+export const sessionUserSelector = (state) => state.session.user;
+export const currentUserIdSelector = (state) => state.session.user?.id;
 
 // action creators
 const setUser = (user) => ({
@@ -15,6 +16,7 @@ const removeUser = () => ({
   type: REMOVE_USER,
 });
 
+// thunks
 export const authenticate = () => async (dispatch) => {
   const response = await fetch("/api/auth/", {
     headers: {
@@ -102,8 +104,10 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
       return { user: action.payload };
+
     case REMOVE_USER:
       return { user: null };
+
     default:
       return state;
   }

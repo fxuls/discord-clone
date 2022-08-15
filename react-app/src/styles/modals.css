@@ -1,0 +1,38 @@
+.modal-overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(var(--alt-bg-color-values), 0);
+    backdrop-filter: brightness(16%);
+}
+
+.image-modal .image-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.image-modal img {
+    max-height: calc(100vh - 16rem);
+}
+
+.image-modal a {
+    margin-top: 0.4rem;
+    width: fit-content;
+    font-size: 0.93rem;
+}
+
+.image-modal a:hover {
+    color: var(--alt-text-color);
+}
+
+.form-modal {
+    background-color: var(--bg-color);
+    padding: 2rem;
+    border-radius: 8px;
+}

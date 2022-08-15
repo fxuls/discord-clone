@@ -1,18 +1,27 @@
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
-import session from './session'
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
+import session from "./session";
+import servers from "./servers";
+import ui from "./ui";
+import users from "./users";
+import directMessages from "./directMessages";
+import serverMessages from "./serverMessages";
 
 const rootReducer = combineReducers({
   session,
+  servers,
+  ui,
+  users,
+  directMessages,
+  serverMessages,
 });
-
 
 let enhancer;
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === "production") {
   enhancer = applyMiddleware(thunk);
 } else {
-  const logger = require('redux-logger').default;
+  const logger = require("redux-logger").default;
   const composeEnhancers =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
   enhancer = composeEnhancers(applyMiddleware(thunk, logger));

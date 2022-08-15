@@ -1,0 +1,65 @@
+.app {
+    display: grid;
+    grid-template-columns: 4.9rem 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+        "servers main";
+    min-height: 100%;
+    min-width: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    background-color: var(--third-bg-color);
+}
+
+.content {
+    grid-area: main;
+    display: grid;
+    grid-template-columns: 14rem 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+        "navbar main";
+    min-height: 100%;
+    min-width: 100%;
+}
+
+.main {
+    grid-area: main;
+    width: 100%;
+    height: 100%;
+}
+
+.left-inset-shadow {
+    box-shadow: 5px 0 5px -5px rgba(0, 0, 0, 0.7) inset;
+}
+
+.header-box-shadow {
+    box-shadow: 0 5px 4px -5px rgba(0, 0, 0, 0.7) inset;
+}
+
+.sub-header-text {
+    text-transform: uppercase;
+    color: var(--caret-color);
+    font-size: 80%;
+}
+
+.sub-header-text:hover {
+    color: var(--alt-text-color);
+}
+
+.user-icon {
+    object-fit: cover;
+    border-radius: 50px;
+}
+
+.default-image-container {
+    background-color: var(--main-color);
+    border-radius: 50px;
+}
+
+.shadow-container {
+    width: 100%;
+}
+
+.transparent-caret-color {
+    color: rgba(var(--caret-color-values), 0.7);
+}

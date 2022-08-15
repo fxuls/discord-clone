@@ -20,9 +20,9 @@ class ServerMember(db.Model):
     def to_dict(self):
         server_member_dict = {
             "id": self.id,
-            "user": self.user.to_dict(),
+            "user_id": self.user_id,
             "server_id": self.server_id,
-            "permission": self.permission.to_dict()
+            "permission": self.permission.to_dict(),
         }
 
         return server_member_dict

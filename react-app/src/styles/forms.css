@@ -1,0 +1,116 @@
+.form-page {
+    background-color: var(--main-color);
+    box-sizing: border-box;
+    max-height: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-container form {
+    background-color: var(--bg-color);
+    padding: 2rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 15px;
+    min-width: 25rem;
+}
+
+form h1 {
+    font-weight: 800;
+    font-size: 3.9rem;
+    margin-bottom: 1.8rem;
+}
+
+form .form-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+    gap: 7px;
+}
+
+form .form-row label {
+    font-size: 1.12rem;
+    font-weight: 600;
+}
+
+form .form-row label.field-error {
+    font-size: 0.9rem;
+    color: var(--error-color);
+}
+
+form input {
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid rgba(var(--alt-text-color-values), 0.1);
+    background-color: rgba(var(--alt-bg-color-values), 0.1);
+    backdrop-filter: brightness(80%);
+    padding: 0.9rem 1.6rem;
+    color: var(--text-color);
+    font-size: 1rem;
+    border-radius: 10px;
+    letter-spacing: 1.1px;
+}
+
+form input::placeholder {
+    color: rgba(var(--alt-text-color-values), 0.3);
+}
+
+form button {
+    border-radius: 10px;
+    padding: 1.1rem 1.6rem;
+    font-size: 1.2rem;
+    letter-spacing: 1.08px;
+    font-weight: 900;
+    width: 100%;
+}
+
+footer {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+footer a {
+    margin-left: 7px;
+    color: var(--text-color);
+}
+
+footer a:hover {
+    cursor: pointer;
+    color: var(--sub-color);
+}
+
+form .radio-input-row {
+    display: inline-flex;
+    align-items: center;
+}
+
+form .radio-input-row label {
+    color: rgba(var(--caret-color-values), 0.7);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+}
+
+form .radio-input-row input {
+    height: 0.8rem;
+    width: 2rem;
+    backdrop-filter: unset;
+}
+
+#create-server-form {
+    width: 22rem;
+}
+
+
+#create-server-form h1 {
+    font-size: 3.2rem;
+}

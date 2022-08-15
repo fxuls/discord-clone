@@ -1,0 +1,52 @@
+.server-preview-card {
+    height: 14rem;
+    min-width: 9.8rem;
+    border-radius: 8px;
+    padding: 0.8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--bg-color);
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+    transition: all 0.2s;
+}
+
+.server-preview-card:hover {
+    transform: translateY(-6px);
+}
+
+.server-preview-card .server-preview-icon {
+    height: 5.8rem;
+    width: 5.8rem;
+    margin-bottom: 0.8rem;
+    background-color: var(--alt-bg-color);
+    border-radius: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+h1.server-preview-icon {
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+.server-preview-card .server-name {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 0.6rem;
+}
+
+.server-preview-card .member-count {
+    color: var(--caret-color);
+    margin-bottom: 1.3rem;
+}
+
+.server-preview-card button {
+    box-sizing: border-box;
+    width: 80%;
+    padding: 0.7rem 0;
+    font-weight: 800;
+    font-size: 1.08rem;
+}
