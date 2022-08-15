@@ -44,7 +44,7 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.homepage-servers h2 {
+.homepage-servers > h2 {
     font-weight: 700;
     font-size: 2.6rem;
     text-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
