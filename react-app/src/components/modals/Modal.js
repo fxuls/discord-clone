@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { hideModal } from "../../store/ui";
 import ImageModal, { IMAGE_MODAL } from "./ImageModal";
+import CreateServerModal, { CREATE_SERVER_MODAL } from "./CreateServerModal";
 
 const Modal = ({ modal }) => {
     const dispatch = useDispatch();
@@ -11,9 +12,13 @@ const Modal = ({ modal }) => {
     let modalComponent;
     switch (modal.type) {
         case IMAGE_MODAL:
-            modalComponent = <ImageModal modal={modal} stopPropagation={stopPropagation}/>
+            modalComponent = <ImageModal modal={modal} stopPropagation={stopPropagation} />;
             break;
 
+        case CREATE_SERVER_MODAL:
+            modalComponent = <CreateServerModal modal={modal} stopPropagation={stopPropagation} />;
+            break;
+            
         default:
             closeModal();
             return null;
