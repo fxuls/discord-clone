@@ -31,8 +31,8 @@
     color: var(--alt-text-color);
 }
 
-.modal-form-container {
+.form-modal {
     background-color: var(--bg-color);
-    padding: 1rem;
-    border-radius: 6px;
+    padding: 2rem;
+    border-radius: 8px;
 }
