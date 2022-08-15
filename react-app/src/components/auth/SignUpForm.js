@@ -1,92 +1,155 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { signUp } from "../../store/session";
 
 const SignUpForm = () => {
-  const [errors, setErrors] = useState([]);
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
-  const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
+
+  const [errors, setErrors] = useState([]);
+  const [usernameError, setUsernameError] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [repeatPasswordError, setRepeatPasswordError] = useState("");
+  const [hasSubmitted, setHasSubmitted] = useState(false);
+
+  const validateUsername = () => {
+    let errorMessage = "";
+    if (!username) errorMessage = "Username is required";
+    else if (!/^.{3,40}#[0-9]{4}$/.test(username))
+      errorMessage = "Username is invalid";
+    setUsernameError(errorMessage);
+    return !errorMessage;
+  };
+
+  const validateEmail = () => {
+    let errorMessage = "";
+    if (!email) errorMessage = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(email))
+      errorMessage = "Please enter a valid email";
+    setEmailError(errorMessage);
+    return errorMessage === "";
+  };
+
+  const validatePassword = () => {
+    let errorMessage = "";
+    if (!password) errorMessage = "Password is required";
+    else if (password.length < 8)
+      errorMessage = "Password must be at least 8 characters";
+    else if (password.length > 128)
+      errorMessage = "Password must be fewer than 128 characters";
+    setPasswordError(errorMessage);
+    return errorMessage === "";
+  };
+
+  const validateRepeatPassword = () => {
+    let errorMessage = "";
+    if (!repeatPassword) errorMessage = "Please re-enter your password";
+    else if (repeatPassword !== password)
+      errorMessage = "Passwords do not match";
+    setRepeatPasswordError(errorMessage);
+    return errorMessage === "";
+  };
+
+  useEffect(() => {
+    if (hasSubmitted) {
+      validateUsername();
+      validateEmail();
+      validatePassword();
+      validateRepeatPassword();
+
+      // parse backend errors obj
+      const errObj = errors.reduce((obj, error) => {
+        error = error.split(" : ");
+        obj[error[0]] = error[1];
+        return obj;
+      }, {});
+
+      if (errObj.username) setUsernameError(errObj.username);
+      if (errObj.email) setEmailError(errObj.email);
+      if (errObj.password) setPasswordError(errObj.password);
+    }
+  }, [username, email, password, repeatPassword, hasSubmitted, errors]);
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
+    setHasSubmitted(true);
+
+    // validations
+    const validations = [
+      validateUsername(),
+      validateEmail(),
+      validatePassword(),
+      validateRepeatPassword(),
+    ];
+
+    if (!validations.includes(false)) {
       const data = await dispatch(signUp(username, email, password));
-      if (data) {
-        setErrors(data)
-      }
+      if (data) setErrors(data);
     }
   };
 
-  const updateUsername = (e) => {
-    setUsername(e.target.value);
-  };
-
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
-  };
-
-  if (user) {
-    return <Redirect to='/' />;
-  }
-
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label>User Name</label>
+    <form onSubmit={onSignUp} id="sign-up-form">
+      <h1>Sign up</h1>
+
+      <div className="form-row">
+        <label htmlFor="username">User Name</label>
         <input
-          type='text'
-          name='username'
-          onChange={updateUsername}
+          type="text"
+          name="username"
+          onChange={(e) => setUsername(e.target.value)}
           value={username}
-        ></input>
+        />
+        <label htmlFor="username" className="field-error">
+          {usernameError}
+        </label>
       </div>
-      <div>
-        <label>Email</label>
+
+      <div className="form-row">
+        <label htmlFor="email">Email</label>
         <input
-          type='text'
-          name='email'
-          onChange={updateEmail}
+          type="text"
+          name="email"
+          onChange={(e) => setEmail(e.target.value)}
           value={email}
-        ></input>
+        />
+        <label htmlFor="email" className="field-error">
+          {emailError}
+        </label>
       </div>
-      <div>
-        <label>Password</label>
+
+      <div className="form-row">
+        <label htmlFor="password">Password</label>
         <input
-          type='password'
-          name='password'
-          onChange={updatePassword}
+          type="password"
+          name="password"
+          onChange={(e) => setPassword(e.target.value)}
           value={password}
-        ></input>
+        />
+        <label htmlFor="password" className="field-error">
+          {passwordError}
+        </label>
       </div>
-      <div>
-        <label>Repeat Password</label>
+
+      <div className="form-row">
+        <label htmlFor="repeatPassword">Repeat Password</label>
         <input
-          type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
+          type="password"
+          name="repeatPassword"
+          onChange={(e) => setRepeatPassword(e.target.value)}
           value={repeatPassword}
-          required={true}
-        ></input>
+        />
+        <label htmlFor="repeatPassword" className="field-error">
+          {repeatPasswordError}
+        </label>
       </div>
-      <button type='submit'>Sign Up</button>
+
+      <button type="submit">Sign Up</button>
     </form>
   );
 };
