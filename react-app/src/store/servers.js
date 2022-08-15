@@ -118,10 +118,7 @@ export const joinServerById = (serverId) => async (dispatch) => {
 
 // join server by url thunk
 export const joinServerByUrl = (serverUrl) => async (dispatch) => {
-  // extract last path of url
-  const path = serverUrl.split("/").pop();
-
-  const response = await fetch(`/api/servers/join/${path}`);
+  const response = await fetch(`/api/servers/join/${serverUrl}`);
 
   const data = await response.json();
   if (response.ok) dispatch(fetchJoinedServers());
