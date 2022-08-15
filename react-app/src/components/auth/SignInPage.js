@@ -7,7 +7,7 @@ import SignInForm from "./SignInForm";
 const SignInPage = () => {
   const sessionUser = useSelector(sessionUserSelector);
 
-  if (sessionUser) return <Redirect to="/" />
+  if (sessionUser) return <Redirect to="/app" />
 
   return (
     <div className="form-page">
