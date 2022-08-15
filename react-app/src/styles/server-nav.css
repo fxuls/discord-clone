@@ -33,14 +33,15 @@
 }
 
 .home-card {
-  background-color: var(--main-color);
+  background-color: var(--third-bg-color);
   border-radius: 50px;
-  transition: border-radius 0.25s;
-  -webkit-transition: border-radius 0.25s;
+  transition: border-radius background-color 0.25s;
+  -webkit-transition: border-radius background-color 0.25s;
 }
 
 .home-card:hover, .home-card[active="true"] {
   border-radius: 20px;
+  background-color: var(--main-color);
   cursor: pointer;
 }
 
