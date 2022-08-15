@@ -1,9 +1,24 @@
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllServers, publicServersSelector } from "../store/servers";
 import NavBar from "./navigation/NavBar";
+import ServerPreviewCard from "./ServerPreviewCard";
 
 const HomePage = () => {
+  const dispatch = useDispatch();
+  const [loaded, setLoaded] = useState(false);
+  const publicServers = useSelector(publicServersSelector);
+
+  useEffect(() => {
+    if (!loaded)
+      (async () => {
+        await dispatch(fetchAllServers());
+        setLoaded(true);
+      })();
+  }, [loaded]);
+
   return (
     <div className="homepage-container">
-      <div className="bg-color-box">
         <NavBar />
         <div className="homepage-header">
           <h1>Imagine a place...</h1>
@@ -13,11 +28,16 @@ const HomePage = () => {
             spend time together. A place that makes it easy to talk every day
             and hang out more often.
           </p>
-        </div>
       </div>
 
       <div className="homepage-servers header-box-shadow">
-        The servers to join will go here
+        <h2>Discover servers</h2>
+
+        <div className="server-cards-container">
+          {
+            loaded && publicServers?.length && publicServers.map((server) => <ServerPreviewCard server={server} key={server.id} />)
+          }
+        </div>
       </div>
     </div>
   );
