@@ -2,6 +2,8 @@
   margin: 0;
   grid-area: servers;
   background-color: var(--alt-bg-color);
+  height: 100%;
+  max-height: 100%;
 }
 
 .server-list {
@@ -10,7 +12,17 @@
   gap: 9.8px;
   align-items: center;
   padding: 1rem 0;
-  overflow-y: auto;
+  height: 100%;
+  max-height: 100%;
+  box-sizing: border-box;
+}
+
+.server-icons-list {
+  max-height: 40rem;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 9.8px;
 }
 
 .server-card {
@@ -45,7 +57,7 @@
   cursor: pointer;
 }
 
-.server-list .list-seperator {
+.list-seperator {
   width: 40%;
   border-bottom: 1.4px solid rgba(var(--caret-color-values), 0.35);
   clear: both;
