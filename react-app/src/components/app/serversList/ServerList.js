@@ -42,13 +42,15 @@ const ServerList = () => {
 
         <div className="list-seperator" />
 
-        {joinedServers.map((server) => (
-          <ServerCard
-            key={server.id}
-            server={server}
-            active={uiServerId === server.id}
-          />
-        ))}
+        <div className="server-icons-list">
+          {joinedServers.map((server) => (
+            <ServerCard
+              key={server.id}
+              server={server}
+              active={uiServerId === server.id}
+            />
+          ))}
+        </div>
 
         <div className="list-seperator" />
 
