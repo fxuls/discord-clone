@@ -98,7 +98,7 @@ const SignUpForm = () => {
       <h1>Sign up</h1>
 
       <div className="form-row">
-        <label htmlFor="username">User Name</label>
+        <label htmlFor="username">Username</label>
         <input
           type="text"
           name="username"
