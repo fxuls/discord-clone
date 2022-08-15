@@ -1,7 +1,13 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { joinedServersSelector } from "../../../store/servers";
-import { clearServer, uiServerIdSelector } from "../../../store/ui";
+import {
+  clearServer,
+  uiServerIdSelector,
+  showCreateServerModal,
+} from "../../../store/ui";
 import ServerCard from "./ServerCard";
 
 const ServerList = () => {
@@ -13,11 +19,15 @@ const ServerList = () => {
   useEffect(() => {}, [uiServerId]);
 
   const showHome = () => dispatch(clearServer());
+  const onAddServer = () => dispatch(showCreateServerModal());
 
   return (
     <div className="server-list-container box-shadow-right">
       <div className="server-list">
-        <div className="server-card home-card" active={(uiServerId === null) + ""}>
+        <div
+          className="server-card home-card"
+          active={(uiServerId === null) + ""}
+        >
           <img
             onClick={showHome}
             alt="Home icon"
@@ -42,8 +52,14 @@ const ServerList = () => {
 
         <div className="list-seperator" />
 
-        <div id="add-server-iconn" className="server-icon">
-          +
+        <div
+          id="add-server-icon"
+          className="server-card home-card"
+          onClick={onAddServer}
+        >
+          <div className="server-icon">
+            <FontAwesomeIcon icon={faPlus} className="icon" />
+          </div>
         </div>
       </div>
     </div>
