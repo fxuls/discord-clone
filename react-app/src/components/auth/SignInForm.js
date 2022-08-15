@@ -27,6 +27,11 @@ const SignInForm = () => {
     setPassword(e.target.value);
   };
 
+  const fillInDemoDetails = () => {
+    setEmail("demo@aa.io");
+    setPassword("password");
+  };
+
   if (user) return <Redirect to="/app" />;
 
   return (
@@ -58,6 +63,14 @@ const SignInForm = () => {
         />
       </div>
       <button type="submit">Sign in</button>
+      <footer className="transparent-caret-color">
+        <p>
+          Need an account?<a href="/sign-up">Sign up</a>
+        </p>
+        <p>
+          Just looking around?<a onClick={fillInDemoDetails}>Demo user</a>
+        </p>
+      </footer>
     </form>
   );
 };
