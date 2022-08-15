@@ -105,3 +105,12 @@ form .radio-input-row input {
     width: 2rem;
     backdrop-filter: unset;
 }
+
+#create-server-form {
+    width: 22rem;
+}
+
+
+#create-server-form h1 {
+    font-size: 3.2rem;
+}
