@@ -21,6 +21,7 @@ export const currentUserServerPermissionSelector = (serverId) => (state) => {
   if (!Object.keys(state.servers.joined).includes(serverId + "")) return null;
   return state.servers.joined[serverId].permission;
 }
+export const publicServersSelector = (state) => Object.values(state.servers).filter((server) => server.public);
 
 // action creators
 export const setServers = (servers) => ({
