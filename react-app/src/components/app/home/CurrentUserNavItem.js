@@ -1,9 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { currentUserIdSelector, signOut } from "../../../store/session";
 import { userSelector } from "../../../store/users";
-import { useHistory } from "react-router-dom";
+import { setJoinedServers } from "../../../store/servers";
 
 const CurrentUserNavItem = () => {
   const dispatch = useDispatch();
@@ -12,10 +13,11 @@ const CurrentUserNavItem = () => {
   const user = useSelector(userSelector(currentUserId));
   const username = user.username.split("#");
 
-  const onSignOut = () => {
-    dispatch(signOut());
+  const onSignOut = async () => {
+    await dispatch(signOut());
+    await dispatch(setJoinedServers({}));
     history.push("/");
-  }
+  };
 
   return (
     <div className="current-user-bar header-box-shadow transparent-caret-color">
@@ -45,7 +47,11 @@ const CurrentUserNavItem = () => {
         <span className="tag">{"#" + username[1]}</span>
       </div>
 
-      <FontAwesomeIcon icon={faArrowRightFromBracket} className="sign-out-icon" onClick={onSignOut} />
+      <FontAwesomeIcon
+        icon={faArrowRightFromBracket}
+        className="sign-out-icon"
+        onClick={onSignOut}
+      />
     </div>
   );
 };
