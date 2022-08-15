@@ -104,6 +104,7 @@ const SignUpForm = () => {
           name="username"
           onChange={(e) => setUsername(e.target.value)}
           value={username}
+          placeholder="DinoUser#1234"
         />
         <label htmlFor="username" className="field-error">
           {usernameError}
@@ -117,6 +118,7 @@ const SignUpForm = () => {
           name="email"
           onChange={(e) => setEmail(e.target.value)}
           value={email}
+          placeholder="jason.smith@gmail.com"
         />
         <label htmlFor="email" className="field-error">
           {emailError}
@@ -130,6 +132,7 @@ const SignUpForm = () => {
           name="password"
           onChange={(e) => setPassword(e.target.value)}
           value={password}
+          placeholder="●●●●●●●●"
         />
         <label htmlFor="password" className="field-error">
           {passwordError}
@@ -143,6 +146,7 @@ const SignUpForm = () => {
           name="repeatPassword"
           onChange={(e) => setRepeatPassword(e.target.value)}
           value={repeatPassword}
+          placeholder="●●●●●●●●"
         />
         <label htmlFor="repeatPassword" className="field-error">
           {repeatPasswordError}
