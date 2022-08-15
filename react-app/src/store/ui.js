@@ -1,4 +1,5 @@
 import { IMAGE_MODAL } from "../components/modals/ImageModal";
+import { CREATE_SERVER_MODAL } from "../components/modals/CreateServerModal";
 
 export const SET_SERVER = "ui/SHOW_SERVER";
 export const CLEAR_SERVER = "ui/CLEAR_SERVER";
@@ -67,6 +68,14 @@ export const showImageModal = (imageUrl) => ({
     type: IMAGE_MODAL,
     imageUrl,
   },
+});
+
+// CREATE_SERVER_MODAL action creator
+export const showCreateServerModal = () => ({
+  type: SHOW_MODAL,
+  payload: {
+    type: CREATE_SERVER_MODAL,
+  }
 });
 
 // SET_SERVER_CHANNEL_ID action creator
