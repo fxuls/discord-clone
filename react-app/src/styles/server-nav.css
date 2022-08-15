@@ -45,6 +45,7 @@
 h1.server-icon {
   color: var(--alt-text-color);
   font-size: 1.2rem;
+  font-weight: 800;
 }
 
 .server-icon:hover, .server-icon[active="true"] {
