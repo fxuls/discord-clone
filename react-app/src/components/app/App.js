@@ -31,13 +31,13 @@ const App = () => {
         setLoaded(true);
 
         socket.on("UPDATE_DIRECT_MESSAGE_CHAT", async (data) => {
-          console.log("UPDATE_DIRECT_MESSAGE_CHAT", data, directMessageChatIds);
+          // console.log("UPDATE_DIRECT_MESSAGE_CHAT", data, directMessageChatIds);
           // if (directMessageChatIds.includes(data.chat_id + ""))
-          await dispatch(fetchDirectChat(data.chat_id));
+            await dispatch(fetchDirectChat(data.chat_id));
         });
 
         socket.on("UPDATE_SERVER_MESSAGES", async (data) => {
-          console.log("UPDATE_SERVER_MESSAGES", data);
+          // console.log("UPDATE_SERVER_MESSAGES", data);
           await dispatch(fetchServerMessages(data.server_id));
         });
       })();
