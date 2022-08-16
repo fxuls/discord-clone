@@ -212,3 +212,40 @@ def post_new_message():
     db.session.commit()
 
     return jsonify(message.to_dict()), 201
+
+
+@direct_message_routes.route("/messages/<int:message_id>", methods=["PUT", "POST"])
+@login_required
+def edit_message(message_id):
+    """
+    Edit an existing message text
+    """
+    body = request.get_json()
+
+    # if text not in body
+    if "text" not in body and "image_id" not in body:
+        return jsonify(CONTENT_MISSING), 400
+
+    message = DirectMessage.query.get(message_id)
+
+    # if message does not exist
+    if message is None:
+        return jsonify(MESSAGE_NOT_EXIST), 404
+
+    # if user is not sender
+    if message.sender_id != current_user.id:
+        return jsonify({
+            "message": "Message does not belong to user",
+            "status_code": 401,
+        }), 401
+
+    # update message
+    if "text" in body:
+        message.text = body["text"]
+    if "image_id" in body:
+        message.image_id = body["image_id"]
+
+    db.session.add(message)
+    db.session.commit()
+
+    return jsonify(message.to_dict()), 201
