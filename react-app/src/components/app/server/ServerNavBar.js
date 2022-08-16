@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { leaveServer } from "../../../store/servers";
-import { setServer } from "../../../store/ui";
+import { setServer, showAddChannelModal } from "../../../store/ui";
 
 import ChannelCard from "./ChannelCard";
 import CurrentUserNavItem from "../home/CurrentUserNavItem";
@@ -20,6 +20,8 @@ const ServerNavBar = ({ server, loaded, activeChannelId, permission }) => {
     dispatch(setServer(null));
   };
 
+  const onAddChannel = () => dispatch(showAddChannelModal());
+
   return (
     <div className="nav-bar server-nav-bar left-inset-shadow">
       <div className="server-nav-header nav-padding left-inset-shadow">
@@ -34,7 +36,7 @@ const ServerNavBar = ({ server, loaded, activeChannelId, permission }) => {
       <div className="server-channels header-box-shadow nav-padding">
         <div className="channels-header-container">
           <h2 className="sub-header-text unselectable" id="channel-list-header">Channels</h2>
-          {(permission.permission === 4) && <FontAwesomeIcon icon={faPlus} className="add-channel-icon transparent-caret-color" />}
+          {(permission.permission === 4) && <FontAwesomeIcon icon={faPlus} className="add-channel-icon transparent-caret-color" onClick={onAddChannel} />}
         </div>
 
         <ul>
