@@ -203,7 +203,7 @@ def add_server_channel(id):
             "status_code": 400,
         }), 400
 
-    server = Server.query(id)
+    server = Server.query.get(id)
 
     # if server does not exist
     if server is None:
