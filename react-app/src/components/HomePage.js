@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAllServers, publicServersSelector, fetchJoinedServers } from "../store/servers";
 import NavBar from "./navigation/NavBar";
 import ServerPreviewCard from "./ServerPreviewCard";
+import HomeFooter from "../HomeFooter";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -40,6 +41,8 @@ const HomePage = () => {
           }
         </div>
       </div>
+
+      <HomeFooter />
     </div>
   );
 };
