@@ -68,7 +68,7 @@ const MessageCard = ({ message, onDeleteMessage, permission, loaded }) => {
 
       <div className="message-header">
         <h1 style={{ color: sender.color }}>{name}</h1>
-        <h2 className="timestamp transparent-caret-color">{dateString}</h2>
+        <h2 className="timestamp">{dateString}</h2>
       </div>
 
       <div className="message-content">
