@@ -25,7 +25,7 @@ const CreateServerForm = () => {
 
   const validateIsPublic = () => {
     let errorMessage = "";
-    if (!isPublic) errorMessage = "Privacy option is required";
+    if (isPublic !== false && isPublic !== true) errorMessage = "Privacy option is required";
     setIsPublicError(errorMessage);
     return !errorMessage;
   }
