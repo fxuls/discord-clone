@@ -20,7 +20,7 @@ const ServerNavBar = ({ server, loaded, activeChannelId, permission }) => {
     dispatch(setServer(null));
   };
 
-  const onAddChannel = () => dispatch(showAddChannelModal());
+  const onAddChannel = () => dispatch(showAddChannelModal(server.id));
 
   return (
     <div className="nav-bar server-nav-bar left-inset-shadow">
