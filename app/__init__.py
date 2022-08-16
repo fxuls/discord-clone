@@ -19,7 +19,7 @@ if os.environ.get('FLASK_ENV') == 'production':
     ]
 else:
     origins = "*"
-socketio = SocketIO(cors_allowed_origins=origins, logger=True, engineio_logger=True)
+# socketio = SocketIO(cors_allowed_origins=origins, logger=True, engineio_logger=True)
 # socketio = SocketIO(app, cors_allowed_origins="*")
 
 # Setup login manager
@@ -39,7 +39,7 @@ app.config.from_object(Config)
 app.register_blueprint(api_routes)
 db.init_app(app)
 Migrate(app, db)
-socketio.init_app(app)
+# socketio.init_app(app)
 
 # Application Security
 CORS(app)
@@ -75,22 +75,24 @@ def inject_csrf_token(response):
 @app.route('/<path:path>')
 def react_root(path):
     if path == 'favicon.ico':
+        print("FAVICONFAVICONFAVICONFAVICONFAVICONFAVICON")
         return app.send_static_file('favicon.ico')
     if path[0:6] == 'assets':
         return app.send_static_file(path[7:])
     return app.send_static_file('index.html')
 
 
-@socketio.on("UPDATE_DIRECT_MESSAGE_CHAT")
-def update_direct_message_chat(data):
-    emit("UPDATE_DIRECT_MESSAGE_CHAT", data, broadcast=True)
+# @socketio.on("UPDATE_DIRECT_MESSAGE_CHAT")
+# def update_direct_message_chat(data):
+#     emit("UPDATE_DIRECT_MESSAGE_CHAT", data, broadcast=True)
 
 
-@socketio.on("UPDATE_SERVER_MESSAGES")
-def update_server_messages(data):
-    emit("UPDATE_SERVER_MESSAGES", data, broadcast=True)
+# @socketio.on("UPDATE_SERVER_MESSAGES")
+# def update_server_messages(data):
+#     emit("UPDATE_SERVER_MESSAGES", data, broadcast=True)
 
 
 if __name__ == "__main__":
-    socketio.run(app)
+    app.run()
+    # socketio.run(app)
     # app.run(socketio.run(app))
