@@ -85,12 +85,14 @@ export const fetchServers = (serverIds) => async (dispatch) => {
 };
 
 // fetch joined servers thunk
-export const fetchJoinedServers = () => async (dispatch) => {
+export const fetchJoinedServers = () => async (dispatch, getState) => {
+  const state = getState();
+  if (!state.session.user) return dispatch(setJoinedServers({}));
+
   const response = await fetch("/api/servers/joined", {});
-
+  const data = await response.json();
+  
   if (response.ok) {
-    const data = await response.json();
-
     const joinedServers = {};
     data.forEach((server) => {
       const permission = {
@@ -103,6 +105,8 @@ export const fetchJoinedServers = () => async (dispatch) => {
     await dispatch(setJoinedServers(joinedServers));
     await dispatch(fetchServers(Object.keys(joinedServers)));
   }
+
+  return data;
 };
 
 // join server by id thunk
