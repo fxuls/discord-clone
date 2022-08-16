@@ -12,7 +12,15 @@ from .seeds import seed_commands
 from .config import Config
 
 app = Flask(__name__)
-socketio = SocketIO(app, cors_allowed_origins="*")
+if os.environ.get('FLASK_ENV') == 'production':
+    origins = [
+        'http://fxuls-discord-clone.herokuapp.com',
+        'https://fxuls-discord-clone.herokuapp.com'
+    ]
+else:
+    origins = "*"
+socketio = SocketIO(cors_allowed_origins=origins, logger=True, engineio_logger=True)
+# socketio = SocketIO(app, cors_allowed_origins="*")
 
 # Setup login manager
 login = LoginManager(app)
