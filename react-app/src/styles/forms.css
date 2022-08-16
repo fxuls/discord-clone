@@ -71,19 +71,19 @@ form button {
     width: 100%;
 }
 
-footer {
+form footer {
     margin-top: 1rem;
     display: flex;
     flex-direction: column;
     gap: 0.6rem;
 }
 
-footer a {
+form footer a {
     margin-left: 7px;
     color: var(--text-color);
 }
 
-footer a:hover {
+form footer a:hover {
     cursor: pointer;
     color: var(--sub-color);
 }
