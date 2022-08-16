@@ -1,6 +1,8 @@
 # discord-clone
 **discord-clone** is a clone of [Discord](https://discord.com), a chatting platform that allows users to share messages and media privately or in servers. **discord-clone** aims to replicate those features both on the front and backend.
 
+## Live site
+[Open discord-clone](https://fxuls-discord-clone.herokuapp.com)
 
 ## Technologies used
 ### Frontend
