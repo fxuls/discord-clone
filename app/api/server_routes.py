@@ -190,7 +190,7 @@ def get_server_channels(id):
 
 @server_routes.route("/<int:id>/channels", methods=["POST"])
 @login_required
-def add_server_channel(server_id):
+def add_server_channel(id):
     """
     Add a channel to a server
     """
@@ -203,7 +203,7 @@ def add_server_channel(server_id):
             "status_code": 400,
         }), 400
 
-    server = Server.query(server_id)
+    server = Server.query(id)
 
     # if server does not exist
     if server is None:
@@ -216,7 +216,7 @@ def add_server_channel(server_id):
             "status_code": 401,
         }), 401
 
-    channel = Channel(server_id=server_id, name=body["name"])
+    channel = Channel(server_id=id, name=body["name"])
 
     db.session.add(channel)
     db.session.commit()
