@@ -84,7 +84,6 @@
     margin-left: 0.4rem;
     letter-spacing: 0.03rem;
     color: var(--caret-color);
-    opacity: 40%;
 }
 
 .message-card:hover .message-header .timestamp {
