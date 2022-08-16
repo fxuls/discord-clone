@@ -12,6 +12,7 @@ import "./headers.css";
 import "./modals.css";
 import "./forms.css";
 import "./server-preview-cards.css";
+import "./footer.css";
 
 export const colors = [
   "#5865F2", // Blurple
