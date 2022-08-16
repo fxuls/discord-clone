@@ -80,10 +80,11 @@ export const showCreateServerModal = () => ({
 });
 
 // ADD_CHANNEL_MODAL action creator
-export const showAddChannelModal = () => ({
+export const showAddChannelModal = (serverId) => ({
   type: SHOW_MODAL,
   payload: {
     type: ADD_CHANNEL_MODAL,
+    serverId,
   },
 })
 
