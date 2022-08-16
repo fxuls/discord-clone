@@ -2,9 +2,9 @@ import AddChannelForm from "../app/server/AddChannelForm";
 
 export const ADD_CHANNEL_MODAL = "modals/ADD_CHANNEL_MODAL";
 
-const AddChannelModal = ({ stopPropagation }) => {
+const AddChannelModal = ({ modal, stopPropagation }) => {
     return (<div className="form-modal" onMouseDown={stopPropagation}>
-        <AddChannelForm />
+        <AddChannelForm serverId={modal.serverId} />
     </div>);
 }
 
