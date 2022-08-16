@@ -19,7 +19,7 @@ if os.environ.get('FLASK_ENV') == 'production':
     ]
 else:
     origins = "*"
-socketio = SocketIO(app, cors_allowed_origins=origins, logger=True, engineio_logger=True)
+socketio = SocketIO(cors_allowed_origins=origins, logger=True, engineio_logger=True)
 # socketio = SocketIO(app, cors_allowed_origins="*")
 
 # Setup login manager
@@ -39,6 +39,7 @@ app.config.from_object(Config)
 app.register_blueprint(api_routes)
 db.init_app(app)
 Migrate(app, db)
+socketio.init_app(app)
 
 # Application Security
 CORS(app)
@@ -91,5 +92,5 @@ def update_server_messages(data):
 
 
 if __name__ == "__main__":
-    # socketio.run(app)
-    app.run(socketio.run(app))
+    socketio.run(app)
+    # app.run(socketio.run(app))
