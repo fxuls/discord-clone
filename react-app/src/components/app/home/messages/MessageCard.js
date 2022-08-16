@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 
@@ -8,9 +9,12 @@ import { userSelector } from "../../../../store/users";
 import { currentUserIdSelector } from "../../../../store/session";
 import { showImageModal } from "../../../../store/ui";
 import { useEffect } from "react";
+import { editDirectMessage } from "../../../../store/directMessages";
 
 const MessageCard = ({ message, onDeleteMessage, permission, loaded }) => {
   const dispatch = useDispatch();
+  const [inEditMode, setInEditMode] = useState(false);
+  const [editText, setEditText] = useState("");
   const userId = useSelector(currentUserIdSelector);
   const sender = useSelector(userSelector(message.sender_id));
 
@@ -42,7 +46,24 @@ const MessageCard = ({ message, onDeleteMessage, permission, loaded }) => {
 
   const onImageClick = () => dispatch(showImageModal(message.image_url));
 
-  const onEditClick = () => console.log("Edit message");
+  // const onEditClick = () => dispatch(editDirectMessage({ messageId: message.id, text: "TEST EDIT MESSAGE"}));
+  const onEditClick = () => {
+    setInEditMode(true);
+    setEditText(message.text);
+  };
+
+  const onEditSubmit = (e) => {
+    e.preventDefault();
+
+    dispatch(
+      editDirectMessage({
+        messageId: message.id,
+        text: editText,
+      })
+    );
+    setEditText("");
+    setInEditMode(false);
+  };
 
   return (
     <div className="message-card">
@@ -74,7 +95,19 @@ const MessageCard = ({ message, onDeleteMessage, permission, loaded }) => {
       </div>
 
       <div className="message-content">
-        <p>{message.text}</p>
+        {inEditMode ? (
+          <form onSubmit={onEditSubmit}>
+            <input
+              type="text"
+              name="editText"
+              value={editText}
+              onChange={(e) => setEditText(e.target.value)}
+            />
+            <input type="submit" style={{ display: "none" }} />
+          </form>
+        ) : (
+          <p>{message.text}</p>
+        )}
 
         {message.image_url && (
           <img
