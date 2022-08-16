@@ -84,3 +84,12 @@ The application will now be running at http://localhost:3000/
 #### <img width="545" alt="image" src="https://user-images.githubusercontent.com/32501694/184991987-6fab0ac9-1942-4ed5-8814-bba36ab324ed.png">
 * View and send messages between you and another user
 * Delete or edit messages that you have sent
+
+### Servers
+#### <img width="545" alt="image" src="https://user-images.githubusercontent.com/32501694/184992261-33fcda3b-cdaf-44c6-9131-c64d1e802da4.png">
+* View a list of servers you have joined
+* See list of channels in each server
+* View messages in each channel
+* Send messages to a channel
+* Delete messages you have sent in a channel
+* If you are a mod or admin of server be able to add channels and delete other user's messages
