@@ -87,7 +87,7 @@
 }
 
 .message-card:hover .message-header .timestamp {
-    opacity: 80%;
+    color: rgba(var(--caret-color-values), 0.95);
 }
 
 .message-card .message-content {
