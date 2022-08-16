@@ -36,16 +36,16 @@ const DirectMessages = ({ loaded }) => {
     await dispatch(
       sendDirectMessage({ recipientId: chat.userId, text, imageId })
     );
-    socket.emit("UPDATE_DIRECT_MESSAGE_CHAT", {
-      chat_id: chat.id,
-    });
+    // socket.emit("UPDATE_DIRECT_MESSAGE_CHAT", {
+    //   chat_id: chat.id,
+    // });
   };
 
   const onDeleteMessage = async (messageId) => {
     await dispatch(deleteDirectMessage(messageId));
-    await socket.emit("UPDATE_DIRECT_MESSAGE_CHAT", {
-      chat_id: chat.id,
-    });
+    // await socket.emit("UPDATE_DIRECT_MESSAGE_CHAT", {
+    //   chat_id: chat.id,
+    // });
   };
 
   console.log()

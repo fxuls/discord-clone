@@ -35,16 +35,16 @@ const ServerMessages = ({ loaded, server, channelId, permission }) => {
     await dispatch(
       sendServerMessage({ serverId: server.id, channelId, text, imageId })
     );
-    socket.emit("UPDATE_SERVER_MESSAGES", {
-      server_id: server.id,
-    });
+    // socket.emit("UPDATE_SERVER_MESSAGES", {
+    //   server_id: server.id,
+    // });
   };
 
   const onDeleteMessage = async (messageId) => {
     await dispatch(deleteServerMessage(server.id, messageId));
-    await socket.emit("UPDATE_SERVER_MESSAGES", {
-      server_id: server.id,
-    });
+    // await socket.emit("UPDATE_SERVER_MESSAGES", {
+    //   server_id: server.id,
+    // });
   }
 
   return (
