@@ -6,6 +6,8 @@ const ChatBox = ({ sendMessage, placeholder }) => {
   const onSendMessage = (e) => {
     e.preventDefault();
 
+    if (messageText.trim().length === 0 || messageText.length > 700) return;
+
     sendMessage(messageText);
     //reset input box
     setMessageText("");
@@ -23,7 +25,9 @@ const ChatBox = ({ sendMessage, placeholder }) => {
           name="messageText"
           value={messageText}
           placeholder={placeholder}
-          onChange={(e) => setMessageText(e.target.value)}
+          onChange={(e) => {
+            if (e.target.value.length <= 700) setMessageText(e.target.value);
+          }}
         />
 
         <input type="submit" style={{ display: "none" }} />

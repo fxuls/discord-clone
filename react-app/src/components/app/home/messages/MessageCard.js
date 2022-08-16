@@ -55,6 +55,8 @@ const MessageCard = ({ message, onDeleteMessage, permission, loaded }) => {
   const onEditSubmit = (e) => {
     e.preventDefault();
 
+    if (editText.trim().length === 0 || editText.length > 700) return;
+
     dispatch(
       editDirectMessage({
         messageId: message.id,
@@ -101,7 +103,9 @@ const MessageCard = ({ message, onDeleteMessage, permission, loaded }) => {
               type="text"
               name="editText"
               value={editText}
-              onChange={(e) => setEditText(e.target.value)}
+              onChange={(e) => {
+                if (e.target.value.length <= 700) setEditText(e.target.value);
+              }}
             />
             <input type="submit" style={{ display: "none" }} />
           </form>
