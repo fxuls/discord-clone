@@ -21,7 +21,7 @@ const SignUpForm = () => {
     let errorMessage = "";
     if (!username) errorMessage = "Username is required";
     else if (!/^.{3,40}#[0-9]{4}$/.test(username))
-      errorMessage = "Username is invalid";
+      errorMessage = "Username must be 3-40 characters followed by # and 4 numbers";
     setUsernameError(errorMessage);
     return !errorMessage;
   };
