@@ -152,6 +152,24 @@ export const sendDirectMessage =
     return data;
   };
 
+export const editDirectMessage = ({ messageId, text, imageId}) => async (dispatch) => {
+  const response = await fetch(`/api/direct-messages/messages/${messageId}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      text,
+      image_id: imageId,
+    }),
+  });
+
+  const data = await response.json();
+  console.log(data);
+  if (response.ok) await dispatch(fetchDirectChat(data.direct_message_chat_id));
+  return data;
+}
+
 const initialState = {};
 
 export default function reducer(state = initialState, action) {
