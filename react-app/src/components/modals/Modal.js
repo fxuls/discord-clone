@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { hideModal } from "../../store/ui";
 import ImageModal, { IMAGE_MODAL } from "./ImageModal";
 import CreateServerModal, { CREATE_SERVER_MODAL } from "./CreateServerModal";
+import AddChannelModal, { ADD_CHANNEL_MODAL } from "./AddChannelModal";
 
 const Modal = ({ modal }) => {
     const dispatch = useDispatch();
@@ -18,7 +19,11 @@ const Modal = ({ modal }) => {
         case CREATE_SERVER_MODAL:
             modalComponent = <CreateServerModal modal={modal} stopPropagation={stopPropagation} />;
             break;
-            
+
+        case ADD_CHANNEL_MODAL:
+            modalComponent = <AddChannelModal modal={modal} stopPropagation={stopPropagation} />;
+            break;
+
         default:
             closeModal();
             return null;
