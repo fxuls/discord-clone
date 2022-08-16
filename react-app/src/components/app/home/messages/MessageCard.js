@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faPenToSquare, faXmark } from "@fortawesome/free-solid-svg-icons";
 
 import { userSelector } from "../../../../store/users";
 import { currentUserIdSelector } from "../../../../store/session";
@@ -41,6 +41,8 @@ const MessageCard = ({ message, onDeleteMessage, permission, loaded }) => {
   }
 
   const onImageClick = () => dispatch(showImageModal(message.image_url));
+
+  const onEditClick = () => console.log("Edit message");
 
   return (
     <div className="message-card">
@@ -89,6 +91,14 @@ const MessageCard = ({ message, onDeleteMessage, permission, loaded }) => {
             icon={faXmark}
             className="message-option-icon"
             onClick={onDeleteMessage}
+          />
+        )}
+
+        {sender.id === userId && (
+          <FontAwesomeIcon
+            icon={faPenToSquare}
+            className="message-option-icon"
+            onClick={onEditClick}
           />
         )}
       </div>
