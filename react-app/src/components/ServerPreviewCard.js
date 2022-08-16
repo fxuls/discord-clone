@@ -17,7 +17,6 @@ const ServerPreviewCard = ({ server }) => {
     if (!sessionUser) return history.push("/sign-in");
 
     const response = await dispatch(joinServerById(server.id));
-    console.log(response);
     if (response.id) {
       await dispatch(setServer(server.id));
       history.push("/app");

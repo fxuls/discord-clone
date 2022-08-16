@@ -165,7 +165,6 @@ export const editDirectMessage = ({ messageId, text, imageId}) => async (dispatc
   });
 
   const data = await response.json();
-  console.log(data);
   if (response.ok) await dispatch(fetchDirectChat(data.direct_message_chat_id));
   return data;
 }
