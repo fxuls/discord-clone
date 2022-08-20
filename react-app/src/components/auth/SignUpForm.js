@@ -155,11 +155,11 @@ const SignUpForm = () => {
 
       <button type="submit">Sign Up</button>
 
-      <footer className="transparent-caret-color">
+      <div className="form-footer transparent-caret-color">
         <p>
           Already have an account?<a href="/sign-in">Sign in</a>
         </p>
-      </footer>
+      </div>
     </form>
   );
 };
