@@ -9,7 +9,7 @@ const ServerCard = ({ server, active }) => {
 
   return (
     <div
-      className={server.server_image_url ? "server-card" : "home-card"}
+      className={server.server_image_url ? "server-card" : "server-card home-card"}
       active={active + ""}
     >
       {server.server_image_url ? (
