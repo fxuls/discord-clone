@@ -62,6 +62,11 @@ const ServerList = () => {
           <div className="server-icon">
             <FontAwesomeIcon icon={faPlus} className="icon" />
           </div>
+
+          <div className="server-info-modal">
+            <div className="left-arrow"></div>
+            <div className="server-info">Create server</div>
+          </div>
         </div>
       </div>
     </div>
