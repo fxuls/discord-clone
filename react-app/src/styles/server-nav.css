@@ -78,8 +78,12 @@ h1.server-icon {
   font-size: 90%;
   font-weight: 600;
   align-items: center;
-  display: none;
+  /* display: none; */
+  visibility: hidden;
+  display: flex;
+  opacity: 0;
   z-index: 1;
+  transition: opacity 0.22s;
 }
 
 .left-arrow {
@@ -99,7 +103,9 @@ h1.server-icon {
 }
 
 .server-card:hover .server-info-modal {
-    display: flex;
+    /* display: flex; */
+    visibility: visible;
+    opacity: 1;
 }
 
 #add-server-icon {
