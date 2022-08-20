@@ -116,8 +116,9 @@
 
 .add-friend h1 {
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 0.8rem;
+    font-size: 1.15rem;
 }
 
 .add-friend p {
@@ -146,10 +147,12 @@
 }
 
 .add-friend button {
-    padding: 0.9rem 1.9rem;
+    padding: 0.85rem 1.9rem;
     transition: none;
-    font-weight: 600;
+    font-weight: 400;
+    font-size: 1.07rem;
     float: right;
+    width: fit-content;
 }
 
 .add-friend button[active="false"] {
