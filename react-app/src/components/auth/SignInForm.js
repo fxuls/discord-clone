@@ -93,14 +93,14 @@ const SignInForm = () => {
 
       <button type="submit">Sign in</button>
 
-      <footer className="transparent-caret-color">
+      <div className="form-footer transparent-caret-color">
         <p>
           Need an account?<a href="/sign-up">Sign up</a>
         </p>
         <p>
           Just looking around?<a onClick={fillInDemoDetails}>Demo user</a>
         </p>
-      </footer>
+      </div>
     </form>
   );
 };
