@@ -2,6 +2,6 @@ import React from "react";
 import io from "socket.io-client";
 const SOCKET_URL = "";
 
-// export const socket = io.connect(SOCKET_URL);
-export const socket = null;
+export const socket = io.connect(SOCKET_URL);
+// export const socket = null;
 export const SocketContext = React.createContext();
