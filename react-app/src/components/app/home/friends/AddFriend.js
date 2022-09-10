@@ -23,7 +23,7 @@ const AddFriend = () => {
   return (
     <div className="shadow-container header-box-shadow">
       <div className="friends add-friend">
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} autoComplete="off">
           <h1>Add friend</h1>
           <p>You can add a friend by entering their username here.</p>
           <input

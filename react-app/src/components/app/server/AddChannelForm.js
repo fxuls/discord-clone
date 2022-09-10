@@ -49,7 +49,7 @@ const AddChannelForm = ({ serverId }) => {
   }, [name, hasSubmitted, errors]);
 
   return (
-    <form onSubmit={onSubmit} id="add-channel-form">
+    <form onSubmit={onSubmit} id="add-channel-form" autoComplete="off">
       <h1>Add channel</h1>
 
       <div className="form-row">

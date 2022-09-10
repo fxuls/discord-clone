@@ -65,7 +65,7 @@ const CreateServerForm = () => {
   };
 
   return (
-    <form onSubmit={onCreateServer} id="create-server-form">
+    <form onSubmit={onCreateServer} id="create-server-form" autoComplete="off">
       <h1>Create a Server</h1>
 
       <div className="form-row">

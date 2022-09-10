@@ -98,7 +98,7 @@ const MessageCard = ({ message, onDeleteMessage, permission, loaded }) => {
 
       <div className="message-content">
         {inEditMode ? (
-          <form onSubmit={onEditSubmit}>
+          <form onSubmit={onEditSubmit} autoComplete="off">
             <input
               type="text"
               name="editText"
