@@ -15,7 +15,7 @@
 .friends-list {
     margin-top: 1.3rem;
     max-height: calc(100vh - 9.8rem);
-    overflow: scroll;
+    overflow-y: auto;
 }
 
 .friends-list.incoming {

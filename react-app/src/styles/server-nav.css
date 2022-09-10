@@ -19,7 +19,7 @@
 
 .server-icons-list {
   max-height: 37rem;
-  overflow-y: scroll;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   gap: 9.8px;
