@@ -16,7 +16,7 @@
     grid-area: messages;
     padding-right: 0.97rem;
     box-sizing: border-box;
-    overflow-y: scroll;
+    overflow-y: auto;
     display: flex;
     flex-direction: column-reverse;
 }
